@@ -1,0 +1,42 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ *= require destyle
+ */
+
+ // app/assets/stylesheets/application.scss
+// app/assets/stylesheets/application.scss
+
+@import "destyle";        // ← 最初にリセット系を読み込む
+@import "complete";
+@import "audio";
+@import "change-page";
+@import "MS";
+@import "contact";
+@import "about";
+@import "portfolio";
+@import "moving";
+@import "move-text";
+// 必要に応じて追加
+
+
+// 必要なCSSファイルを全部ここにまとめてimport
+
+.background , .catch {
+  background-image: image-url('images_mountain/2.jpg');
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+ p {
+  color: black !important;
+ }

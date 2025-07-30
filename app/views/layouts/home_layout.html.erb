@@ -1,0 +1,10 @@
+<% content_for :head do %>
+    <%= tag.link rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" %>
+    <%= tag.link rel: "preconnect", href: "https://fonts.googleapis.com" %>
+    <%= tag.link rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true %>
+    <%= tag.link rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Castoro+Titling&family=Monoton&family=Montserrat+Alternates:wght@500&family=Questrial&display=swap" %>
+    <%= tag.link rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Prata&display=swap" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+<% end %>
+
+<% yield %>

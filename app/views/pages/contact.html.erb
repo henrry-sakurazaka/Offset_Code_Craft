@@ -1,0 +1,112 @@
+
+<% content_for :body_class, "fo" %>
+
+
+    <div id="cursor"></div>
+    <div id="g-ms">
+        <div class="g-ms_i"></div>
+    </div>
+
+    <div class="animation">
+
+        <div class="fade_group">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="fade_group2">
+            <div></div>
+            <div></div>
+         </div> 
+
+    </div>
+
+     <header>
+      <div class="site-title">
+        <p class="title-name">Akira</p>
+        <p class="sakamoto">Sakamoto</p>
+      </div>
+
+      <div data-barba="wrapper">
+        <div class="audio_wrap" data-barba="container" data-barba-namespace="home">
+          <div class="audio_button">
+            <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
+            <%= image_tag "listen.png", class: "listen", width: "160px", height: "160px" %>
+             <%= image_tag "mute-svgrepo-com.svg", width: "72px", height: "72px", class: "sound-logo" %>
+          </div>
+        </div>
+      </div>
+    </header>
+   
+
+     
+   
+
+    <div class="container">
+        <!-- <div class="circle"></div> -->
+        <div class="backgroundAvocad">
+            <%= image_tag "pexels-ready-made-3850652.png", width: "400px", alt: "キウイの画像" %>
+        </div>
+
+    
+        <progress class="progress" value="25" max="100"></progress>
+
+ 
+
+        <section>
+            <div class="message">
+                 <p class="text">
+                     Feel free <br>
+                     to drop <br>
+                     me a   <br>                   
+                     message <br>
+                 </p>
+            </div>
+            <div class="form-container">
+                <%= form_with url: "contact_complete_path", method: :post, local: true, html: { class: "form" } do |f| %>
+                    <div class="form-group">
+                    <%= f.label :name, "NAME" %><br>
+                    <%= f.text_field :name, required: true %>
+                    </div>
+                    <div class="form-group">
+                    <%= f.label :email, "E-MAIL" %><br>
+                    <%= f.email_field :email, pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", title: "正しい形式のメールアドレスを入力してください", required: true %>
+                    </div>
+                    <div class="form-group">
+                    <%= f.label :message, "MESSAGE" %><br>
+                    <%= f.text_area :message, required: true %>
+                    </div>
+                    <div class="button">
+                    <%= f.submit "SUBMIT", id: "btn" %>
+                    </div>
+                <% end %>
+            </div>
+        </section>
+
+            <div class="nav-container">
+                <nav class="navi">
+                    <div class="dot  animate__bounce animate__infinite"></div>
+                    <%= link_to "Top", home_path, class: "about" %>
+                    <div class="center">
+                        <div class="center-inner">
+                            <div class="inner">
+                                <%= link_to "About", about_path, class: "top" %>
+                                <span class="line3"></span>
+                            </div>    
+                        </div>
+                    </div>                
+                </nav>
+            </div>   
+    </div>
+   
+     
+    <%= javascript_include_tag "nav.js", defer: true %>
+    <% javascript_include_tag "contact.js", defer: true %>
+
+    
+    <footer>    
+      <h6 class="copy">&copy;OffSetCodeCraft.com All Rights Reserved</h6>
+    </footer>
+
+
