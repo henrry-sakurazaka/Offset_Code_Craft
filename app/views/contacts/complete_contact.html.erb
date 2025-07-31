@@ -4,15 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= tag.link rel: "stylesheet", href: "complete.css" %>
+    <%= stylesheet_link_tag "complete", media: "all" %>
     <title>お問合わせ完了</title>
 </head>
     <body>
+        <div id="cursor"></div>
+        <div id="g-ms">
+            <div class="g-ms_i"></div>
+        </div>
+
         <div class="container">
             <h3>送信されました。 </h3>
             <p>お問い合わせ有り難うございました。</p>
-            <%= link_to "ページトップへ", home_path %>
-            <%= link_to "戻る", contact_path %>
+            <%= link_to "ページトップへ", home_path,  class: "page_top" %>
+            <%= link_to "戻る", contact_path, class: "back_to_contact" %>
         </div>
         
     </body>

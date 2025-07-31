@@ -16,3 +16,21 @@
 p {
     color: black;
 }
+
+.page_top{
+    color: yellowgreen;
+    margin-top: 24px;
+}
+
+.page_top:hover {
+    text-decoration: underline;
+}
+
+.back_to_contact {
+     color: green;
+    margin-top: 16px;
+}
+
+.back_to_contact:hover {
+      text-decoration: underline;
+}

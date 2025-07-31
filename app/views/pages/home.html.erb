@@ -2,6 +2,12 @@
 
     <% content_for :body_class, "fo" %>
 
+        <script>
+            window.architectureChart = "<%= asset_path('Blank diagram-12.png') %>";
+        </script>
+
+
+
             <div class="mask"></div>
             <div class="mask2"></div>
             <div class="lightning-line"></div>
@@ -266,4 +272,6 @@
             <%= javascript_include_tag "loading-animation.js", defer: true %>   
             <%= javascript_include_tag "portforio.js", defer: true %>
 
-    
+         <script>
+            let architectureChart = "<%= image_path('Blank diagram-12.png') %>";
+        </script>
