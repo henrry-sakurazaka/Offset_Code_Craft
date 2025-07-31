@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  default to: 'bright.lights.21@me.com', from: 'no-reply@offsetcodecraft.com'
+  default to: "bright.lights.21@me.com", from: "no-reply@offsetcodecraft.com"
 
   def contact_email(name, email, message)
     @name = name
@@ -7,7 +7,7 @@ class ContactMailer < ApplicationMailer
     @message = message
 
     mail(
-      subject: 'OffSetCodeCraftへお問い合わせがありました',
+      subject: "OffSetCodeCraftへお問い合わせがありました",
       body: "名前: #{@name}\nメール: #{@sender_email}\nお問い合わせ内容:\n#{@message}"
     )
   end

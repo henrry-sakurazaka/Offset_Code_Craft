@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-   
   def home; end
   def about; end
   def contact; end
@@ -18,7 +17,7 @@ class PagesController < ApplicationController
     else
       "application"
     end
-  end  
+  end
 end
 
 # def home
