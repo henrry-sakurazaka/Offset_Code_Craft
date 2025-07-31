@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Offset_Code_Craft
 
-Things you may want to cover:
+## 既存の自己紹介サイト（my-portfolio）をRails環境にリプレイス
 
-* Ruby version
+現在開発中
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
