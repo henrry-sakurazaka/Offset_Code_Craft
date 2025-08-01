@@ -16,6 +16,7 @@ class ContactsController < ApplicationController
       return
     end
 
+<<<<<<< HEAD
     # メール送信
     begin
       Rails.logger.debug "Sending email to #{email}"
@@ -26,6 +27,17 @@ class ContactsController < ApplicationController
       Rails.logger.error "メール送信エラー: #{e.message}"
       flash[:alert] = "送信中にエラーが発生しました。"
       redirect_to contact_path
+=======
+    @contact = Contact.new(name: name, email: email, message: message)
+
+    ContactMailer.contact_email(name, email, message).deliver_now
+
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      redirect_to complete_contact_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+>>>>>>> 606b502 (Update)
     end
   end
 
