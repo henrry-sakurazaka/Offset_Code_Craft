@@ -17,6 +17,9 @@ class ContactsController < ApplicationController
     end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ca28b08 (Update)
     # メール送信
     begin
       Rails.logger.debug "Sending email to #{email}"
@@ -27,6 +30,7 @@ class ContactsController < ApplicationController
       Rails.logger.error "メール送信エラー: #{e.message}"
       flash[:alert] = "送信中にエラーが発生しました。"
       redirect_to contact_path
+<<<<<<< HEAD
 =======
     @contact = Contact.new(name: name, email: email, message: message)
 
@@ -38,6 +42,8 @@ class ContactsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
 >>>>>>> 606b502 (Update)
+=======
+>>>>>>> ca28b08 (Update)
     end
   end
 
@@ -83,3 +89,7 @@ end
 #     # 完了画面を表示するだけのアクションでOK（何もしない）
 #   end
 # end
+<<<<<<< HEAD
+=======
+
+>>>>>>> ca28b08 (Update)
