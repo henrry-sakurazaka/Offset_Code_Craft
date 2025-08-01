@@ -23,22 +23,7 @@
     </div>
     
 
-         <header>
-      <div class="site-title">
-        <p class="title-name">Akira</p>
-        <p class="sakamoto">Sakamoto</p>
-      </div>
-
-      <div data-barba="wrapper">
-        <div class="audio_wrap" data-barba="container" data-barba-namespace="home">
-          <div class="audio_button">
-            <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
-            <%= image_tag "listen.png", class: "listen", width: "160px", height: "160px" %>
-             <%= image_tag "mute-svgrepo-com.svg", width: "72px", height: "72px", class: "sound-logo" %>
-          </div>
-        </div>
-      </div>
-    </header>
+      
     
 
         <div class="container">
@@ -210,6 +195,8 @@
                 <div class="big-contact" ontouchstart="">
                     <%=  link_to "CONTACT", contact_path, class: "big-text change-page" %>
                 </div>  
+        
+
 
        
         <%= javascript_include_tag "portfolio-about.js", defer: true %>

@@ -40,26 +40,47 @@
       <%= tag.link href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Castoro+Titling&family=Monoton&family=Montserrat+Alternates:wght@500&family=Questrial&display=swap", rel: "stylesheet" %>
       <%= tag.link href: "https://fonts.googleapis.com/css2?family=Prata&display=swap", rel: "stylesheet" %>
       <%= javascript_include_tag "jquery-3.6.1min", defer: true %>
-      <%= javascript_include_tag "bgm", defer: true %>
+      <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+      <%#<%= javascript_include_tag "bgm", defer: true %>
       <%= javascript_include_tag "MS", defer: true %>
       <%= javascript_include_tag "progress-bar", defer: true %>
+  
 
       <%= javascript_importmap_tags %>
     </head>
-  
+
+    
 
   <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
-
-    <%= yield %>
 
       <script>
         var audioIconPath = "<%= asset_path('audio-svgrepo-com.svg') %>";
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
       </script>
 
+
+    <%= yield %>
+
+       <header>
+            <div class="site-title">
+                <p class="title-name">Akira</p>
+                <p class="sakamoto">Sakamoto</p>
+            </div>
+
+            <div data-barba="wrapper">
+                <div class="audio_wrap" data-barba="container" data-barba-namespace="home">
+                  <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
+                <div class="audio_button">
+                    <%= image_tag "listen.png", class: "listen", width: "160px", height: "160px" %>
+                    <%= image_tag "mute-svgrepo-com.svg", width: "72px", height: "72px", class: "sound-logo" %>
+                </div>
+                </div>
+            </div>
+        </header>
+    
+
+      
         <progress class="progress" value="25" max="100"></progress>
 
-    
-        
   </body>
 </html>
