@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get "home", to: "pages#home"
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"
-  get "contacts/new"
-  get "contacts/create"
-  # フォームの送信先（ContactsController#create）
+  # 送信完了画面
+  get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
+  # フォーム送信
   post "submit_contact", to: "contacts#create", as: :submit_contact
   # 送信完了画面
   get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
