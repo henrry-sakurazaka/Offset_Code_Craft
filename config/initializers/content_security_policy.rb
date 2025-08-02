@@ -22,4 +22,15 @@
 #
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
+# config/initializers/content_security_policy.rb
+Rails.application.config.content_security_policy do |policy|
+  # frame_ancestorsを設定
+  policy.frame_ancestors :self, "https://bgm-app-61f72-2c930.web.app"
+end
+
+# report-only モードにする
+# Rails.application.config.content_security_policy_report_only = false
+
+
+
 # end
