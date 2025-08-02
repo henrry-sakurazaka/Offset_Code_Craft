@@ -58,8 +58,9 @@
     // import barba from '@barba/core';
 
     document.addEventListener("turbo:load", () => {
-      const audioIconPath = 'assets/images/audio-svgrepo-com.svg'
-      const muteIconPath = 'assets/images/mute-svgrepo-com.svg'
+      // const audioIconPath = 'assets/images/audio-svgrepo-com.svg' 
+      // const muteIconPath = 'assets/images/mute-svgrepo-com.svg'
+      // 上記の部分はapplication .html.erbで読み込んでいる。
       const audioBtn = document.querySelector('.audio_button');
       const audioWrap = document.querySelector('.audio_wrap');
       const audio = document.querySelector('#audio');

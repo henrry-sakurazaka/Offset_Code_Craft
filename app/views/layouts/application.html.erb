@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja"> 
-    <head>
-      <title><%= content_for(:title) || "My Portfolio" %></title>
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="mobile-web-app-capable" content="yes">
-      <%= csrf_meta_tags %>
-      <%= csp_meta_tag %>
 
-      <meta charset="UTF-8">
-      <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-      <%= stylesheet_link_tag "destyle", "data-turbo-track": "reload" %>
-      <%= stylesheet_link_tag "MS", "data-turbo-track": "reload" %>
-      <%= stylesheet_link_tag "audio", "data-turbo-track": "reload" %>
-      <%= stylesheet_link_tag "change-page", "data-turbo-track": "reload" %>
-      <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" %>
-      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <!DOCTYPE html>
 <html lang="ja"> 
     <head>
       <title><%= content_for(:title) || "My Portfolio" %></title>
@@ -40,26 +22,41 @@
       <%= tag.link href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Castoro+Titling&family=Monoton&family=Montserrat+Alternates:wght@500&family=Questrial&display=swap", rel: "stylesheet" %>
       <%= tag.link href: "https://fonts.googleapis.com/css2?family=Prata&display=swap", rel: "stylesheet" %>
       <%= javascript_include_tag "jquery-3.6.1min", defer: true %>
-      <%= javascript_include_tag "bgm", defer: true %>
+      <%#<%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+      <%#<%= javascript_include_tag "bgm", defer: true %>
       <%= javascript_include_tag "MS", defer: true %>
       <%= javascript_include_tag "progress-bar", defer: true %>
+  
 
       <%= javascript_importmap_tags %>
     </head>
-  
+
+    
 
   <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
-
-    <%= yield %>
 
       <script>
         var audioIconPath = "<%= asset_path('audio-svgrepo-com.svg') %>";
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
       </script>
 
+    <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
+
+    <%= yield %>
+
+       <header>
+          <iframe
+            src="https://bgm-app-61f72-2c930.web.app"
+            width="100%"
+            height="600"
+            style="border:none;"
+            allowfullscreen
+          ></iframe>        
+        </header>
+    
+
+      
         <progress class="progress" value="25" max="100"></progress>
 
-    
-        
   </body>
 </html>

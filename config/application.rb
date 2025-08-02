@@ -22,5 +22,7 @@ module OffsetCodeCraft
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # X-Frame-Options ヘッダーを削除して、iframeの制限を外す
+    
   end
 end
