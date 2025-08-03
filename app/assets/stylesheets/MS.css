@@ -16,7 +16,8 @@
     margin: -30px 0 0 -30px;
     border: black solid 1px;
     mix-blend-mode: exclusion;
-    border-radius: 50%;  
+    border-radius: 50%;
+    z-index: 1000;  
 }
 
 .g-ms-hover .g-ms_i {
@@ -33,7 +34,8 @@
     height: 10px;
     background: black !important;
     border-radius: 50%;
-    z-index: 60;
+    z-index: 1000;
+
 }
 
 .g-ms-hover {
