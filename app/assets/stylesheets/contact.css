@@ -22,6 +22,7 @@
 .container {
     max-width: 1970px;
     width: 100%;
+    height: 90vh;
     padding-left: 192px ;
     margin-right: 0;
     position: relative;
