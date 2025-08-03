@@ -41,7 +41,7 @@
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
       </script>
 
-       <header>
+       <header class="<%= 'contact_header' if current_page?(contact_path) %>">
           <div class="site-title">
             <p class="title-name"><%= link_to "Akira", home_path %></p>
             <p class="sakamoto"><%= link_to "Sakamoto", home_path %></p>
