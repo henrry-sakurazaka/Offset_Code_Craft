@@ -144,12 +144,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
-
+    position: absolute;
+    top: 27%;
 }
 
 .site-title {
-
     margin-left: 32px;
     position: fixed;
 }
