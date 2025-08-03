@@ -16,7 +16,7 @@ header {
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    top: 4%;
+    top: 1%;
     z-index: 999;
 }
 
@@ -24,7 +24,7 @@ header {
 .site-title {
     margin-left: 32px;
     position: fixed;
-    top: 4%;
+    top: 5%;
 }
 
 body {
