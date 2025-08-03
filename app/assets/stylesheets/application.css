@@ -17,6 +17,7 @@ header {
     justify-content: space-between;
     position: absolute;
     top: 27%;
+    z-index: 999;
 }
 
 
