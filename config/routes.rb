@@ -1,17 +1,32 @@
+# Rails.application.routes.draw do
+#   root "pages#home", as: :home
+
+#   get "home", to: "pages#home", as: :home
+#   get "about", to: "pages#about", as: :about
+#   get "contact", to: "pages#contact", as: :contact
+
+#   # 送信完了画面
+#   get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
+
+#   # フォーム送信
+#   post "submit_contact", to: "contacts#create", as: :submit_contact
+#   post "contacts/create", to: "contacts#create" 
+#   get "architex/home", to: "architex#home", as: :architex_home
+
+#   get "up", to: "rails/health#show", as: :rails_health_check
+# end
+
 Rails.application.routes.draw do
   root "pages#home"
 
-  get 'pages/home', to: 'pages#home', as: :pages_home
-  get 'pages/about', to: 'pages#about', as: :pages_about
-  get 'pages/contact', to: 'pages#contact', as: :pages_contact
-  get 'pages/complete', to: 'pages#complete', as: :pages_complete
+  get "about", to: "pages#about", as: :about
+  get "contact", to: "pages#contact", as: :contact
 
-  get 'contacts/new', to: 'contacts#new', as: :contacts_new
-  post 'submit_contact', to: 'contacts#create', as: :submit_contact
-  post "contacts/create", to: "contacts#create"
-  get 'contacts/complete', to: 'contacts#complete', as: :contacts_complete
+  get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
 
-  get 'architex/home', to: 'architex#home', as: :architex_home
+  post "contacts", to: "contacts#create", as: :submit_contact
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  get "architex/home", to: "architex#home", as: :architex_home
+
+  get "up", to: "rails/health#show", as: :rails_health_check
 end
