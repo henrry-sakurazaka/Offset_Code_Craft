@@ -33,6 +33,9 @@
 
   <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
 
+      <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
+
+
       <script>
         var audioIconPath = "<%= asset_path('audio-svgrepo-com.svg') %>";
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
