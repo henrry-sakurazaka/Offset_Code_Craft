@@ -148,7 +148,7 @@ p {
 
 /* header //////////////////////////////////////////////////*/
 
-header {
+/* header {
     max-width: 1976px;
     width: 100%;
     height: 96px;
@@ -163,7 +163,8 @@ header {
     margin-left: 32px;
     position: fixed;
     z-index: 70;
-}
+    top: 7%;
+} */
 
 /* @media screen and (max-width: 415px) {
 
