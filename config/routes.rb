@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # フォーム送信
   post "submit_contact", to: "contacts#create", as: :submit_contact
   # 送信完了ページの表示（ContactsController#complete）
-  get 'contacts/complete', to: 'contacts#complete', as: :complete_contacts
+  get "contacts/complete", to: "contacts#complete", as: :complete_contacts
   get "architex/home"
-  
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   # resources は new, create だけ使うならこうしてもOK（今回は省略でもOK）
