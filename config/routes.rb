@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
+  # メインページ
   root "pages#home"
   get "home", to: "pages#home"
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"
-  # 送信完了画面
-  get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
-  # フォーム送信
-  post "submit_contact", to: "contacts#create", as: :submit_contact
+  get "pages/complete", to: "pages#complete"
 
+  # アーキテクチャ紹介
   get "architex/home"
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Contacts 関連（new, create, complete）
+  get "contacts/new", to: "contacts#new"
+  post "contacts/create", to: "contacts#create"
+  get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
+  # config/routes.rb
+  post "submit_contact", to: "contacts#create", as: :submit_contact
 
-  # resources は new, create だけ使うならこうしてもOK（今回は省略でもOK）
-  # resources :contacts, only: [:new, :create]
+  # Health Check
+  get "up" => "rails/health#show", as: :rails_health_check
 end
