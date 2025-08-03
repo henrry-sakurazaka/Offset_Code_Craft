@@ -26,3 +26,9 @@ header {
     position: fixed;
     top: 4%;
 }
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;    
+}

@@ -7,13 +7,12 @@
     
 } 
 
-body {
+/* body {
     margin: 0;
     padding: 0;  
-    /* background-color: rgba(240, 243, 207, 0.997);  */
-    
-}
-
+    /* background-color: rgba(240, 243, 207, 0.997);  
+} */ 
+ 
 .container {
     max-width: 1970px;
     width: 100%;
