@@ -26,8 +26,6 @@
       <%#<%= javascript_include_tag "bgm", defer: true %>
       <%= javascript_include_tag "MS", defer: true %>
       <%= javascript_include_tag "progress-bar", defer: true %>
-  
-
       <%= javascript_importmap_tags %>
     </head>
 
@@ -40,11 +38,11 @@
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
       </script>
 
-    <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
-
-    <%= yield %>
-
        <header>
+          <div class="site-title">
+            <p class="title-name"><a href="index.html">Akira</a></p>
+            <p class="sakamoto"><a href="index.html">Sakamoto</a></p> 
+          </div>
           <iframe
             src="https://bgm-app-61f72-2c930.web.app"
             width="100%"
@@ -53,9 +51,9 @@
             allowfullscreen
           ></iframe>        
         </header>
-    
 
-      
+    <%= yield %>
+    
         <progress class="progress" value="25" max="100"></progress>
 
   </body>
