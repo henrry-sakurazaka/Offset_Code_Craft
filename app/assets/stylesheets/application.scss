@@ -50,11 +50,12 @@ img {
     justify-content: space-between;
     position: absolute;
     top: 27%;
+    z-index: 999;
 }
 
 
 .site-title {
     margin-left: 32px;
     position: fixed;
-    top: 7%;
+    top: 4%;
 }
