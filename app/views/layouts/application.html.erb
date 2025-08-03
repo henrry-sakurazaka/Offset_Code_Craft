@@ -40,10 +40,6 @@
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
       </script>
 
-    
-
-    <%= yield %>
-
        <header>
           <iframe
             src="https://bgm-app-61f72-2c930.web.app"
@@ -53,9 +49,10 @@
             allowfullscreen
           ></iframe>        
         </header>
-    
 
-      
+  
+    <%= yield %>
+    
         <progress class="progress" value="25" max="100"></progress>
 
   </body>
