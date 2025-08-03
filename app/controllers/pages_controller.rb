@@ -20,15 +20,3 @@ class PagesController < ApplicationController
   end
 end
 
-# def home
-#   end
-
-#   def about
-#   end
-
-#   def contact
-#   end
-
-#   def complete
-#   end
-# end
