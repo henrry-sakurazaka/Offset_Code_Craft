@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "contacts/complete", to: "contacts#complete_contact", as: :complete_contact
   # フォーム送信
   post "submit_contact", to: "contacts#create", as: :submit_contact
-  
+
   get "architex/home"
 
   get "up" => "rails/health#show", as: :rails_health_check
