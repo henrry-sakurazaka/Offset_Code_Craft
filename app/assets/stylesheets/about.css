@@ -4,6 +4,26 @@ p {
     color: black;
 }
 
+
+header {
+    max-width: 1970px;
+    width: 100%;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 1%;
+    z-index: 50;
+}
+
+
+.site-title {
+    margin-left: 32px;
+    position: fixed;
+    top: 5%;
+}
+
 .container {
     max-width: 1970px;
     width: 100% !important;
