@@ -18,6 +18,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 20;
 }
 .container2 {
     max-width: 1970px;
@@ -27,7 +28,8 @@ p {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
+    z-index: 20;    
 }
 
 
@@ -591,7 +593,7 @@ progress::-webkit-progress-value {
     margin-top: 88px;
     display: flex;
     justify-content: center;
-    
+    z-index: 20;
 }
 
 
