@@ -54,7 +54,13 @@
     //   })
     // });
 
- 
+    document.addEventListener("turbo:load", () => {
+    console.log("✅ turbo:load fired");
+
+    const audioBtn = document.querySelector('.audio_button');
+    console.log("audio_button is:", audioBtn);
+  });
+
     // import barba from '@barba/core';
 
     document.addEventListener("turbo:load", () => {
@@ -63,27 +69,26 @@
       // 上記の部分はapplication .html.erbで読み込んでいる。
       const audioBtn = document.querySelector('.audio_button');
       const audioWrap = document.querySelector('.audio_wrap');
-      const audio = document.querySelector('#audio');
+      const audio_data = document.querySelector('#audio');
       const soundLogo = document.querySelector('.sound-logo');
 
-      if (!audioIconPath || !muteIconPath || !audioBtn || !audioWrap || !audio || !soundLogo) return;
+      // if (!audioIconPath || !muteIconPath || !audioBtn || !audioWrap || !audio_data || !soundLogo) return;
       
       let isAudioPlaying = false;
         
       audioBtn.addEventListener('click', function() {
-        if (audio.paused) {
-          audioWrap.classList.add('play');
-          audio.play();
+      console.log('yes')
+      const playing = audioWrap.classList.toggle('open-bgm');
+        if (playing) {
           soundLogo.setAttribute('src', audioIconPath);
           isAudioPlaying = true;
         } else {
-          audioWrap.classList.remove('play');
-          audio.pause();
           soundLogo.setAttribute('src', muteIconPath);
           isAudioPlaying = false;         
         }
       });
     });
+
 
    
     
