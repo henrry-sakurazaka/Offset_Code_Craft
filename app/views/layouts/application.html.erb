@@ -41,7 +41,7 @@
         var muteIconPath  = "<%= asset_path('mute-svgrepo-com.svg') %>";
       </script>
 
-       <header class="<%= 'contact_header' if current_page?(contact_path) %>"></header>
+      
           <div class="site-title">
             <p class="title-name"><%= link_to "Akira", home_path %></p>
             <p class="sakamoto"><%= link_to "Sakamoto", home_path %></p>
@@ -50,7 +50,7 @@
             src="https://bgm-app-61f72-2c930.web.app"
             width="100%"
             height="176"
-            style="position: absolute; top: 2%; right: 8px; width: 560px; height: 172px; border: none; z-index: 900;"
+            style="position: fixed; top: 0; right: 8px; width: 560px; height: 172px; border: none; z-index: 900;"
             allow="autoplay; encrypted-media"
             allowfullscreen
             data-turbolinks-permanent
