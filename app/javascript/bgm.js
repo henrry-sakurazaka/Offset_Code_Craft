@@ -28,76 +28,61 @@
     //  soundLogo = document.querySelector('.sound-logo');
     //  let isAudioPlaying = false;
 
-    // audioBtn.addEventListener('click', function() {
+   
+    // function init() {
+    //   console.log("init called");
+    //   // 初期化処理
+    // }
 
-    //   barba.hooks.before((data ) => {
-    //     if (audio.paused) {
-    //       audioWrap.classList.add('play');
-    //       audio.play();
-    //       soundLogo.setAttribute('src','my-portfolio-img/audio-svgrepo-com.svg')
-    //       isAudioPlaying = true;
-    //     } else {
-    //       audioWrap.classList.remove('play');
-    //       audio.pause();
-    //       soundLogo.setAttribute('src', 'my-portfolio-img/mute-svgrepo-com.svg');
-    //       isAudioPlaying = false;
-    //     }
-    //   }); 
-
-    //   barba.hooks.after((data) => {
-    //     if(isAudioPlaying) {
-    //       audioWrap.classList.add('play');
-    //       audio.play();
-    //       soundLogo.setAttribute('src','my-portfolio-img/audio-svgrepo-com.svg')
-    //       isAudioPlaying = true;
-    //     }
-    //   })
+    // document.addEventListener("turbo:load", () => {
+    //   console.log("✅ turbo:load 発火した");
     // });
 
-    document.addEventListener("turbo:load", () => {
-    console.log("✅ turbo:load fired");
 
-    const audioBtn = document.querySelector('.audio_button');
-    console.log("audio_button is:", audioBtn);
-  });
-
-    // import barba from '@barba/core';
-
-    document.addEventListener("turbo:load", () => {
-      // const audioIconPath = 'assets/images/audio-svgrepo-com.svg' 
-      // const muteIconPath = 'assets/images/mute-svgrepo-com.svg'
-      // 上記の部分はapplication .html.erbで読み込んでいる。
-      const audioBtn = document.querySelector('.audio_button');
-      const audioWrap = document.querySelector('.audio_wrap');
-      const audio_data = document.querySelector('#audio');
-      const soundLogo = document.querySelector('.sound-logo');
-
-      // if (!audioIconPath || !muteIconPath || !audioBtn || !audioWrap || !audio_data || !soundLogo) return;
-      
-      let isAudioPlaying = false;
-        
-      audioBtn.addEventListener('click', function() {
-      console.log('yes')
-      const playing = audioWrap.classList.toggle('open-bgm');
-        if (playing) {
-          soundLogo.setAttribute('src', audioIconPath);
-          isAudioPlaying = true;
-        } else {
-          soundLogo.setAttribute('src', muteIconPath);
-          isAudioPlaying = false;         
-        }
-      });
-    });
+    // document.addEventListener("DOMContentLoaded", init);
+    // document.addEventListener("turbo:load", init);
 
 
-   
+    // document.addEventListener("turbo:load", () => {
+    //   // const audioIconPath = 'assets/images/audio-svgrepo-com.svg' 
+    //   // const muteIconPath = 'assets/images/mute-svgrepo-com.svg'
+    //   // 上記の部分はapplication .html.erbで読み込んでいる。
+    //   const audioBtn = document.querySelector('.audio_button');
+    //   const audioWrap = document.querySelector('.audio_wrap');
+    //   const my_frame = document.querySelector('#myFrame');
+    //   const audio_data = document.querySelector('#audio');
+    //   const soundLogo = document.querySelector('.sound-logo');
+
+    //   if (!audioIconPath || !muteIconPath || !audioBtn || !audioWrap || !soundLogo || !audio_data) {
+    //     console.log('does not element required');        
+    //     return;
+    //   }
+    //   let isAudioPlaying = false;
+
+    //   // console.log("▶️ audio_button: ", document.querySelector('.audio_button'));
+    //   // console.log("▶️ audioタグ: ", document.querySelector('#audio'));
+
+    //     audioBtn.addEventListener('click', function () {
+    //       if (audio_data.paused) {
+    //         audio_data.play().then(() => {
+    //         soundLogo.setAttribute('src', audioIconPath);
+    //         audioWrap.classList.add('playing');
+    //         isAudioPlaying = true;
+    //         }).catch((error) => {
+    //           console.error('再生失敗', error);
+    //         });
+          
+    //       } else {
+    //         audio_data.pause();
+    //         soundLogo.setAttribute('src', muteIconPath);
+    //         audioWrap.classList.remove('playing');
+    //         isAudioPlaying = false;
+    //       }
+    //     });
+    //   });
+       
     
-    
-   
-
       
-   
-
     // $(document).ready(function() {
     //   var audioBtn = $('#container #content .audio_button');
     //   var audioWrap = $('#container #content .audio_wrap');
