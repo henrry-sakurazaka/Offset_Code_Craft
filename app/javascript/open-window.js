@@ -8,15 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const soundLogo = document.querySelector('.sound-logo');
   const audioWrap = document.querySelector('.audio_wrap');
 
-  let isAudioPlaying = false;
+  let isAudioPlaying = localStorage.getItem('bgmPlaying') === 'true';
   let bgmWindow = null;
+
+   // 初期表示のUI復元
+  if (isAudioPlaying) {
+    soundLogo.setAttribute('src', audioIconPath);
+    audioWrap.classList.add('playing');
+  } else {
+    soundLogo.setAttribute('src', muteIconPath);
+    audioWrap.classList.remove('playing');
+  }
+
 
   if (toggleButton) {
     toggleButton.addEventListener("click", () => {
       if (!isAudioPlaying || !bgmWindow || bgmWindow.closed) {
 
         bgmWindow = window.open(
-          "https://bgm-app-61f72-2c930.web.app",
+          "/bgm-app/", // Railsのpublic以下のbgm-appフォルダにあるindex.htmlへの相対パス
           "play-bgm",
           "width=300,height=80,toolbar=no,location=no,status=no,menubar=no"
         );
@@ -39,19 +49,28 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           }, 100);
         }
-
       } else {
         // 停止処理
         if (bgmWindow) {
           bgmWindow.postMessage("stop-bgm", "*");
-          bgmWindow.close();
+          
+          setTimeout(() => {
+            if (bgmWindow && !bgmWindow.closed) {
+              bgmWindow.close();
+              bgmWindow = null;
+            }   
+          }, 300);
         }
         soundLogo.setAttribute('src', muteIconPath);
         audioWrap.classList.remove('playing');
         isAudioPlaying = false;
-        bgmWindow = null;
+        localStorage.setItem('bgmPlaying', 'false');
         console.log("stop-message sent");
       }
     });
   }
+  // ページ離脱時にフラグクリア（※必要なら）
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem('bgmPlaying', isAudioPlaying ? 'true' : 'false');
+  });
 });
