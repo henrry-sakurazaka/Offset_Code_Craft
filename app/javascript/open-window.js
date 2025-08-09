@@ -10,14 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isAudioPlaying = localStorage.getItem('bgmPlaying') === 'true';
   let bgmWindow = null;
+  let sound = false;
 
   if (isAudioPlaying) {
     soundLogo.setAttribute('src', audioIconPath);
-    audioWrap.classList.add('playing');
-  } else {
+    soundLogo.classList.add('playing');
+    sound = true;
+  
+  }else {
     soundLogo.setAttribute('src', muteIconPath);
-    audioWrap.classList.remove('playing');
+    soundLogo.classList.remove('playing');
+    sound = false;
   }
+
+  // if (isAudioPlaying || bgmWindow ) {
+  //   toggleButton.addEventListener("click", () => {    
+  //     soundLogo.setAttribute('src', muteIconPath); 
+  //     bgmWindow.postMessage({ type: "stop-bgm" }, "*");           
+  //     audioWrap.classList.remove('playing');
+  //     isAudioPlaying = false;
+  //     localStorage.setItem('bgmPlaying', 'false');
+    
+  //     setTimeout(() => {
+  //       if (bgmWindow && !bgmWindow.closed) {
+  //           bgmWindow.close();
+  //           bgmWindow = null;  
+  //       }
+  //     }, 300)  
+  //   })
+  // }
 
   if (toggleButton) {
     toggleButton.addEventListener("click", () => {
@@ -33,15 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
             bgmWindow.postMessage({ type: "play-bgm" }, "*"); 
           });
           soundLogo.setAttribute('src', audioIconPath);
-          audioWrap.classList.add('playing');
+          soundLogo.classList.add('playing');
           isAudioPlaying = true;
           localStorage.setItem('bgmPlaying', 'true');
-        }
+        } 
       } else {
-        // if (isAudioPlaying || bgmWindow || bgmWindow.open) {
-        //   bgmWindow.addEventListener('load', () => {
-        //     bgmWindow.postMessage({ type: "stop-bgm" }, "*");
-        //   });}
           soundLogo.setAttribute('src', muteIconPath);
           bgmWindow.postMessage({ type: "stop-bgm" }, "*");
           audioWrap.classList.remove('playing');
@@ -54,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 bgmWindow = null;  
             }
           }, 300)  
-        } 
+      } 
         // const intervalId = setInterval(() => {
         //   if (bgmWindow.document && bgmWindow.document.readyState === 'complete') {
         //     clearInterval(intervalId);
