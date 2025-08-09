@@ -10,54 +10,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isAudioPlaying = localStorage.getItem('bgmPlaying') === 'true';
   let bgmWindow = null;
+  let sound = false;
 
-  // 初期表示のUI復元
   if (isAudioPlaying) {
     soundLogo.setAttribute('src', audioIconPath);
-    audioWrap.classList.add('playing');
-  } else {
+    soundLogo.classList.add('playing');
+    sound = true;
+  
+  }else {
     soundLogo.setAttribute('src', muteIconPath);
-    audioWrap.classList.remove('playing');
+    soundLogo.classList.remove('playing');
+    sound = false;
   }
+
+  // if (isAudioPlaying || bgmWindow ) {
+  //   toggleButton.addEventListener("click", () => {    
+  //     soundLogo.setAttribute('src', muteIconPath); 
+  //     bgmWindow.postMessage({ type: "stop-bgm" }, "*");           
+  //     audioWrap.classList.remove('playing');
+  //     isAudioPlaying = false;
+  //     localStorage.setItem('bgmPlaying', 'false');
+    
+  //     setTimeout(() => {
+  //       if (bgmWindow && !bgmWindow.closed) {
+  //           bgmWindow.close();
+  //           bgmWindow = null;  
+  //       }
+  //     }, 300)  
+  //   })
+  // }
 
   if (toggleButton) {
     toggleButton.addEventListener("click", () => {
-      // 既にウィンドウが開かれていない場合、または音楽が再生されていない場合
       if (!isAudioPlaying || !bgmWindow || bgmWindow.closed) {
         bgmWindow = window.open(
-          "/bgm-app/", // Railsのpublic以下のbgm-appフォルダにあるindex.htmlへの相対パス
+          "/bgm-app/", 
           "play-bgm",
           "width=300,height=80,toolbar=no,location=no,status=no,menubar=no"
         );
 
         if (bgmWindow) {
-          // ウィンドウが開いたら音楽再生を送信
           bgmWindow.addEventListener('load', () => {
-            bgmWindow.postMessage({ type: "play-bgm" }, "*"); // 音楽再生を指示
+            bgmWindow.postMessage({ type: "play-bgm" }, "*"); 
           });
           soundLogo.setAttribute('src', audioIconPath);
-          audioWrap.classList.add('playing');
+          soundLogo.classList.add('playing');
           isAudioPlaying = true;
           localStorage.setItem('bgmPlaying', 'true');
-        }
+        } 
       } else {
-        // 停止処理
-        if (bgmWindow) {
-          bgmWindow.postMessage("stop-bgm", "*");
           soundLogo.setAttribute('src', muteIconPath);
-          soundLogo.setAttribute('src', muteIconPath);
+          bgmWindow.postMessage({ type: "stop-bgm" }, "*");
           audioWrap.classList.remove('playing');
           isAudioPlaying = false;
           localStorage.setItem('bgmPlaying', 'false');
-
+        
           setTimeout(() => {
             if (bgmWindow && !bgmWindow.closed) {
                 bgmWindow.close();
                 bgmWindow = null;  
             }
           }, 300)  
-        }      
-      }
+      } 
+        // const intervalId = setInterval(() => {
+        //   if (bgmWindow.document && bgmWindow.document.readyState === 'complete') {
+        //     clearInterval(intervalId);
+        //     bgmWindow.postMessage({type: 'stop-bgm'}, '*');
+        //     soundLogo.setAttribute('src', muteIconPath);
+        //   }
+        // }, 100);     
+      
     });
   }
 
