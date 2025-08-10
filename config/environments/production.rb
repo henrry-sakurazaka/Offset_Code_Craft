@@ -2,6 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.logger = Logger.new(STDOUT)
+  config.log_level = :debug
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
@@ -10,7 +12,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled.
-  config.consider_all_requests_local = false
+  config.consider_all_requests_local = true
 
   # Turn on fragment caching in view templates.
   config.action_controller.perform_caching = true
@@ -28,7 +30,7 @@ Rails.application.configure do
   config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
@@ -100,8 +102,12 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
-
 # URLヘルパーで使うホスト情報
 config.action_mailer.default_url_options = { host: "offset-code-craft.onrender.com", protocol: "https" }
+
+config.action_mailer.raise_delivery_errors = true  # 配信エラーを出す
+config.action_mailer.perform_deliveries = true     # 実際にメールを送信する
+config.action_mailer.logger = Logger.new(STDOUT)   # ログを標準出力に出す（オプション）
+config.action_mailer.logger.level = Logger::DEBUG # ログレベルを詳細に
 
 end

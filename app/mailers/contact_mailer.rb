@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  default to: "bright.lights.21@me.com", from: "no-reply@offsetcodecraft.com"
+  default to: "bright.lights.21@me.com", from: "bright.lights.21@me.com"
 
   def contact_email(name, email, message)
     @name = name
