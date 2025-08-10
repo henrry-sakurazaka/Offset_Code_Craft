@@ -88,4 +88,20 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.action_dispatch.default_headers.delete("X-Frame-Options")
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: 587,
+    domain: "offset-code-craft.onrender.com", # ←本番ドメインに書き換え
+    user_name: "apikey",
+    password: ENV["SENDGRID_API_KEY"], # ←credentialsや.envで管理
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+# URLヘルパーで使うホスト情報
+config.action_mailer.default_url_options = { host: "offset-code-craft.onrender.com", protocol: "https" }
+
 end
