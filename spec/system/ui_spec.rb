@@ -35,7 +35,7 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-tara-winstead-6489631']")
-    expect(page).to have_css("img[src*='selfy.png']")
+    expect(page).to have_css(".self-img-container","img[src*='selfy.png']")
     expect(page).to have_css(".self-img-container", style: /background-image:.*brick-wall-room-architecture-indoor-concept\.jpg/)
     # background-image を検証
     bg = page.evaluate_script(
