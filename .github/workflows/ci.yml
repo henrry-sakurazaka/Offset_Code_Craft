@@ -9,7 +9,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     env:
       RAILS_ENV: test
       MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
@@ -19,6 +18,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install Chrome
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y google-chrome-stable
 
       - name: Create .env file with secrets
         run: |

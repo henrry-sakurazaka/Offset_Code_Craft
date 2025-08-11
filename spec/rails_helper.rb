@@ -63,8 +63,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-require 'capybara/rspec'
-require 'selenium/webdriver'
 
 Capybara.register_driver :chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
@@ -72,9 +70,10 @@ Capybara.register_driver :chrome do |app|
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-dev-shm-usage')
   options.add_argument('--window-size=1400,1400')
-
-  # CI環境ならheadlessモードを追加
   options.add_argument('--headless') if ENV['CI'] == 'true'
+
+  # Macの場合の例（Linuxは /usr/bin/google-chrome などに変更）
+  options.binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
   Capybara::Selenium::Driver.new(
     app,
@@ -82,6 +81,7 @@ Capybara.register_driver :chrome do |app|
     options: options
   )
 end
+
 
 # JSが必要なテストはこのドライバを使う
 Capybara.javascript_driver = :chrome
