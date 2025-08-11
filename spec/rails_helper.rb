@@ -62,19 +62,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
+require 'selenium/webdriver'
+require 'securerandom'
 
 Capybara.register_driver :chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--headless')
+  options.add_argument('--headless=new')
   options.add_argument('--disable-gpu')
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--disable-software-rasterizer')
+  options.add_argument('--remote-debugging-port=9222')
   options.add_argument('--window-size=1400,1400')
-  options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}") # ←追加
-
-  # Macの場合の例（Linuxは /usr/bin/google-chrome などに変更）
-  options.binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}")
 
   Capybara::Selenium::Driver.new(
     app,
@@ -83,7 +83,10 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
-# JSが必要なテストはこのドライバを使う
 Capybara.javascript_driver = :chrome
+
+
+
+
 
 end
