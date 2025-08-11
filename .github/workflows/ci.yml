@@ -30,11 +30,6 @@ jobs:
           ruby-version: '3.2.3' 
           bundler-cache: true
 
-      - name: Install system dependencies for Capybara
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libvips chromium-browser chromium-chromedriver
-
       - name: Install gems
         run: bundle install --jobs 4 --retry 3
 

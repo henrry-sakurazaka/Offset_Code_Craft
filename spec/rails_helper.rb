@@ -70,6 +70,7 @@ Capybara.register_driver :chrome do |app|
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-dev-shm-usage')
   options.add_argument('--window-size=1400,1400')
+  options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}") # ←追加
   options.add_argument('--headless') if ENV['CI'] == 'true'
 
   # Macの場合の例（Linuxは /usr/bin/google-chrome などに変更）
