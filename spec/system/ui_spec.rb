@@ -15,14 +15,13 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='works5.png']")
     expect(page).to have_css("img[src*='works6.png']")
     expect(page).to have_css("img[src*='works7.png']")
+
+      # background-image を検証
+    bg = page.evaluate_script(
+      "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
+    )
+    expect(bg).to match(/images_mountain\/2\.jpg/)
   end
-
-  # background-image を検証
-  bg = page.evaluate_script(
-    "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
-  )
-  expect(bg).to match(/images_mountain\/2\.jpg/)
-
 end
 
 RSpec.describe 'aboutページ', type: :system do
@@ -39,14 +38,12 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css(".catch[style*='images_mountain/2.jpg']")
     expect(page).to have_css("img[src*='selfy.png']")
     expect(page).to have_css(".self-img-container", style: /background-image:.*brick-wall-room-architecture-indoor-concept\.jpg/)
+    # background-image を検証
+    bg = page.evaluate_script(
+      "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
+    )
+    expect(bg).to match(/images_mountain\/2\.jpg/)
   end 
-
-  # background-image を検証
-  bg = page.evaluate_script(
-    "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
-  )
-  expect(bg).to match(/images_mountain\/2\.jpg/)
-
 end
 
 RSpec.describe 'contactページ', type: :system do
