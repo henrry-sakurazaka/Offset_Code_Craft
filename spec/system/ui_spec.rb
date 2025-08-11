@@ -9,7 +9,7 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-laker-6157040']")
-    expect(page).to have_css("img[src*='images_mountain/2.jpg']")
+    expect(page).to have_css("[style*='background-image'][style*='2.jpg']")
     expect(page).to have_css("img[src*='works1.png']")
     expect(page).to have_css("img[src*='works3.png']")
     expect(page).to have_css("img[src*='works5.png']")
@@ -30,9 +30,10 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-tara-winstead-6489631']")
-    expect(page).to have_css("img[src*='images_mountain/2.jpg']")
+    expect(page).to have_css("[style*='background-image'][style*='2.jpg']")
     expect(page).to have_css("img[src*='selfy.png']")
-    expect(page).to have_css("img[src*='brick-wall-room-architecture-indoor-concept.jpg']")
+    expect(page).to have_css(".self-img-container", style: /background-image:.*brick-wall-room-architecture-indoor-concept\.jpg/)
+
   end
 end
 
