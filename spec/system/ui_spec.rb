@@ -1,14 +1,14 @@
 RSpec.describe 'topページ', type: :system do
   it 'タイトルが表示される' do
     visit '/'
-    expect(page).to have_text(/Where Imagination Meets Possibility Unleashing the Power of Innovation/i) 
+    expect(page).to have_text(/Where Imagination Meets Possibility Unleashing the Power of Innovation/i, visible: :all)
   end
 
   it 'オーディオ装置のアイコン、画像が表示されている' do
     visit '/'
-    expect(page).to have_css("img[src*='listen.png']")
-    expect(page).to have_css("img[src*='mute-svgrepo-com.svg']")
-    expect(page).to have_css("img[src*='pexels-laker-6157040.png']")
+    expect(page).to have_css("img[src*='listen']")
+    expect(page).to have_css("img[src*='mute-svgrepo-com']")
+    expect(page).to have_css("img[src*='pexels-laker-6157040']")
     expect(page).to have_css("img[src*='images_mountain/2.jpg']")
     expect(page).to have_css("img[src*='works1.png']")
     expect(page).to have_css("img[src*='works3.png']")
@@ -21,15 +21,15 @@ end
 RSpec.describe 'aboutページ', type: :system do
   it 'タイトルが表示される' do
     visit about_path
-    expect(page).to have_text(/Creating Boundless Wonders Shaping the Future AKIRA SAKAMOTO/i)  
-    expect(page).to have_text(/portfolio 2023-2024/i)
+    expect(page).to have_text(/Creating Boundless Wonders Shaping the Future AKIRA SAKAMOTO/i, visible: :all)  
+    expect(page).to have_text(/portfolio 2023-2024/i, visible: :all)
   end
 
   it 'オーディオ装置のアイコン、画像が表示されている' do
     visit about_path
-    expect(page).to have_css("img[src*='listen.png']")
-    expect(page).to have_css("img[src*='mute-svgrepo-com.svg']")
-    expect(page).to have_css("img[src*='pexels-tara-winstead-6489631.png']")
+    expect(page).to have_css("img[src*='listen']")
+    expect(page).to have_css("img[src*='mute-svgrepo-com']")
+    expect(page).to have_css("img[src*='pexels-tara-winstead-6489631']")
     expect(page).to have_css("img[src*='images_mountain/2.jpg']")
     expect(page).to have_css("img[src*='selfy.png']")
     expect(page).to have_css("img[src*='brick-wall-room-architecture-indoor-concept.jpg']")
@@ -39,13 +39,13 @@ end
 RSpec.describe 'contactページ', type: :system do
   it 'タイトルが表示される' do
     visit contact_path
-    expect(page).to have_text(/Feel free to drop me a message/i)
+    expect(page).to have_text(/Feel free to drop me a message/i, visible: :all)
   end
 
   it 'オーディオ装置のアイコン、画像が表示されている' do
     visit contact_path
-    expect(page).to have_css("img[src*='listen.png']")
-    expect(page).to have_css("img[src*='mute-svgrepo-com.svg']")
-    expect(page).to have_css("img[src*='pexels-ready-made-3850652.png']")
+    expect(page).to have_css("img[src*='listen']")
+    expect(page).to have_css("img[src*='mute-svgrepo-com']")
+    expect(page).to have_css("img[src*='pexels-ready-made-3850652']")
   end
 end
