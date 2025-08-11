@@ -65,28 +65,18 @@ RSpec.configure do |config|
 require 'selenium/webdriver'
 require 'securerandom'
 
-Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--headless=new')
-  options.add_argument('--disable-gpu')
-  options.add_argument('--no-sandbox')
-  options.add_argument('--disable-dev-shm-usage')
-  options.add_argument('--disable-software-rasterizer')
-  options.add_argument('--remote-debugging-port=9222')
-  options.add_argument('--window-size=1400,1400')
-  options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}")
+  Capybara.register_driver :chrome do |app|
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-software-rasterizer')
+    options.add_argument('--window-size=1400,1400')
+    options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}")
 
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    options: options
-  )
-end
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
 
-Capybara.javascript_driver = :chrome
-
-
-
-
+  Capybara.javascript_driver = :chrome
 
 end
