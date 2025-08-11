@@ -24,16 +24,10 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y google-chrome-stable
 
-      - name: Create .env file with secrets
-        run: |
-          echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
-          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
-          echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2.3' # プロジェクトに合わせて変更
+          ruby-version: '3.2.3' 
           bundler-cache: true
 
       - name: Install system dependencies for Capybara
@@ -43,6 +37,12 @@ jobs:
 
       - name: Install gems
         run: bundle install --jobs 4 --retry 3
+
+      - name: Create .env file with secrets
+        run: |
+          echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
+          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
+          echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
 
       - name: Run RSpec tests
         run: bundle exec rspec
