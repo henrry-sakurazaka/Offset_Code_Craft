@@ -72,7 +72,6 @@ Capybara.register_driver :chrome do |app|
   options.add_argument('--disable-dev-shm-usage')
   options.add_argument('--window-size=1400,1400')
   options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}") # ←追加
-  options.add_argument('--headless') if ENV['CI'] == 'true'
 
   # Macの場合の例（Linuxは /usr/bin/google-chrome などに変更）
   options.binary = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
@@ -83,7 +82,6 @@ Capybara.register_driver :chrome do |app|
     options: options
   )
 end
-
 
 # JSが必要なテストはこのドライバを使う
 Capybara.javascript_driver = :chrome
