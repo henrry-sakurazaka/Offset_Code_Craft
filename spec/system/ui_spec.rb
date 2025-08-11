@@ -1,0 +1,57 @@
+RSpec.describe 'topページ', type: :system do
+  it 'タイトルが表示される' do
+    visit '/'
+    expect(page).to have_content "Where Imagination Meets Possibility
+    Unleashing the Power of Innovation"
+  end
+
+  it 'オーディオ装置のアイコン、画像が表示されている' do
+    visit '/'
+    expect(page).to have_css("img[src*='listen.png']")
+    expect(page).to have_css("img[src*='mute-svgrepo-com.svg']")
+    expect(page).to have_css("img[src*='pexels-laker-6157040.png']")
+    expect(page).to have_css("img[src*='images_mountain/2.jpg']")
+    expect(page).to have_css("img[src*='works1.png']")
+    expect(page).to have_css("img[src*='works3.png']")
+    expect(page).to have_css("img[src*='works5.png']")
+    expect(page).to have_css("img[src*='works6.png']")
+    expect(page).to have_css("img[src*='works7.png']")
+  end
+end
+
+RSpec.describe 'aboutページ', type: :system do
+  it 'タイトルが表示される' do
+    visit about_path
+    expect(page).to have_content 
+      "Creating Boundless
+      Wonders Shaping the Future
+      AKIRA SAKAMOTO" 
+      
+      "portfolio 2023-2024"
+  end
+
+  it 'オーディオ装置のアイコン、画像が表示されている' do
+    visit about_path
+    expect(page).to have_css("img[src*='listen.png']")
+    expect(page).to have_css("img[src*='mute-svgrepo-com.svg']")
+    expect(page).to have_css("img[src*='pexels-tara-winstead-6489631.png']")
+    expect(page).to have_css("img[src*='images_mountain/2.jpg']")
+    expect(page).to have_css("img[src*='selfy.png']")
+    expect(page).to have_css("img[src*='brick-wall-room-architecture-indoor-concept.jpg']")
+  end
+end
+
+RSpec.describe 'contactページ', type: :system do
+  it 'タイトルが表示される' do
+    visit contact_path
+    expect(page).to have_content "Feel free to drop
+    me a message"
+  end
+
+  it 'オーディオ装置のアイコン、画像が表示されている' do
+    visit contact_path
+    expect(page).to have_css("img[src*='listen.png']")
+    expect(page).to have_css("img[src*='mute-svgrepo-com.svg']")
+    expect(page).to have_css("img[src*='pexels-ready-made-3850652.png']")
+  end
+end
