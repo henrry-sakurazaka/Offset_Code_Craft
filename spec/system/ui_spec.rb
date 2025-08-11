@@ -1,7 +1,8 @@
 RSpec.describe 'topページ', type: :system do
   it 'タイトルが表示される' do
     visit '/'
-    expect(page).to have_text(/Where Imagination Meets Possibility Unleashing the Power of Innovation/i)
+    expect(page).to have_text(".catch", /Where Imagination Meets Possibility Unleashing the Power of Innovation/i)
+    expect(page).to have_text(".move-text",/portfolio 2023-2024/i, visible: :all)
   end
 
   it 'オーディオ装置のアイコン、画像が表示されている' do
@@ -21,8 +22,7 @@ end
 RSpec.describe 'aboutページ', type: :system do
   it 'タイトルが表示される' do
     visit about_path
-    expect(page).to have_text(/Creating Boundless Wonders Shaping the Future AKIRA SAKAMOTO/i)  
-    expect(page).to have_text(/portfolio 2023-2024/i, visible: :all)
+    expect(page).to have_text(".catch", /Creating Boundless Wonders Shaping the Future AKIRA SAKAMOTO/i)  
   end
 
   it 'オーディオ装置のアイコン、画像が表示されている' do
@@ -33,14 +33,13 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css("[style*='background-image'][style*='images_mountain/2.jpg']")
     expect(page).to have_css("img[src*='selfy.png']")
     expect(page).to have_css(".self-img-container", style: /background-image:.*brick-wall-room-architecture-indoor-concept\.jpg/)
-
   end
 end
 
 RSpec.describe 'contactページ', type: :system do
   it 'タイトルが表示される' do
     visit contact_path
-    expect(page).to have_text(/Feel free to drop me a message/i)
+    expect(page).to have_text(".text", /Feel free to drop me a message/i)
   end
 
   it 'オーディオ装置のアイコン、画像が表示されている' do
