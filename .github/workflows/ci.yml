@@ -54,3 +54,6 @@ jobs:
           Xvfb :99 -screen 0 1920x1080x24 &
           export DISPLAY=:99
           bundle exec rspec
+
+      - name: Run ContactMailer spec
+        run: bundle exec rspec spec/mailers/contact_mailer_spec.rb
