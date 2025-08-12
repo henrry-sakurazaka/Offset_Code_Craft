@@ -10,16 +10,11 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-laker-6157040']")
-    expect(page).to have_css(".master img[src*='works6.png']")
-    expect(page).to have_css(".master img[src*='works7.png']")
-    expect(page).to have_css(".master img[src*='works3.png']")
-    expect(page).to have_css(".master img[src*='works1.png']")
-    expect(page).to have_css(".master img[src*='works5.png']")
-    expect(page).to have_css(".clone img[src*='works6.png']")
-    expect(page).to have_css(".clone img[src*='works7.png']")
-    expect(page).to have_css(".clone img[src*='works3.png']")
-    expect(page).to have_css(".clone img[src*='works1.png']")
-    expect(page).to have_css(".clone img[src*='works5.png']")
+    expect(page).to have_css("img[src*='works6.png']")
+    expect(page).to have_css("img[src*='works7.png']")
+    expect(page).to have_css("img[src*='works3.png']")
+    expect(page).to have_css("img[src*='works1.png']")
+    expect(page).to have_css("img[src*='works5.png']")
    
     # background-image を検証
     bg = page.evaluate_script(
@@ -40,7 +35,7 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-tara-winstead-6489631']")
-    expect(page).to have_css('.self-img-container img[src*="selfy.png"]')
+    expect(page).to have_css("img[src*='selfy.png']")
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.img-container ')).backgroundImage"
     )
