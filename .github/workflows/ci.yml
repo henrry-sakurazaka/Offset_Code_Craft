@@ -7,7 +7,7 @@ on:
     branches: [ main, development ]
 
 jobs:
-   Linter_Rubocop_test:
+  Linter_Rubocop_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,8 +17,6 @@ jobs:
           bundler-cache: true
       - name: Run RSpec
         run: bundle exec rspec
-
-
 
   system_E2E_capybara_test:
     runs-on: ubuntu-latest
