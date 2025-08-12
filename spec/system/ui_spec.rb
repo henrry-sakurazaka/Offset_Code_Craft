@@ -10,12 +10,12 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-laker-6157040']")
-    expect(page).to have_css("img[src*='works6.png']")
-    expect(page).to have_css("img[src*='works7.png']")
-    expect(page).to have_css("img[src*='works3.png']")
-    expect(page).to have_css("img[src*='works1.png']")
-    expect(page).to have_css("img[src*='works5.png']")
-   
+    expect(page).to have_css("img[src*='my_portfolio_img2/works6.png']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works7.png']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works3.png']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works1.png']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works5.png']")
+   /Users/Tsp33786/Desktop/trial_html/MY_WEB_SIGHT/offset_code_craft/app/assets/my_portfolio_img2
     # background-image を検証
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
@@ -35,7 +35,7 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-tara-winstead-6489631']")
-    expect(page).to have_css("img[src*='selfy.png']")
+    expect(page).to have_css("img[src*='images/selfy.png']")
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.img-container ')).backgroundImage"
     )
