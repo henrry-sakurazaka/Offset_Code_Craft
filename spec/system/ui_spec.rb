@@ -15,7 +15,7 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='my_portfolio_img2/works3.png']")
     expect(page).to have_css("img[src*='my_portfolio_img2/works1.png']")
     expect(page).to have_css("img[src*='my_portfolio_img2/works5.png']")
-   /Users/Tsp33786/Desktop/trial_html/MY_WEB_SIGHT/offset_code_craft/app/assets/my_portfolio_img2
+   
     # background-image を検証
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
