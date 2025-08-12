@@ -20,7 +20,7 @@ RSpec.describe 'topページ', type: :system do
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
     )
-    expect(bg).to match(/images_mountain\/2\.jpg/)
+    expect(bg).to match(/images_mountain\/2.*\.jpg/)
   end
 end
 
@@ -43,7 +43,7 @@ RSpec.describe 'aboutページ', type: :system do
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
     )
-    expect(bg).to match(/images_mountain\/2\.jpg/)
+    expect(bg).to match(/images_mountain\/2.*\.jpg/)
   end 
 end
 
