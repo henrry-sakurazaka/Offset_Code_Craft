@@ -1,98 +1,56 @@
-# name: CI
+name: CI
 
-# on:
-#   pull_request:
-#   push:
-#     branches: [ main ]
+on:
+  push:
+    branches: [ main, development ]
+  pull_request:
+    branches: [ main, development ]
 
-# jobs:
-#   scan_ruby:
-#     runs-on: ubuntu-latest
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Set up Ruby
-#         uses: ruby/setup-ruby@v1
-#         with:
-#           ruby-version: .ruby-version
-#           bundler-cache: true
+      - name: Install Chrome and matching ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable unzip curl xvfb
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
+          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
+          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
+          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+          chromedriver --version
 
-#       - name: Scan for common Rails security vulnerabilities using static analysis
-#         run: bin/brakeman --no-pager
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.3'
+          bundler-cache: true
 
-#   scan_js:
-#     runs-on: ubuntu-latest
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+      - name: Create .env file with secrets
+        run: |
+          echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
+          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
+          echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
 
-#       - name: Set up Ruby
-#         uses: ruby/setup-ruby@v1
-#         with:
-#           ruby-version: .ruby-version
-#           bundler-cache: true
+      - name: Precompile assets for test
+        run: bundle exec rails assets:precompile
 
-#       - name: Scan for security vulnerabilities in JavaScript dependencies
-#         run: bin/importmap audit
-
-#   lint:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
-
-#       - name: Set up Ruby
-#         uses: ruby/setup-ruby@v1
-#         with:
-#           ruby-version: .ruby-version
-#           bundler-cache: true
-
-#       - name: Auto-correct code with RuboCop
-#         run: bin/rubocop -A
-
-#       - name: Check for lint errors after autocorrect
-#         run: bin/rubocop -f github
-
-#       - name: Commit and push lint fixes if any
-#         run: |
-#           if git diff --quiet; then
-#             echo "No changes to commit."
-#           else
-#             git config user.name "github-actions"
-#             git config user.email "github-actions@github.com"
-#             git commit -am "style: Auto-correct RuboCop offenses"
-#             git push
-#           fi
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Install packages
-#         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config google-chrome-stable
-
-#       - name: Checkout code
-#         uses: actions/checkout@v4
-
-#       - name: Set up Ruby
-#         uses: ruby/setup-ruby@v1
-#         with:
-#           ruby-version: .ruby-version
-#           bundler-cache: true
-
-#       - name: Run tests
-#         env:
-#           RAILS_ENV: test
-#         run: bin/rails db:test:prepare test test:system
-
-#       - name: Keep screenshots from failed system tests
-#         uses: actions/upload-artifact@v4
-#         if: failure()
-#         with:
-#           name: screenshots
-#           path: ${{ github.workspace }}/tmp/screenshots
-#           if-no-files-found: ignore
+      - name: Run RSpec tests with Xvfb
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99
+          bundle exec rspec

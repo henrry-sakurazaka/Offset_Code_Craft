@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  default to: "bright.lights.21@me.com", from: "bright.lights.21@me.com"
+  default to: ENV["MY_MAIL_ADDRESS"], from: ENV["FROM_MAIL_ADDRESS"]
 
   def contact_email(name, email, message)
     @name = name
