@@ -10,11 +10,11 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-laker-6157040']")
-    expect(page).to have_css("img[src*='my_portfolio_img2/works6.png']")
-    expect(page).to have_css("img[src*='my_portfolio_img2/works7.png']")
-    expect(page).to have_css("img[src*='my_portfolio_img2/works3.png']")
-    expect(page).to have_css("img[src*='my_portfolio_img2/works1.png']")
-    expect(page).to have_css("img[src*='my_portfolio_img2/works5.png']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works6']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works7']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works3']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works1']")
+    expect(page).to have_css("img[src*='my_portfolio_img2/works5']")
    
     # background-image を検証
     bg = page.evaluate_script(
