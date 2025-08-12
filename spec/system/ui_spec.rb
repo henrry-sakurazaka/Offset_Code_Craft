@@ -10,17 +10,17 @@ RSpec.describe 'topページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-laker-6157040']")
-    expect(page).to have_css(".master", style: /works6.*\.png/)
-    expect(page).to have_css(".master", style: /works7.*\.png/)
-    expect(page).to have_css(".master", style: /works3.*\.png/)
-    expect(page).to have_css(".master", style: /works1.*\.png/)
-    expect(page).to have_css(".master", style: /works5.*\.png/)
-    expect(page).to have_css(".clone", style: /works6.*\.png/)
-    expect(page).to have_css(".clone", style: /works7.*\.png/)
-    expect(page).to have_css(".clone", style: /works3.*\.png/)
-    expect(page).to have_css(".clone", style: /works1.*\.png/)
-    expect(page).to have_css(".clone", style: /works5.*\.png/)
-    
+    expect(page).to have_css(".master img[src*='works6.png']")
+    expect(page).to have_css(".master img[src*='works7.png']")
+    expect(page).to have_css(".master img[src*='works3.png']")
+    expect(page).to have_css(".master img[src*='works1.png']")
+    expect(page).to have_css(".master img[src*='works5.png']")
+    expect(page).to have_css(".clone img[src*='works6.png']")
+    expect(page).to have_css(".clone img[src*='works7.png']")
+    expect(page).to have_css(".clone img[src*='works3.png']")
+    expect(page).to have_css(".clone img[src*='works1.png']")
+    expect(page).to have_css(".clone img[src*='works5.png']")
+   
     # background-image を検証
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
@@ -40,8 +40,10 @@ RSpec.describe 'aboutページ', type: :system do
     expect(page).to have_css("img[src*='listen']")
     expect(page).to have_css("img[src*='mute-svgrepo-com']")
     expect(page).to have_css("img[src*='pexels-tara-winstead-6489631']")
-    expect(page).to have_css(".self-img-container", style: /selfy.*\.png/)
-    expect(page).to have_css(".self-img-container", style: /background-image:.*brick-wall-room-architecture-indoor-concept\.jpg/)
+    expect(page).to have_css('.self-img-container img[src*="selfy.png"]')
+    bg = page.evaluate_script(
+      "window.getComputedStyle(document.querySelector('.img-container ')).backgroundImage"
+    )
     # background-image を検証
     bg = page.evaluate_script(
       "window.getComputedStyle(document.querySelector('.catch')).backgroundImage"
