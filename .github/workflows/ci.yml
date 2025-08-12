@@ -7,7 +7,20 @@ on:
     branches: [ main, development ]
 
 jobs:
-  test:
+   Linter_Rubocop_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Run RSpec
+        run: bundle exec rspec
+
+
+
+  system_E2E_capybara_test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
@@ -54,6 +67,36 @@ jobs:
           Xvfb :99 -screen 0 1920x1080x24 &
           export DISPLAY=:99
           bundle exec rspec
+
+  system_mailer_Rspec_test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.3'
+          bundler-cache: true
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Create .env file with secrets
+        run: |
+          echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
+          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
+          echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
+
+      - name: Precompile assets for test
+        run: bundle exec rails assets:precompile
 
       - name: Run ContactMailer spec
         run: bundle exec rspec spec/mailers/contact_mailer_spec.rb

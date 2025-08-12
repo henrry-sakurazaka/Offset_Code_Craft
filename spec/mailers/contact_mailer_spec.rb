@@ -8,7 +8,7 @@ RSpec.describe ContactMailer, type: :mailer do
     let(:mail) { ContactMailer.contact_email(name, email, message) }
 
     it '正しい宛先に送信されること' do
-      expect(mail.to).to eq [ENV['MY_MAIL_ADDRESS']]
+      expect(mail.to).to eq [ENV.fetch('MY_MAIL_ADDRESS', nil)]
     end
 
     it '正しい件名で送信されること' do
