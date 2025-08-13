@@ -16,14 +16,14 @@ RSpec.describe 'Navigation', type: :system do
   context 'when on the Top page' do
     before { visit root_path }
 
-     %w[About ABOUT].each do |text|
+    %w[About ABOUT].each do |text|
       it "リンク '#{text}' から Contactページへ移動できること" do
         expect(page).to have_link(text, href: about_path)
         click_link text
         expect(current_path).to eq(about_path)
       end
     end
-   
+
     it 'Contactページへリンクで移動できること' do
       find('.nav-container.navi').hover
       expect_and_click_link('Contact', contact_path)
@@ -71,14 +71,14 @@ RSpec.describe 'Navigation', type: :system do
     end
 
     it 'TopリンクでTopページへ移動できること（.navi をホバーして表示）' do
-        find('.nav-container.navi').hover
-        expect(page).to have_link('Top', href: home_path)
-        click_link 'Top'
-        expect(page).to have_current_path(home_path, ignore_query: true)
+      find('.nav-container.navi').hover
+      expect(page).to have_link('Top', href: home_path)
+      click_link 'Top'
+      expect(page).to have_current_path(home_path, ignore_query: true)
     end
 
     %w[Akira Sakamoto].each do |text|
-      it 'Topページへリンク移動できること' do   
+      it 'Topページへリンク移動できること' do
         expect(page).to have_link(text, href: home_path)
         click_link text
         expect(current_path).to eq(home_path)
@@ -90,17 +90,17 @@ RSpec.describe 'Navigation', type: :system do
     before { visit contact_path }
 
     %w[Akira Sakamoto].each do |text|
-      it "リンク '#{text}' から Topページへ移動できること" do    
+      it "リンク '#{text}' から Topページへ移動できること" do
         expect(page).to have_link(text, href: home_path)
         click_link text
         expect(current_path).to eq(home_path)
       end
     end
 
-    it "TopリンクからTopページへ移動できること" do
-        expect(page).to have_link('Top', href: home_path)
-        click_link 'Top'
-        expect(current_path).to eq(home_path)
+    it 'TopリンクからTopページへ移動できること' do
+      expect(page).to have_link('Top', href: home_path)
+      click_link 'Top'
+      expect(current_path).to eq(home_path)
     end
 
     it 'Aboutページへリンク移動できること' do
