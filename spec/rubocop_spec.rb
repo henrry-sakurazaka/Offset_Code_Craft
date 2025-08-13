@@ -11,7 +11,7 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
       puts stderr unless stderr.empty?
       expect(status.success?).to be true
     end
-  end  
+  end
 
   describe 'Navigation', type: :system do
     before { driven_by(:selenium_chrome) }
@@ -67,7 +67,7 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
 
     context 'when on the Contact page' do
       before { visit contact_path }
-      
+
       %w[Akira Sakamoto].each do |text|
         it "navigates to Top page via '#{text}' link" do
           expect(page).to have_link(text, href: home_path)
