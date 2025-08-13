@@ -25,7 +25,7 @@ RSpec.describe 'Navigation', type: :system do
     end
    
     it 'Contactページへリンクで移動できること' do
-      find('.nav-container .navi').hover
+      find('.nav-container.navi').hover
       expect_and_click_link('Contact', contact_path)
     end
 
@@ -71,7 +71,7 @@ RSpec.describe 'Navigation', type: :system do
     end
 
     it 'TopリンクでTopページへ移動できること（.navi をホバーして表示）' do
-        find('.nav-container .navi').hover
+        find('.nav-container.navi').hover
         expect(page).to have_link('Top', href: home_path)
         click_link 'Top'
         expect(page).to have_current_path(home_path, ignore_query: true)
@@ -104,7 +104,7 @@ RSpec.describe 'Navigation', type: :system do
     end
 
     it 'Aboutページへリンク移動できること' do
-      find('.nav-container .navi').hover
+      find('.nav-container.navi').hover
       expect_and_click_link('About', about_path)
     end
   end
