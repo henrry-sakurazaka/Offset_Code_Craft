@@ -11,7 +11,6 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
       puts stderr unless stderr.empty?
       expect(status.success?).to be true
     end
-  end
 
   describe 'Navigation', type: :system do
     before { driven_by(:selenium_chrome) }
