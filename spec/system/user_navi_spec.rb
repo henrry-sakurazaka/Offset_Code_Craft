@@ -25,7 +25,7 @@ RSpec.describe 'Navigation', type: :system do
     end
 
     it 'Contactページへリンクで移動できること' do
-      find('.nav').hover
+      find('.navi').hover
       expect_and_click_link('Contact', contact_path)
     end
 
@@ -60,39 +60,37 @@ RSpec.describe 'Navigation', type: :system do
   end
 
   context 'when on the About page' do
-    before { visit about_path }
+    visit about_path
 
     %w[Contact CONTACT].each do |text|
       it "リンク '#{text}' から Contactページへ移動できること" do
         expect(page).to have_link(text, href: contact_path)
         click_link text
         expect(current_path).to eq(contact_path)
-        visit about_path
       end
     end
 
     it 'Topページへリンク移動できること' do
-      find('.nav').hover
+      find('.navi').hover
 
       %w[Top Akira Sakamoto].each do |text|
         expect(page).to have_link(text, href: home_path)
         click_link text
         expect(current_path).to eq(home_path)
         visit about_path
-        find('.nav').hover if text != 'Sakamoto'
+        find('.navi').hover if text != 'Sakamoto'
       end
     end
   end
 
   context 'when on the Contact page' do
-    before { visit contact_path }
+    visit contact_path
 
     %w[Top Akira Sakamoto].each do |text|
       it "リンク '#{text}' から Topページへ移動できること" do
         expect(page).to have_link(text, href: home_path)
         click_link text
         expect(current_path).to eq(home_path)
-        visit contact_path
       end
     end
 

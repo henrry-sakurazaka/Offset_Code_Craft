@@ -10,6 +10,7 @@ class ContactMailer < ApplicationMailer
     @message = message
 
     mail(
+      subject: 'OffSetCodeCraftへお問い合わせがありました',
       body: "名前: #{@name}\nメール: #{@sender_email}\nお問い合わせ内容:\n#{@message}"
     )
   end
