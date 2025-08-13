@@ -6,7 +6,12 @@ on:
   pull_request:
     branches: [ main, development ]
 
-# 共通セットアップをジョブ外で定義
+# 共通ステップのアンカーを定義（jobsの外）
+defaults:
+  run:
+    shell: bash
+
+# アンカーはYAML配列の形で定義
 setup_common: &setup_common
   - uses: actions/checkout@v4
   - uses: ruby/setup-ruby@v1
@@ -44,7 +49,7 @@ jobs:
       RAILS_ENV: test
     needs: Linter_Rubocop_test
     steps:
-      - *setup_common
+      <<: *setup_common
       - name: Run UI spec
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
@@ -57,7 +62,7 @@ jobs:
       RAILS_ENV: test
     needs: Linter_Rubocop_test
     steps:
-      - *setup_common
+      <<: *setup_common
       - name: Run System spec (exclude UI)
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
@@ -73,7 +78,7 @@ jobs:
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
     needs: Linter_Rubocop_test
     steps:
-      - *setup_common
+      <<: *setup_common
       - name: Create .env file with secrets
         run: |
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
@@ -94,7 +99,7 @@ jobs:
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
     needs: Linter_Rubocop_test
     steps:
-      - *setup_common
+      <<: *setup_common
       - name: Create .env file with secrets
         run: |
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
