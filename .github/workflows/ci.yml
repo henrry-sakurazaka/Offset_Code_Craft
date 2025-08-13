@@ -13,10 +13,62 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '3.2.3'
           bundler-cache: true
+      - name: Install Chrome and matching ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable unzip curl xvfb
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
+          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
+          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
+          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+          chromedriver --version
+
       - name: Run RSpec
         run: bundle exec rspec
+
+        
+  ui_Rspec_test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Chrome and matching ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable unzip curl xvfb
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
+          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
+          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
+          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+          chromedriver --version
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.3'
+          bundler-cache: true
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Precompile assets for test
+        run: bundle exec rails assets:precompile
+
+      - name: Run UI spec
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99
+          bundle exec rspec spec/system/ui_spec.rb
 
   system_E2E_capybara_test:
     runs-on: ubuntu-latest

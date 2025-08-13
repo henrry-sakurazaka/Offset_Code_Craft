@@ -33,7 +33,7 @@ RSpec.describe 'Navigation', type: :system do
   it 'Archtecture Chartがページリンクで移動できるか' do
     visit root_path
 
-    expect(page).to have_link('Architecture Chart', href: image_path('Blank diagram-12.png'))
+    expect(page).to have_link('Architecture Chart', href:image_path('Blank diagram-12.png'))
 
     click_link 'Archtecture Chart'
 
