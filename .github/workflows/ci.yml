@@ -48,8 +48,7 @@ jobs:
     env:
       RAILS_ENV: test
     needs: Linter_Rubocop_test
-    steps:
-      <<: *setup_common
+   steps: *setup_common 
       - name: Run UI spec
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
@@ -61,8 +60,7 @@ jobs:
     env:
       RAILS_ENV: test
     needs: Linter_Rubocop_test
-    steps:
-      <<: *setup_common
+    steps: *setup_common
       - name: Run System spec (exclude UI)
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
@@ -77,8 +75,7 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
     needs: Linter_Rubocop_test
-    steps:
-      <<: *setup_common
+    steps: *setup_common
       - name: Create .env file with secrets
         run: |
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
@@ -98,8 +95,7 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
     needs: Linter_Rubocop_test
-    steps:
-      <<: *setup_common
+    steps: *setup_common
       - name: Create .env file with secrets
         run: |
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
