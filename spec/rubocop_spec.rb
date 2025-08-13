@@ -23,22 +23,19 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
     end
 
     context 'when on the Top page' do
-      before { visit root_path }
+      before { visit home_path }
 
-      it 'navigates to About page via "About" link' do
-        expect_and_click_link('About', about_path)
-      end
-
-      it 'navigates to About page via "ABOUT" link' do
-        expect_and_click_link('ABOUT', about_path)
+      %w[About ABOUT].each do |text|
+        it "navigates to About page via '#{text}' link" do
+          expect(page).to have_link(text, href: about_path)
+          click_link text
+          expect(current_path).to eq(about_path)
       end
 
       it 'navigates to Contact page via "Contact" link in nav' do
-        find('.nav').hover
+        find('.navi').hover
         expect_and_click_link('Contact', contact_path)
       end
-
-      # 他のテストもここに分割して追加してください
     end
 
     context 'when on the About page' do
@@ -52,33 +49,40 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
         end
       end
 
-      it 'navigates to Top page via nav links "Top" and "Akira Sakamoto"' do
-        find('.nav').hover
-        %w[Top Akira Sakamoto].each do |text|
+      it 'navigates to Top page via nav links "Top"' do
+        find('.navi').hover
+        expect_and_click_link('Top', home_path)
+      end
+
+      it 'navigates to Top page via nav links "Akira Sakamoto"' do
+        %w[Akira Sakamoto].each do |text|
           expect(page).to have_link(text, href: home_path)
           click_link text
           expect(current_path).to eq(home_path)
           visit about_path
-          find('.nav').hover if text != 'Sakamoto'
         end
       end
     end
 
     context 'when on the Contact page' do
       before { visit contact_path }
-
-      %w[Top Akira Sakamoto].each do |text|
+      
+      %w[Akira Sakamoto].each do |text|
         it "navigates to Top page via '#{text}' link" do
           expect(page).to have_link(text, href: home_path)
           click_link text
           expect(current_path).to eq(home_path)
-          visit contact_path
         end
       end
 
       it 'navigates to About page via "About" link' do
         find('.navi').hover
         expect_and_click_link('About', about_path)
+      end
+
+
+      it 'navigates to Top page via nav links "Top"' do
+        expect_and_click_link('Top', home_path)
       end
     end
   end
