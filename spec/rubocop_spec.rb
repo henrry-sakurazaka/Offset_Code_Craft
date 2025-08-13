@@ -11,6 +11,7 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
       puts stderr unless stderr.empty?
       expect(status.success?).to be true
     end
+  end  
 
   describe 'Navigation', type: :system do
     before { driven_by(:selenium_chrome) }
@@ -20,7 +21,7 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
       click_link text
       expect(current_path).to eq(path)
     end
-  
+
     context 'when on the Top page' do
       before { visit home_path }
 
@@ -31,12 +32,13 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
           expect(current_path).to eq(about_path)
         end
       end
+
       it 'navigates to Contact page via "Contact" link in nav' do
         find('.navi').hover
         expect_and_click_link('Contact', contact_path)
       end
     end
-  
+
     context 'when on the About page' do
       before { visit about_path }
 
