@@ -20,7 +20,7 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
       click_link text
       expect(current_path).to eq(path)
     end
-  end
+  
     context 'when on the Top page' do
       before { visit home_path }
 
@@ -29,14 +29,14 @@ RSpec.describe 'Code Quality and Navigation System Tests' do
           expect(page).to have_link(text, href: about_path)
           click_link text
           expect(current_path).to eq(about_path)
+        end
       end
-    end
       it 'navigates to Contact page via "Contact" link in nav' do
         find('.navi').hover
         expect_and_click_link('Contact', contact_path)
       end
     end
-  end
+  
     context 'when on the About page' do
       before { visit about_path }
 
