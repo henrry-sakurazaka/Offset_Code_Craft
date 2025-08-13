@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'topページ', type: :system do
   it 'タイトルが表示される' do
     visit '/'

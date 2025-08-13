@@ -7,6 +7,27 @@ on:
     branches: [ main, development ]
 
 jobs:
+  # 共通セットアップをまとめるためのアンカ
+  _setup_common: &setup_common
+    - uses: actions/checkout@v4
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.3'
+        bundler-cache: true
+    - name: Install Chrome and matching ChromeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable unzip curl xvfb
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
+        curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+        sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
+        sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
+        sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+        chromedriver --version
+    - run: bundle install --jobs 4 --retry 3
+    - run: bundle exec rails assets:precompile
+
   Linter_Rubocop_test:
     runs-on: ubuntu-latest
     steps:
@@ -15,60 +36,33 @@ jobs:
         with:
           ruby-version: '3.2.3'
           bundler-cache: true
-      - name: Install Chrome and matching ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable unzip curl xvfb
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
-          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
-          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-          chromedriver --version
+      - run: bundle exec rubocop
 
-      - name: Run RSpec
-        run: bundle exec rspec
-
-        
   ui_Rspec_test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-
+    needs: Linter_Rubocop_test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Chrome and matching ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable unzip curl xvfb
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
-          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
-          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-          chromedriver --version
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.3'
-          bundler-cache: true
-
-      - name: Install gems
-        run: bundle install --jobs 4 --retry 3
-
-      - name: Precompile assets for test
-        run: bundle exec rails assets:precompile
-
+      <<: *setup_common
       - name: Run UI spec
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
           export DISPLAY=:99
           bundle exec rspec spec/system/ui_spec.rb
+
+  system_Rspec_test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    needs: Linter_Rubocop_test
+    steps:
+      <<: *setup_common
+      - name: Run System spec (exclude UI)
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99
+          bundle exec rspec spec/system --exclude-pattern "spec/system/ui_spec.rb"
 
   system_E2E_capybara_test:
     runs-on: ubuntu-latest
@@ -77,42 +71,15 @@ jobs:
       MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
-
+    needs: Linter_Rubocop_test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Chrome and matching ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable unzip curl xvfb
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
-          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
-          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-          chromedriver --version
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.3'
-          bundler-cache: true
-
-      - name: Install gems
-        run: bundle install --jobs 4 --retry 3
-
+      <<: *setup_common
       - name: Create .env file with secrets
         run: |
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
           echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
           echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
-
-      - name: Precompile assets for test
-        run: bundle exec rails assets:precompile
-
-      - name: Run RSpec tests with Xvfb
+      - name: Run All RSpec
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
           export DISPLAY=:99
@@ -125,28 +92,13 @@ jobs:
       MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
-
+    needs: Linter_Rubocop_test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.3'
-          bundler-cache: true
-
-      - name: Install gems
-        run: bundle install --jobs 4 --retry 3
-
+      <<: *setup_common
       - name: Create .env file with secrets
         run: |
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
           echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
           echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
-
-      - name: Precompile assets for test
-        run: bundle exec rails assets:precompile
-
       - name: Run ContactMailer spec
         run: bundle exec rspec spec/mailers/contact_mailer_spec.rb
