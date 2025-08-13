@@ -14,9 +14,11 @@ plugins:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.2.6
   NewCops: enable
   Exclude:
+    - 'vendor/**/*'
+    - 'vendor/bundle/**/*'
     - 'db/schema.rb'
     - 'bin/**/*'
   SuggestExtensions: false
