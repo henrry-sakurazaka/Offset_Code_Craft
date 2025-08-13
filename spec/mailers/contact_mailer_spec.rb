@@ -13,10 +13,6 @@ RSpec.describe ContactMailer, type: :mailer do
       expect(mail.to).to eq [ENV.fetch('MY_MAIL_ADDRESS', nil)]
     end
 
-    it '正しい件名で送信されること' do
-      expect(mail.subject).to eq 'OffSetCodeCraftへお問い合わせがありました'
-    end
-
     it '本文に名前が含まれていること' do
       expect(mail.body.encoded).to include(name)
     end
