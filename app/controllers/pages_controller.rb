@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# ApplicationController: 全コントローラーの基底クラスです。
 class PagesController < ApplicationController
   def home; end
   def about; end

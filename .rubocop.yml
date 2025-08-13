@@ -1,14 +1,3 @@
-# inherit_from: .rubocop_todo.yml
-
-# # Omakase Ruby styling for Rails
-# inherit_gem: { rubocop-rails-omakase: rubocop.yml }
-
-# # Overwrite or add rules to create your own house style
-# #
-# # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# # Layout/SpaceInsideArrayLiteralBrackets:
-# #   Enabled: false
-
 plugins:
   - rubocop-rails
   - rubocop-rspec
@@ -22,3 +11,37 @@ AllCops:
     - 'db/schema.rb'
     - 'bin/**/*'
   SuggestExtensions: false
+
+# --- テストを優先 ---
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/DescribeClass:
+  Enabled: false
+
+# --- 複雑さ・長さを緩和（concealed防止で1ブロックに統合）---
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - 'spec/**/*'
+    - 'controllers/**/*.rb'
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'spec/**/*'
+    - 'controllers/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'controllers/**/*.rb'
+    - 'config/environments/*.rb'
+    - 'db/**/*.rb'
+
+# --- レイアウト系 ---
+Layout/TrailingWhitespace:
+  Enabled: true
+Layout/EmptyLines:
+  Enabled: false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Navigation', type: :system do
@@ -5,153 +7,98 @@ RSpec.describe 'Navigation', type: :system do
     driven_by(:selenium_chrome)
   end
 
-  it 'TopページからAboutページへリンクで移動できるか' do
-    visit root_path
-
-    expect(page).to have_link('About', href: about_path)
-
-    click_link 'About'
-
-    expect(current_path).to eq(about_path)
-
-    expect(page).to have_link('ABOUT', href: about_path)
-
-    click_link 'ABOUT'
-
-    expect(current_path).to eq(about_path)
+  def expect_and_click_link(text, path)
+    expect(page).to have_link(text, href: path)
+    click_link text
+    expect(current_path).to eq(path)
   end
 
-  it 'TopページからContactページへリンクで移動できるか' do
-    visit root_path
+  context 'when on the Top page' do
+    before { visit root_path }
 
-    find('.nav').hover
-    click_link 'Contact'
+    it 'Aboutページへリンクで移動できること' do
+      expect_and_click_link('About', about_path)
+    end
 
-    expect(current_path).to eq(contact_path)
-  end
+    it 'Aboutページ内の "ABOUT"リンクも移動できること' do
+      expect_and_click_link('ABOUT', about_path)
+    end
 
-  it 'Archtecture Chartがページリンクで移動できるか' do
-    visit root_path
+    it 'Contactページへリンクで移動できること' do
+      find('.nav').hover
+      expect_and_click_link('Contact', contact_path)
+    end
 
-    expect(page).to have_link('Architecture Chart', href:image_path('Blank diagram-12.png'))
+    it 'Architecture Chartがページリンクで移動できること' do
+      expect(page).to have_link('Architecture Chart', href: image_path('Blank diagram-12.png'))
+      click_link 'Architecture Chart'
+      expect(current_path).to eq(image_path('Blank diagram-12.png'))
+    end
 
-    click_link 'Archtecture Chart'
+    it 'works画像からリンク先へ移動できること' do
+      expect(page).to have_link(nil, href: 'https://reminder5-27ef0.web.app')
+      find('li.works-li a[href="https://reminder5-27ef0.web.app"]').click
+      expect(page.current_url).to eq('https://reminder5-27ef0.web.app/')
+    end
 
-    expect(page.current_path).to eq(image_path('Blank diagram-12.png'))
-  end
+    it 'Code Detailsからリンク先へ移動できること（各リンク）' do
+      links = [
+        { class: '.zero', href: 'https://github.com/henrry-sakurazaka/Reminder' },
+        { class: '.one', href: 'https://github.com/henrry-sakurazaka/Hello-TypeScript' },
+        { class: '.two', href: 'https://github.com/henrry-sakurazaka/Megumi-Completa-Official' },
+        { class: '.three', href: 'https://github.com/henrry-sakurazaka/Engineer-Post' }
+      ]
 
-  it 'works 画像からリンク先へ移動できるか' do
-    visit root_path
-
-    # リンクが存在することを確認（hrefで探す）
-    expect(page).to have_link(nil, href: 'https://reminder5-27ef0.web.app')
-
-    # 画像の親リンクをクリックする例（works-container内のリンクを探す）
-    find('li.works-li a[href="https://reminder5-27ef0.web.app"]').click
-
-    expect(page.current_url).to eq('https://reminder5-27ef0.web.app/')
-  end
-
-  # it "Code Details からリンク先へ移動できるか" do
-  #     visit root_path
-
-  #     # Reminder
-  #     expect(page).to have_link("Code Detail", href: "https://github.com/henrry-sakurazaka/Reminder", class: "zero")
-  #     find("a.zero", text: "Code Detail").click
-  #     expect(page.current_url).to eq("https://github.com/henrry-sakurazaka/Reminder")
-  #     visit root_path
-
-  #     # Hello-TypeScript
-  #     expect(page).to have_link("Code Detail", href: "https://github.com/henrry-sakurazaka/Hello-TypeScript", class: "one")
-  #     find("a.one", text: "Code Detail").click
-  #     expect(page.current_url).to eq("https://github.com/henrry-sakurazaka/Hello-TypeScript")
-  #     visit root_path
-
-  #     # Megumi
-  #     expect(page).to have_link("Code Detail", href: "https://github.com/henrry-sakurazaka/Megumi-Completa-Official", class: "two")
-  #     find("a.two", text: "Code Detail").click
-  #     expect(page.current_url).to eq("https://github.com/henrry-sakurazaka/Megumi-Completa-Official")
-  #     visit root_path
-
-  #     # Engineer-Post
-  #     expect(page).to have_link("Code Detail", href: "https://github.com/henrry-sakurazaka/Engineer-Post", class: "three")
-  #     find("a.three", text: "Code Detail").click
-  #     expect(page.current_url).to eq("https://github.com/henrry-sakurazaka/Engineer-Post")
-  # end
-
-  it 'Code Details からリンク先へ移動できるか' do
-    visit root_path
-
-    links = [
-      { class: '.zero', href: 'https://github.com/henrry-sakurazaka/Reminder' },
-      { class: '.one',    href: 'https://github.com/henrry-sakurazaka/Hello-TypeScript' },
-      { class: '.two',    href: 'https://github.com/henrry-sakurazaka/Megumi-Completa-Official' },
-      { class: '.three',  href: 'https://github.com/henrry-sakurazaka/Engineer-Post' }
-    ]
-
-    links.each do |link|
-      # リンクが存在するか
-      expect(page).to have_link('Code Detail', href: link[:href])
-      expect(page).to have_selector(link[:class])
-
-      # 実際にクリックして遷移を確認
-      find("#{link[:class]} a", text: 'Code Detail').click
-      expect(page.current_url).to eq(link[:href])
-
-      visit root_path # 次のリンクテストのために戻る
+      links.each do |link|
+        visit root_path
+        expect(page).to have_link('Code Detail', href: link[:href])
+        expect(page).to have_selector(link[:class])
+        find("#{link[:class]} a", text: 'Code Detail').click
+        expect(page.current_url).to eq(link[:href])
+      end
     end
   end
 
-  it 'AboutページからContactページへリンクで移動できるか' do
-    visit about_path
+  context 'when on the About page' do
+    before { visit about_path }
 
-    expect(page).to have_link('Contact', href: contact_path)
-    expect(page).to have_link('CONTACT', href: contact_path)
+    %w[Contact CONTACT].each do |text|
+      it "リンク '#{text}' から Contactページへ移動できること" do
+        expect(page).to have_link(text, href: contact_path)
+        click_link text
+        expect(current_path).to eq(contact_path)
+        visit about_path
+      end
+    end
 
-    click_link 'Contact'
-    click_link 'CONTACT'
+    it 'Topページへリンク移動できること' do
+      find('.nav').hover
 
-    expect(current_path).to eq(contact_path)
+      %w[Top Akira Sakamoto].each do |text|
+        expect(page).to have_link(text, href: home_path)
+        click_link text
+        expect(current_path).to eq(home_path)
+        visit about_path
+        find('.nav').hover if text != 'Sakamoto'
+      end
+    end
   end
 
-  it 'AboutページからTopページにリンク移動できるか' do
-    visit about_path
+  context 'when on the Contact page' do
+    before { visit contact_path }
 
-    find('.nav').hover
-    click_link 'Top'
+    %w[Top Akira Sakamoto].each do |text|
+      it "リンク '#{text}' から Topページへ移動できること" do
+        expect(page).to have_link(text, href: home_path)
+        click_link text
+        expect(current_path).to eq(home_path)
+        visit contact_path
+      end
+    end
 
-    expect(current_path).to eq(home_path)
-
-    expect(page).to have_link('Akira', href: home_path)
-    expect(page).to have_link('Sakamoto', href: home_path)
-
-    click_link 'Akira'
-    click_link 'Sakamoto'
-
-    expect(current_path).to eq(home_path)
-  end
-
-  it 'ContactページからTopページへリンク移動できるか' do
-    visit contact_path
-
-    expect(page).to have_link('Top', href: home_path)
-    expect(page).to have_link('Akira', href: home_path)
-    expect(page).to have_link('Sakamoto', href: home_path)
-
-    click_link 'Top'
-    click_link 'Akira'
-    click_link 'Sakamoto'
-
-    expect(current_path).to eq(home_path)
-  end
-
-  it 'ContactページからAboutページへリンク移動できるか' do
-    visit contact_path
-
-    find('.navi').hover
-
-    click_link 'About'
-
-    expect(current_path).to eq(about_path)
+    it 'Aboutページへリンク移動できること' do
+      find('.navi').hover
+      expect_and_click_link('About', about_path)
+    end
   end
 end

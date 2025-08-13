@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -53,10 +55,10 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'dotenv-rails'
+  gem 'rubocop-discourse'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rails-omakase', require: false
   gem 'rubocop-rspec', require: false
-  gem 'rubocop-discourse'
 end
 
 group :development do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -6,6 +8,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module OffsetCodeCraft
+  # Offset_code_craftの基本設定
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -7,7 +9,6 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 
 require 'capybara/rspec'
-
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -82,18 +83,17 @@ RSpec.configure do |config|
   # end
 
   Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--headless')
-  options.add_argument('--no-sandbox')
-  options.add_argument('--disable-dev-shm-usage')
-  options.add_argument('--disable-gpu')
-  options.add_argument('--window-size=1400,1400')
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=1400,1400')
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
 
-Capybara.javascript_driver = :headless_chrome
-
+  Capybara.javascript_driver = :headless_chrome
 
   # Capybara.javascript_driver = :chrome
 end

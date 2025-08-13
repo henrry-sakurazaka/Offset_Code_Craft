@@ -1,46 +1,49 @@
+# frozen_string_literal: true
+
+# ContactsController: お問い合わせ用コントローラ
 class ContactsController < ApplicationController
   def new
-    # フォーム表示用。何も準備しなくてOK
+    @contact = Contact.new
   end
 
   def create
-    name = params[:name]
-    email = params[:email]
-    message = params[:message]
+    @contact = Contact.new(contact_params)
 
-    Rails.logger.debug { "name: #{name}, email: #{email}, message: #{message}" }
-
-    if name.blank? || email.blank? || message.blank? || !email.match?(/\A[\w.+-]+@[a-z\d.-]+\.[a-z]+\z/i)
-      flash[:alert] = 'すべての項目を正しく入力してください。'
-      redirect_to complete_contact_path
-      return
+    unless valid_contact?(@contact)
+      flash.now[:alert] = I18n.t('contacts.alerts.invalid_input') # 例: 'すべての項目を正しく入力してください。'
+      render :new, status: :unprocessable_entity and return
     end
 
-    # メール送信
-    begin
-      Rails.logger.debug { "Sending email to #{email}" }
-      ContactMailer.contact_email(name, email, message).deliver_now
-      Rails.logger.debug 'Email sent'
-      redirect_to complete_contact_path, notice: '送信されました。'
-    rescue StandardError => e
-      Rails.logger.error "メール送信エラー: #{e.message}"
-      flash[:alert] = '送信中にエラーが発生しました。'
-      redirect_to contact_path
-
-      @contact = Contact.new(name: name, email: email, message: message)
-
-      ContactMailer.contact_email(name, email, message).deliver_now
-
-      @contact = Contact.new(contact_params)
-      if @contact.save
-        redirect_to complete_contact_path, status: :see_other
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if send_contact_email(@contact)
+      redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent') # 例: '送信されました。'
+    else
+      flash.now[:alert] = I18n.t('contacts.alerts.send_error') # 例: '送信中にエラーが発生しました。'
+      render :new, status: :unprocessable_entity
     end
+  end
 
-    def complete_contact
-      render layout: 'application'
-    end
+  def complete_contact
+    render layout: 'application'
+  end
+
+  private
+
+  def contact_params
+    params.permit(:name, :email, :message)
+  end
+
+  def valid_contact?(contact)
+    contact.name.present? &&
+      contact.email.present? &&
+      contact.message.present? &&
+      contact.email.match?(/\A[\w.+-]+@[a-z\d.-]+\.[a-z]+\z/i)
+  end
+
+  def send_contact_email(contact)
+    ContactMailer.contact_email(contact.name, contact.email, contact.message).deliver_now
+    true
+  rescue StandardError => e
+    Rails.logger.error "メール送信エラー: #{e.message}"
+    false
   end
 end
