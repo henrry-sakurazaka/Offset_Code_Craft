@@ -94,8 +94,8 @@ RSpec.describe 'Navigation', type: :system do
         expect(page).to have_link(text, href: home_path)
         click_link text
         expect(current_path).to eq(home_path)
+      end
     end
-  end
 
     it "TopリンクからTopページへ移動できること" do
         expect(page).to have_link('Top', href: home_path)
@@ -108,3 +108,4 @@ RSpec.describe 'Navigation', type: :system do
       expect_and_click_link('About', about_path)
     end
   end
+end
