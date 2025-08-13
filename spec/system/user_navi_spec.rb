@@ -60,7 +60,7 @@ RSpec.describe 'Navigation', type: :system do
   end
 
   context 'when on the About page' do
-    visit about_path
+    before { visit about_path }
 
     %w[Contact CONTACT].each do |text|
       it "リンク '#{text}' から Contactページへ移動できること" do
@@ -84,7 +84,7 @@ RSpec.describe 'Navigation', type: :system do
   end
 
   context 'when on the Contact page' do
-    visit contact_path
+    before { visit contact_path }
 
     %w[Top Akira Sakamoto].each do |text|
       it "リンク '#{text}' から Topページへ移動できること" do

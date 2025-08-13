@@ -12,15 +12,15 @@ RSpec.describe 'Static pages', type: :system do
   end
 
   describe 'topページ' do
+    before { visit root_path }
+
     it 'タイトルが表示される' do
-      visit '/'
       expect(page).to have_css('.catch',
                                text: /Where Imagination\s*Meets Possibility\s*Unleashing the Power\s*of Innovation/i)
       expect(page).to have_css('.move-text', text: /portfolio 2023-2024/i, visible: :all)
     end
 
     it 'オーディオ装置のアイコン、画像が表示されている' do
-      visit '/'
       expect_audio_icons_and_images(
         'pexels-laker-6157040',
         'works6',
@@ -38,13 +38,13 @@ RSpec.describe 'Static pages', type: :system do
   end
 
   describe 'aboutページ' do
+    before { visit about_path }
+
     it 'タイトルが表示される' do
-      visit about_path
       expect(page).to have_css('.catch', text: /Creating Boundless\s*Wonders Shaping\s*the Future\s*AKIRA SAKAMOTO/i)
     end
 
     it 'オーディオ装置のアイコン、画像が表示されている' do
-      visit about_path
       expect_audio_icons_and_images('pexels-tara-winstead-6489631', 'selfy')
 
       # background-image を検証
@@ -56,13 +56,13 @@ RSpec.describe 'Static pages', type: :system do
   end
 
   describe 'contactページ' do
+    before { visit contact_path }
+
     it 'タイトルが表示される' do
-      visit contact_path
       expect(page).to have_css('.text', text: /Feel free\s*to drop\s*me a\s*message/i)
     end
 
     it 'オーディオ装置のアイコン、画像が表示されている' do
-      visit contact_path
       expect_audio_icons_and_images('pexels-ready-made-3850652')
     end
   end
