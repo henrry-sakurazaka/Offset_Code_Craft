@@ -1387,10 +1387,9 @@ figcaption2 {
     margin-left: 24px;
     position: absolute;
     top: 0;
-
 }
 
-.contact {
+.slide-in-nav {
     display: block;
     margin-bottom: 160px;
     visibility: visible;

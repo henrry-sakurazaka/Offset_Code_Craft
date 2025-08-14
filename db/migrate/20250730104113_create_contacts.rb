@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# メールフォームのmigrate
 class CreateContacts < ActiveRecord::Migration[8.0]
   def change
     create_table :contacts do |t|

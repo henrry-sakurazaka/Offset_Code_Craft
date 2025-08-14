@@ -596,7 +596,7 @@ dt {
     top: 0;
 }
 
-.about {
+.slide-in-nav3 {
     display: block;
     margin-bottom: 160px;
     visibility: visible;
@@ -605,7 +605,8 @@ dt {
     font-weight: bold;
     margin-left: 24px;
     position: absolute;
-    top: 50%;
+    top: -5%;
+    writing-mode: vertical-lr;
 }
 
 

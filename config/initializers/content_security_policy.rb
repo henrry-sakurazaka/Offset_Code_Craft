@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Define an application-wide content security policy.
@@ -25,12 +27,10 @@
 # config/initializers/content_security_policy.rb
 Rails.application.config.content_security_policy do |policy|
   # frame_ancestorsを設定
-  policy.frame_ancestors :self, "https://bgm-app-61f72-2c930.web.app"
+  policy.frame_ancestors :self, 'https://bgm-app-61f72-2c930.web.app'
 end
 
 # report-only モードにする
 # Rails.application.config.content_security_policy_report_only = false
-
-
 
 # end
