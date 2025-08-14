@@ -46,6 +46,13 @@ jobs:
           chromedriver --version
       - run: bundle install --jobs 4 --retry 3
       - run: bundle exec rails assets:precompile
+
+      - name: Cache assets
+        uses: actions/cache@v4
+        with:
+          path: public/assets
+          key: assets-${{ github.sha }}
+
       # 共通セットアップ終了
 
       - name: Run UI spec
@@ -58,6 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      SECRET_KEY_BASE: dummy
     needs: Linter_Rubocop_test
     steps:
       # 共通セットアップ開始
@@ -79,6 +87,13 @@ jobs:
           chromedriver --version
       - run: bundle install --jobs 4 --retry 3
       - run: bundle exec rails assets:precompile
+
+      - name: Cache assets
+        uses: actions/cache@v4
+        with:
+          path: public/assets
+          key: assets-${{ github.sha }}
+
       # 共通セットアップ終了
 
       - name: Run System spec (exclude UI)
@@ -91,6 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      SECRET_KEY_BASE: dummy
       MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
@@ -115,6 +131,13 @@ jobs:
           chromedriver --version
       - run: bundle install --jobs 4 --retry 3
       - run: bundle exec rails assets:precompile
+
+      - name: Cache assets
+        uses: actions/cache@v4
+        with:
+          path: public/assets
+          key: assets-${{ github.sha }}
+
       # 共通セットアップ終了
 
       - name: Create .env file with secrets
@@ -133,9 +156,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      SECRET_KEY_BASE: dummy
       MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
+      
     needs: Linter_Rubocop_test
     steps:
       # 共通セットアップ開始
@@ -144,6 +169,7 @@ jobs:
         with:
           ruby-version: '3.2.3'
           bundler-cache: true
+
       - name: Install Chrome and matching ChromeDriver
         run: |
           sudo apt-get update
@@ -157,6 +183,13 @@ jobs:
           chromedriver --version
       - run: bundle install --jobs 4 --retry 3
       - run: bundle exec rails assets:precompile
+
+      - name: Cache assets
+        uses: actions/cache@v4
+        with:
+          path: public/assets
+          key: assets-${{ github.sha }}
+
       # 共通セットアップ終了
 
       - name: Create .env file with secrets
