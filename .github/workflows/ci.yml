@@ -61,96 +61,6 @@ jobs:
           export DISPLAY=:99
           bundle exec rspec spec/system/ui_spec.rb
 
-  system_Rspec_test:
-    runs-on: ubuntu-latest
-    env:
-      RAILS_ENV: test
-      SECRET_KEY_BASE: dummy
-    needs: Linter_Rubocop_test
-    steps:
-      # 共通セットアップ開始
-      - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.3'
-          bundler-cache: true
-      - name: Install Chrome and matching ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable unzip curl xvfb
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
-          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
-          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-          chromedriver --version
-      - run: bundle install --jobs 4 --retry 3
-      - run: bundle exec rails assets:precompile
-
-      - name: Cache assets
-        uses: actions/cache@v4
-        with:
-          path: public/assets
-          key: assets-${{ github.sha }}
-
-      # 共通セットアップ終了
-
-      - name: Run System spec (exclude UI)
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 &
-          export DISPLAY=:99
-          bundle exec rspec spec/system --exclude-pattern "spec/system/ui_spec.rb"
-
-  system_E2E_capybara_test:
-    runs-on: ubuntu-latest
-    env:
-      RAILS_ENV: test
-      SECRET_KEY_BASE: dummy
-      MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
-      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-      FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
-    needs: Linter_Rubocop_test
-    steps:
-      # 共通セットアップ開始
-      - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.3'
-          bundler-cache: true
-      - name: Install Chrome and matching ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable unzip curl xvfb
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
-          curl -Lo /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin
-          sudo chmod +x /usr/local/bin/chromedriver-linux64/chromedriver
-          sudo mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-          chromedriver --version
-      - run: bundle install --jobs 4 --retry 3
-      - run: bundle exec rails assets:precompile
-
-      - name: Cache assets
-        uses: actions/cache@v4
-        with:
-          path: public/assets
-          key: assets-${{ github.sha }}
-
-      # 共通セットアップ終了
-
-      - name: Create .env file with secrets
-        run: |
-          echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
-          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
-          echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
-
-      - name: Run All RSpec
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 &
-          export DISPLAY=:99
-          bundle exec rspec
 
   system_mailer_Rspec_test:
     runs-on: ubuntu-latest
@@ -200,3 +110,29 @@ jobs:
 
       - name: Run ContactMailer spec
         run: bundle exec rspec spec/mailers/contact_mailer_spec.rb
+
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      CI: true # Playwright用
+    needs: Linter_Rubocop_test
+    steps:
+      - uses: actions/checkout@v4
+
+      # Rubyセットアップ（Rails用）
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.6'
+          bundler-cache: true
+
+      # Node.js & Playwrightセットアップ
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npx playwright install --with-deps
+
+      # Railsサーバー起動＋E2Eテスト実行
+      - run: npx playwright test

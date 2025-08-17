@@ -26,26 +26,19 @@
       const elapsed = Date.now() - start;
       timeDisplay = Math.floor(elapsed/10);
       countdown.textContent = timeDisplay < 10 ? "0"+ timeDisplay : timeDisplay ; 
-      
-      
+       
       if (timeDisplay < timeLimit) {
 
           timeoutID = setTimeout(updateDisplay, 10); 
-        }
-       
-
+        }  
       if (timeDisplay === timeLimit) {                                                          
           clearTimeout(timeoutID); // タイマーを停止
           countdown.textContent = 100;
-        }
-        
-    }
-      
-    timeoutID = setTimeout(updateDisplay, 10); 
-        
+        }   
+    }   
+    timeoutID = setTimeout(updateDisplay, 10);      
     updateDisplay();
   }
-
   time();
     
 

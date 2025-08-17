@@ -1,18 +1,15 @@
 
 "use strict";
 
-document.addEventListener('DOMContentLoaded', function() {});
-
+// document.addEventListener('DOMContentLoaded', function() {});
 
 const mouseStalker = document.getElementById("g-ms");
-
 
 let msPos = {
   s: {
     x: document.documentElement.clientWidth / 2,
     y: document.documentElement.clientHeight / 2,
   },
-
   m: {
     x: document.documentElement.clientWidth / 2,
     y: document.documentElement.clientHeight / 2,
@@ -68,7 +65,6 @@ const stalkerPushBtn = document.querySelectorAll(".btn");
     }
 const captionHover = document.querySelectorAll(".works-text");
 
-
     for (let i = 0; i < captionHover.length; i++) {
       captionHover[i].addEventListener("mouseover", function (e) {
 
@@ -115,16 +111,11 @@ document.addEventListener("mousemove", function (e) {
 
 const linkElm = document.querySelectorAll("a:not(.no_stick_");
 
-
-
     for (let i = 0; i < linkElm.length; i++) {
-
       linkElm[i].addEventListener("mouseover", function (e) {
-
-          if (!linkElem) return;
+        if (!linkElem) return;
 
         hovFlag = true;
-
         mouseStalker.classList.add("hov");
 
         let rect = e.target.getBoundingClientRect();
@@ -134,25 +125,18 @@ const linkElm = document.querySelectorAll("a:not(.no_stick_");
         mouseStalker.style.transform = "translate(" + posX + "px," + posY + "px)";
       });
 
-  linkElm[i].addEventListener("mouseout", function (e) {
-    hovFlag = false;
-
-    
-    mouseStalker.classList.remove("hov");
-  });
-}
+      linkElm[i].addEventListener("mouseout", function (e) {
+        hovFlag = false; 
+        mouseStalker.classList.remove("hov");
+      });
+    }
 
 const hovBtn = document.querySelectorAll(".btn");
-
-
-
     for (let i = 0; i < hovBtn.length; i++) {
       hovBtn[i].addEventListener("mouseover", function (e) {
-
-         if (!hovBtn) return;
+        if (!hovBtn) return;
         
         hovFlag = true;
-
         mouseStalker.classList.add("hov");
 
         let rect = e.target.getBoundingClientRect();
@@ -162,16 +146,14 @@ const hovBtn = document.querySelectorAll(".btn");
         mouseStalker.style.transform = "translate(" + posX + "px," + posY + "px)";
       });
 
-  hovBtn[i].addEventListener("mouseout", function (e) {
-    hovFlag = false;
+      hovBtn[i].addEventListener("mouseout", function (e) {
+        hovFlag = false;
 
-    mouseStalker.classList.remove("hov");
-  });
- }
+        mouseStalker.classList.remove("hov");
+      });
+    }
 
 const eventHandler = document.querySelectorAll(".works-text");
-
-
     for (let i = 0; i < eventHandler.length; i++) {
       eventHandler[i].addEventListener("mouseover", function (e) {
         hovFlag = true;
@@ -185,22 +167,20 @@ const eventHandler = document.querySelectorAll(".works-text");
         mouseStalker.style.transform = "translate(" + posX + "px," + posY + "px)";
       });
 
-  eventHandler[i].addEventListener("mouseout", function (e) {
-    hovFlag = false;
+      eventHandler[i].addEventListener("mouseout", function (e) {
+        hovFlag = false;
 
-    if (!eventHandler) return;
-      
-    mouseStalker.classList.remove("hov");
-  });
-} 
+      if (!eventHandler) return;   
+        mouseStalker.classList.remove("hov");
+      }); 
+    } 
 
 
   const circleID = document.getElementById('g-ms');
   const pointer = document.getElementById('cursor');
   const circle = document.querySelector('.g-ms_i');
 
-      if(window.innerWidth < 800 ) {
-          
+      if(window.innerWidth < 800 ) {    
         circleID.parentNode.removeChild(circleID);
         pointer.parentNode.removeChild(pointer);
         circle.classList.remove('g-ms_i');

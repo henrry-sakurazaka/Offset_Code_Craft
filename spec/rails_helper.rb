@@ -87,6 +87,8 @@ RSpec.configure do |config|
 
   #   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   # end
+  # Capybara.default_driver # => rack_test ならアウト
+
   Capybara.default_max_wait_time = 5
 
   Capybara.register_driver :headless_chrome do |app|
