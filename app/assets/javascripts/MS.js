@@ -11,9 +11,9 @@ document.addEventListener("turbo:load", () => {
   const stalkerPushBtn = document.querySelectorAll(".btn");
   const captionHover = document.querySelectorAll(".works-text");
   const stalkerAudioBtn = document.querySelector(".audio_button");
-  const linkElms = document.querySelectorAll("a:not(.no_stick_)");
+  // const linkElms = document.querySelectorAll("a:not(.no_stick_)");
   const cursor = document.getElementById("cursor");
-  const stalker_list = [ stalkerLinkObj, stalkerPushBtn, captionHover ];
+  const stalker_list = [ stalkerLinkObj, stalkerPushBtn, captionHover, stalkerAudioBtn ];
 
   let hovFlag = false;
 
@@ -31,6 +31,9 @@ document.addEventListener("turbo:load", () => {
   document.addEventListener("mousemove", function (e) {
     msPos.m.x = e.clientX;
     msPos.m.y = e.clientY;
+
+     if (!cursor) return;  
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
   });
 
   requestAnimationFrame(msPosUpdate);
@@ -41,8 +44,6 @@ document.addEventListener("turbo:load", () => {
       const x = Math.round(msPos.s.x * 10) / 10;
       const y = Math.round(msPos.s.y * 10) / 10;
 
-      // mouseStalker.style.transform = `translate(` + x + "px," + y + "px, 0)";
-      // mouseStalker.style.transform = `translate(${x}px, ${y}px)`;
       mouseStalker.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       requestAnimationFrame(msPosUpdate);
     }
@@ -50,7 +51,7 @@ document.addEventListener("turbo:load", () => {
     stalker_list.forEach((el) => {
       for (let i = 0; i < el.length; i++) {
         el[i].addEventListener("mouseover", function (e) {
-          if (!mouseStalker || !el.stalkerLinkObj || !el.stalkerPushBtn || !el.captionHover ) return;
+          if (!mouseStalker || !el.stalkerLinkObj || !el.stalkerPushBtn || !el.captionHover || !el.stalkerAudioBtn ) return;
 
           hovFlag = true;
           mouseStalker.classList.add("hov");
@@ -61,7 +62,6 @@ document.addEventListener("turbo:load", () => {
           let posY = rect.top + rect.height / 2;
         
           mouseStalker.style.transform = `translate(${posX}px, ${posY}px)`;
-        // mouseStalker.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
         });
 
         el[i].addEventListener("mouseout", function (e) {
@@ -73,11 +73,6 @@ document.addEventListener("turbo:load", () => {
     })
 
   let cursorR = 4;
-
-  document.addEventListener("mousemove", function (e) {
-    if (!cursor) return;  
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-  });
 
     for (let i = 0; i < stalkerLinkObj.length; i++) {
       stalkerLinkObj[i].addEventListener("mouseover", function (e) {
