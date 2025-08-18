@@ -20,6 +20,7 @@ test('Topページでリンククリックしてリンク先へ移動できる�
     await expect(page).toHaveURL(`${baseURL}/about`);
     await page.goBack();
   }
+
   await nav.hover();
   await page.waitForTimeout(2000);
   await targetZ.click();
