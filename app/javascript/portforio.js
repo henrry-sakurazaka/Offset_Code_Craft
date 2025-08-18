@@ -14,7 +14,6 @@
         } else {
           entry.target.classList.remove("inview");
         }
-  
     });
   }; 
   
