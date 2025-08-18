@@ -26,7 +26,7 @@ RSpec.describe 'Navigation', type: :system do
       sleep 3
       expect(current_path).to eq(contact_path)
     end
-  
+
     # it 'Architecture Chartがページリンクで移動できること' do
     #   expect(page).to have_link('Architecture Chart', href: image_path('Blank diagram-12.png'))
     #   click_link 'Architecture Chart'
@@ -45,12 +45,12 @@ RSpec.describe 'Navigation', type: :system do
     end
 
     it 'works画像からリンク先へ移動できること' do
-      target_url = "https://reminder5-27ef0.web.app"
-      
+      target_url = 'https://reminder5-27ef0.web.app'
+
       expect(page).to have_link(nil, href: target_url)
 
       # より柔軟に指定（class名の間にスペース）
-      find('li.works-li.reminder-img a[href="' + target_url + '"]').click
+      find("li.works-li.reminder-img a[href=\"#{target_url}\"]").click
 
       sleep 10
 

@@ -21,9 +21,8 @@ test('Topページでリンククリックしてリンク先へ移動できる�
     await page.goBack();
   }
   await nav.hover();
-  await targetZ.waitFor({ state: 'visible' });
   await page.waitForTimeout(2000);
-  await targetZ.click({ force: true });
+  await targetZ.click();
   await expect(page).toHaveURL(`${baseURL}/contact`);
   await page.goBack();
   
@@ -107,7 +106,7 @@ test('Aboutページでリンククリックしてリンク先へ移動できる
 
     await nav.hover();
     await page.waitForTimeout(2000);
-    await targetZ.click({ force: true });
+    await targetZ.click();
     await expect(page).toHaveURL(`${baseURL}/home`);
 
     for(const link2 of links2) {
@@ -116,7 +115,7 @@ test('Aboutページでリンククリックしてリンク先へ移動できる
         await page.waitForTimeout(2000);
         await target3.waitFor({ state: 'visible' });
         await page.waitForTimeout(2000);
-        await target3.click({ force: true });
+        await target3.click();
         await expect(page).toHaveURL(`${baseURL}/home`); 
         await page.goBack();       
     }
@@ -157,4 +156,60 @@ test('Contactページでリンククリックしてリンク先へ移動でき�
         await page.goBack();
     }
 });
+
+
+test.describe("BGM toggle button", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`${baseURL}/home`); 
+  });
+
+  test("クリックでアイコンと localStorage が切り替わる", async ({ page }) => {
+    const button = page.locator(".audio_button");
+    const logo = page.locator(".sound-logo");
+
+    // 初期状態はミュート
+    await expect(logo).toHaveAttribute("src", "/assets/mute-svgrepo-com-a4259d15.svg");
+
+    // クリック → 音声アイコンに変化
+    await button.click();
+    await expect(logo).toHaveAttribute("src", "/assets/audio-svgrepo-com-3ebcc081.svg");
+    expect(await page.evaluate(() => localStorage.getItem("bgmPlaying"))).toBe("true");
+
+    // もう一度クリック → ミュートアイコンに戻る
+    await button.click();
+    await expect(logo).toHaveAttribute("src", "/assets/mute-svgrepo-com-a4259d15.svg");
+    expect(await page.evaluate(() => localStorage.getItem("bgmPlaying"))).toBe("false");
+  });
+
+  test("ウィンドウが開いて postMessage が送られる", async ({ page }) => {
+    const button = page.locator(".audio_button");
+
+    // window.open が発火すると popup として検出できる
+    const [popup] = await Promise.all([
+      page.waitForEvent("popup"),
+      button.click(),
+    ]);
+
+    // URL が正しいか
+    await expect(popup).toHaveURL(/\/bgm-app\//);
+
+    // popup 内にメッセージリスナーを仕込んで postMessage を確認
+    let received = null;
+    await popup.exposeBinding("onMessageReceived", async (_, msg) => {
+      received = msg;
+    });
+
+    await popup.evaluate(() => {
+      window.addEventListener("message", (event) => {
+        window.onMessageReceived(event.data);
+      });
+    });
+
+    // 親ウィンドウからメッセージが送られるのを待つ
+    await page.waitForTimeout(5000); // 少し待ってイベントが届くのを確認
+    expect(received).toEqual({ type: "play-bgm" });
+  });
+});
+
+
 
