@@ -3,7 +3,7 @@ import { defineConfig } from '@playwright/test';
 const isCI = !!process.env.CI;
 
 export default defineConfig({
-  testDir: './playwright',
+  testDir: './tests',
   timeout: 30 * 1000,
   expect: { timeout: 5000 },
   fullyParallel: true,
