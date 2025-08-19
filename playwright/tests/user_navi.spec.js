@@ -108,6 +108,7 @@ test('Aboutページでリンククリックしてリンク先へ移動できる
     await page.waitForTimeout(2000);
     await targetZ.click();
     await expect(page).toHaveURL(`${baseURL}/home`);
+    await page.goBack();
 
     for(const link2 of links2) {
         const target3 = page.locator(link2.className);
@@ -134,6 +135,16 @@ test('Contactページでリンククリックしてリンク先へ移動でき�
       timeout: 10000    
     });
 
+     for(const link2 of links2) {
+        const link = page.locator(link2.className);
+
+        await link.waitFor({ state: 'visible' });
+        await page.waitForTimeout(2000);
+        await link.click({ force: true });
+        await expect(page).toHaveURL(`${baseURL}/home`); 
+        await page.goBack();
+    }
+
     await nav.hover();
     await page.waitForTimeout(2000);
     await targetW.click();
@@ -144,17 +155,7 @@ test('Contactページでリンククリックしてリンク先へ移動でき�
     await target2.waitFor({ state: 'visible' });
     await target2.click();
     await expect(page).toHaveURL(`${baseURL}/home`);
-    await page.goBack();
-
-    for(const link2 of links2) {
-        const link = page.locator(link2.className);
-
-        await link.waitFor({ state: 'visible' });
-        await page.waitForTimeout(2000);
-        await link.click({ force: true });
-        await expect(page).toHaveURL(`${baseURL}/home`); 
-        await page.goBack();
-    }
+    await page.goBack(); 
 });
 
 

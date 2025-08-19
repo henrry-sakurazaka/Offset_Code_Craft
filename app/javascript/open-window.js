@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (bgmWindow) {
           bgmWindow.addEventListener('load', () => {
-            bgmWindow.postMessage({ type: "play-bgm" }, "*"); 
+            setTimeout(() => {
+              bgmWindow.postMessage({ type: "play-bgm" }, "*"); 
+            }, 1000);  
           });
           soundLogo.setAttribute('src', audioIconPath);
           soundLogo.classList.add('playing');

@@ -44,7 +44,7 @@ document.addEventListener("turbo:load", () => {
       const x = Math.round(msPos.s.x * 10) / 10;
       const y = Math.round(msPos.s.y * 10) / 10;
 
-      mouseStalker.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      mouseStalker.style.transform = `translate(${x}px, ${y}px, 0)`;
       requestAnimationFrame(msPosUpdate);
     }
 
@@ -52,7 +52,7 @@ document.addEventListener("turbo:load", () => {
       for (let i = 0; i < el.length; i++) {
         el[i].addEventListener("mouseover", function (e) {
           if (!mouseStalker || !stalkerLinkObj || !stalkerPushBtn || !captionHover || !stalkerAudioBtn ) return;
-
+          
           hovFlag = true;
           mouseStalker.classList.add("hov");
           mouseStalker.classList.add("g-ms-hover")
@@ -60,7 +60,7 @@ document.addEventListener("turbo:load", () => {
           let rect = e.target.getBoundingClientRect();
           let posX = rect.left + rect.width / 2;
           let posY = rect.top + rect.height / 2;
-        
+
           mouseStalker.style.transform = `translate(${posX}px, ${posY}px)`;
         });
 
@@ -83,6 +83,8 @@ document.addEventListener("turbo:load", () => {
       });
     }
 
+  hovFlag = false;
+  
   document.addEventListener("mousemove", function (e) {
     if (!hovFlag) {
       mouseStalker.style.transform =
