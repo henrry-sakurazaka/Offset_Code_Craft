@@ -1,10 +1,21 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+
+require 'capybara/rspec'
+
+# spec/rails_helper.rb
+RSpec.configure do |config|
+  config.include ActionView::Helpers::AssetUrlHelper
+end
+
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,21 +73,36 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-require 'selenium/webdriver'
-require 'securerandom'
+  require 'selenium/webdriver'
+  require 'securerandom'
 
-  Capybara.register_driver :chrome do |app|
+  # Capybara.register_driver :chrome do |app|
+  #   options = Selenium::WebDriver::Chrome::Options.new
+  #   options.add_argument('--disable-gpu')
+  #   options.add_argument('--no-sandbox')
+  #   options.add_argument('--disable-dev-shm-usage')
+  #   options.add_argument('--disable-software-rasterizer')
+  #   options.add_argument('--window-size=1400,1400')
+  #   options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}")
+
+  #   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  # end
+  # Capybara.default_driver # => rack_test ならアウト
+
+  Capybara.default_max_wait_time = 5
+
+  Capybara.register_driver :headless_chrome do |app|
     options = Selenium::WebDriver::Chrome::Options.new
-    options.add_argument('--disable-gpu')
+    options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--disable-software-rasterizer')
+    options.add_argument('--disable-gpu')
     options.add_argument('--window-size=1400,1400')
-    options.add_argument("--user-data-dir=/tmp/chrome-user-data-#{SecureRandom.hex(4)}")
 
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
-  Capybara.javascript_driver = :chrome
+  Capybara.javascript_driver = :headless_chrome
 
+  # Capybara.javascript_driver = :chrome
 end

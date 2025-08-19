@@ -882,7 +882,7 @@ dt {
 
 }
 
-.about {
+.contact {
     display: block;
     margin-bottom: 160px;
     visibility: visible;
@@ -892,11 +892,9 @@ dt {
     margin-left: 24px;
     position: absolute;
     top: 0;
-    writing-mode: horizontal-tb;
-
 }
 
-.top {
+.slide-in-nav2 {
     display: block;
     margin-bottom: 160px;
     visibility: visible;
@@ -905,7 +903,7 @@ dt {
     font-weight: bold;
     margin-left: 24px;
     position: absolute;
-    top: 50%;
+    top: 0;
     writing-mode: vertical-lr;
 }
 

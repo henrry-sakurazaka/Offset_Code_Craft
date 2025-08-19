@@ -43,7 +43,6 @@
 $(function() {
     $('a:not([href^="#"]):not([target]):not([href="'+ engineerPostGitHub + '"]):not([href="'+ megumiGitHub + '"]):not([href="'+ targetLink + '"]):not([href="' + reminderGitHub +'"]):not([href="' + typescriptGitHub +'"]):not([href="'+ outLink + '"]):not([href="'+ helloTypeScript + '"]):not([href="' + reminder + '"]):not([href="'+ github + '"]):not([href="' + mountain +'"]):not([href="' + architectureChart +'"]):not([href="'+ completeContactPath +'"]):not([href="' + engineerPost +'"]')
     .on('click', function(e){
-
         e.preventDefault();
         let url = $(this).attr('href');
 

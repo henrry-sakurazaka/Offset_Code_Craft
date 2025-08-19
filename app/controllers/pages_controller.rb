@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# ApplicationController: 全コントローラーの基底クラスです。
 class PagesController < ApplicationController
   def home; end
   def about; end
@@ -6,17 +9,16 @@ class PagesController < ApplicationController
 
   def select_layout
     case action_name
-    when "home"
-      "home_layout"
-    when "about"
-      "about_layout"
-    when "contact"
-      "contact_layout"
-    when "complete"
-      "complete_layout"
+    when 'home'
+      'home_layout'
+    when 'about'
+      'about_layout'
+    when 'contact'
+      'contact_layout'
+    when 'complete'
+      'complete_layout'
     else
-      "application"
+      'application'
     end
   end
 end
-

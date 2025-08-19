@@ -2,30 +2,30 @@
   
 // nav /////////////////////////////////////////////////////////
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const about = document.querySelector(".about");
-      const nav = document.querySelector(".navi");
-      const center = document.querySelector(".center");
-      const dot = document.querySelector(".dot");
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const contact = document.querySelector(".contact");
+    //   const nav = document.querySelector(".navi");
+    //   const center = document.querySelector(".center");
+    //   const dot = document.querySelector(".dot");
 
-      if (nav && center) {
-        nav.addEventListener("mouseover", function () {
-          center.classList.add("inview");
-        });
-        nav.addEventListener("mouseleave", function () {
-          center.classList.remove("inview");
-        });
-      }
+    //   if (nav && center) {
+    //     nav.addEventListener("mouseover", function () {
+    //       center.classList.add("inview");
+    //     });
+    //     nav.addEventListener("mouseleave", function () {
+    //       center.classList.remove("inview");
+    //     });
+    //   }
 
-      if (about && dot) {
-        about.addEventListener("mouseover", function () {
-          dot.classList.add("animate__animated");
-        });
-        about.addEventListener("mouseleave", function () {
-          dot.classList.remove("animate__animated");
-        });
-      }
-    });
+    //   if (contact && dot) {
+    //     contact.addEventListener("mouseover", function () {
+    //       dot.classList.add("animate__animated");
+    //     });
+    //     contact.addEventListener("mouseleave", function () {
+    //       dot.classList.remove("animate__animated");
+    //     });
+    //   }
+    // });
 
 
     // document.addEventListener("mousemove", function() {
