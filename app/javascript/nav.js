@@ -11,8 +11,9 @@ document.addEventListener("turbo:load", () => {
   const contact = document.querySelector(".contact");
   const nav_array = [ top, about, contact ].filter(Boolean);
 
-  if (!nav || !dot) return;
+  if (!nav || !dot || !center) return;
 
+  
   nav.addEventListener("mouseover", function() {
     center.classList.add("inview");   
   });

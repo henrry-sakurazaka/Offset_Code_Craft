@@ -51,7 +51,7 @@ document.addEventListener("turbo:load", () => {
     stalker_list.forEach((el) => {
       for (let i = 0; i < el.length; i++) {
         el[i].addEventListener("mouseover", function (e) {
-          if (!mouseStalker || !el.stalkerLinkObj || !el.stalkerPushBtn || !el.captionHover || !el.stalkerAudioBtn ) return;
+          if (!mouseStalker || !stalkerLinkObj || !stalkerPushBtn || !captionHover || !stalkerAudioBtn ) return;
 
           hovFlag = true;
           mouseStalker.classList.add("hov");
