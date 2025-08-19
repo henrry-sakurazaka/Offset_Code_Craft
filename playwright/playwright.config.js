@@ -22,7 +22,8 @@ export default defineConfig({
     command: isCI ? 'bin/rails server -p 3000' : undefined,
     port: 3000,
     timeout: 120 * 1000,
-    reuseExistingServer: true
+    reuseExistingServer: true,
+    cwd: '../' //Rails プロジェクトのルート
   }
 });
 
