@@ -120,19 +120,26 @@ jobs:
     needs: Linter_Rubocop_test
     steps:
       - uses: actions/checkout@v4
-
-      # Rubyセットアップ（Rails用）
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.6'
           bundler-cache: true
 
-      # Node.js & Playwrightセットアップ
-      - uses: actions/setup-node@v4
+      - name: Node.js & Playwrightセットアップ
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm ci
-      - run: npx playwright install --with-deps
 
-      # Railsサーバー起動＋E2Eテスト実行
-      - run: npx playwright test
+      - name: Install dependencies
+        working-directory: playwright
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: playwright
+        run: npx playwright install --with-deps
+
+      - name: Run E2E tests
+        working-directory: playwright
+        run: npx playwright test
+
+    
