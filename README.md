@@ -23,3 +23,4 @@ JavaScriptのpostMessageでオンオフを通信し、オーディオを再生�
 | テスト　| RSpec / Capybara / Playwright | RSpec でユニット・統合テスト、Capybara でブラウザ操作を伴うシステムテスト、Playwright で E2E テストを行うため採用 |
 | 静的解析 / Linter | Rubocop | Rubyコード規約の自動チェックを行い、コード品質を維持するために導入 |
 | CI/CDパイプライン　| GitHub Actions | RuboCop チェックやテストを自動実行し、品質担保とデプロイを効率化するため導入 |
+
