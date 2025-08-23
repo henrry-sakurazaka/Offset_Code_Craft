@@ -24,3 +24,7 @@ JavaScriptのpostMessageでオンオフを通信し、オーディオを再生�
 | 静的解析 / Linter | Rubocop | Rubyコード規約の自動チェックを行い、コード品質を維持するために導入 |
 | CI/CDパイプライン　| GitHub Actions | RuboCop チェックやテストを自動実行し、品質担保とデプロイを効率化するため導入 |
 
+## テスト成功の画像
+
+![GitHub Actions](./app/assets/images/スクリーンショット:CI:CD%202025-08-21%2012.00.31.png)
+![E2Eテスト](./app/assets/images/スクリーンショット:E2Etest%202025-08-19%2014.33.15.png)
