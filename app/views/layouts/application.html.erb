@@ -12,8 +12,8 @@
       <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
       <%= stylesheet_link_tag "destyle", "data-turbo-track": "reload" %>
       <%= stylesheet_link_tag "MS", "data-turbo-track": "reload" %>
-      <%= stylesheet_link_tag "audio", "data-turbo-track": "reload" %>
       <%= stylesheet_link_tag "change-page", "data-turbo-track": "reload" %>
+      <%= stylesheet_link_tag "application.css", "data-turbo-track": "reload" %>
       <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" %>
       <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
       <%= yield :head %>
@@ -27,7 +27,22 @@
       <%= javascript_include_tag "MS", defer: true %>
       <%= javascript_include_tag "nav", defer: true %>
       <%#<%= javascript_include_tag "open-window", defer: true %>
-     
+
+      <!-- Optional preload (警告消したい場合) -->
+      <%= tag.link rel: "preload", href: asset_path("MS.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("destyle.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("change-page.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("about.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("contact.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("complete.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("moving.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("move-text.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("portfolio.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("application.css"), as: "style" %>
+      <%= tag.link rel: "preload", href: asset_path("jquery-3.6.1min.js"), as: "script" %>
+      <%= tag.link rel: "preload", href: asset_path("MS.js"), as: "script" %>
+      <%= tag.link rel: "preload", href: asset_path("nav.js"), as: "script" %>
+    
     </head>
 
     
