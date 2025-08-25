@@ -42,11 +42,9 @@
       <%= tag.link rel: "preload", href: asset_path("jquery-3.6.1min.js"), as: "script" %>
       <%= tag.link rel: "preload", href: asset_path("MS.js"), as: "script" %>
       <%= tag.link rel: "preload", href: asset_path("nav.js"), as: "script" %>
-    
     </head>
 
-    
-
+  
   <body class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>">
 
       <audio id="audio" src="/audios/palm_tree_lullaby_mix.mp3" loop></audio>
