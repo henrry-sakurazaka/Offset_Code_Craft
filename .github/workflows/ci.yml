@@ -129,7 +129,7 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Node.js & Playwrightセットアップ
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
 
