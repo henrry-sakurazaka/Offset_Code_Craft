@@ -2,3 +2,9 @@ ja:
   contact_mailer:
     contact_email:
       subject: "OffSetCodeCraftへお問い合わせがありました"
+    contacts:
+      alerts:
+        invalid_input: "入力が正しくありません"
+        send_error: "送信中にエラーが発生しました"
+      notices:
+        sent: "送信されました"
