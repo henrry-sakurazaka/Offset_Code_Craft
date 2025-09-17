@@ -37,6 +37,7 @@ header {
     width: 100%;
     padding-left: 192px ;
     margin-right: 0;
+    margin-bottom: 160px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -557,17 +558,99 @@ progress::-webkit-progress-value {
     }   
 }
 
-
-
-
 /* section  works /////////////////////////////////// */
+
+
+.works-title {
+    width: 320px;
+    height: 72px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 160px;
+    margin-bottom: 160px;
+}
+
+@keyframes animate-chars {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.works-title.inview .worksH1 .char {
+  animation-name: animate-chars;
+  animation-duration: 0.8s;
+  /* animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1); */
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+  opacity: 0;
+  position: relative;
+}
+
+.works-title.inview .worksH1 .char:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(4) {
+  animation-delay: 0.48s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(5) {
+  animation-delay: 0.56s;
+}
+
+/* .works-title.inview .worksH1 .char:nth-child(6) {
+  animation-delay: 0.24s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(7) {
+  animation-delay: 0.28s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(8) {
+  animation-delay: 0.32s;
+}
+
+.works-title.inview .worksH1 .char:nth-child(9) {
+  animation-delay: 0.36s;
+} */
+    
+
+
+.worksH1 {
+    font-size: 6.8125vw;
+    font-weight: 300; 
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;    
+    background-clip: text;
+}
 
 section {
     max-width: 1900px;
     width: 100%;
     display: flex;
     padding-left: 160px;
-    margin-top: 160px;
+    margin-top: 240px;
     position: relative;
 }
 
