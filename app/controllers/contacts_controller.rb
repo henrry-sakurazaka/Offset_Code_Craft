@@ -9,7 +9,13 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
 
-    redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input') and return unless valid_contact?(@contact)
+    Rails.logger.info "Contact params: #{@contact.attributes.inspect}"
+    Rails.logger.info "valid_contact? = #{valid_contact?(@contact)}"
+
+    unless valid_contact?(@contact)
+      Rails.logger.warn '入力不正のため root_path にリダイレクト'
+      redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input') and return
+    end
 
     begin
       ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_now
@@ -35,13 +41,5 @@ class ContactsController < ApplicationController
       contact.email.present? &&
       contact.message.present? &&
       contact.email.match?(/\A[\w.+-]+@[a-z\d.-]+\.[a-z]+\z/i)
-  end
-
-  def send_contact_email(contact)
-    ContactMailer.contact_email(contact.name, contact.email, contact.message).deliver_now
-    true
-  rescue StandardError => e
-    Rails.logger.error "メール送信エラー: #{e.message}"
-    false
   end
 end
