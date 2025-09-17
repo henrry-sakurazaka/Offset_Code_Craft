@@ -9,16 +9,12 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
 
-    unless valid_contact?(@contact)
-      flash.now[:alert] = I18n.t('contacts.alerts.invalid_input') # 例: 'すべての項目を正しく入力してください。'
-      render :new, status: :unprocessable_entity and return
-    end
+    redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input') and return unless valid_contact?(@contact)
 
     if send_contact_email(@contact)
-      redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent') # 例: '送信されました。'
+      redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
     else
-      flash.now[:alert] = I18n.t('contacts.alerts.send_error') # 例: '送信中にエラーが発生しました。'
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, alert: I18n.t('contacts.alerts.send_error')
     end
   end
 
