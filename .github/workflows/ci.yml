@@ -29,7 +29,6 @@ jobs:
       FROM_MAIL_ADDRESS: test@example.com
     needs: Linter_Rubocop_test
     steps:
-      # 共通セットアップ開始
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
@@ -54,8 +53,6 @@ jobs:
         with:
           path: public/assets
           key: assets-${{ github.sha }}
-
-      # 共通セットアップ終了
 
       - name: Run UI spec
         run: |
@@ -75,7 +72,6 @@ jobs:
       
     needs: Linter_Rubocop_test
     steps:
-      # 共通セットアップ開始
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
@@ -101,8 +97,6 @@ jobs:
         with:
           path: public/assets
           key: assets-${{ github.sha }}
-
-      # 共通セットアップ終了
 
       - name: Create .env file with secrets
         run: |
