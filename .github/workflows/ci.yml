@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      MY_MAIL_ADDRESS: test@example.com
+      FROM_MAIL_ADDRESS: test@example.com
     needs: Linter_Rubocop_test
     steps:
       # 共通セットアップ開始
@@ -116,6 +118,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      MY_MAIL_ADDRESS: test@example.com
+      FROM_MAIL_ADDRESS: test@example.com
       CI: true # Playwright用
     needs: Linter_Rubocop_test
     steps:
