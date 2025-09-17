@@ -11,9 +11,11 @@ class ContactsController < ApplicationController
 
     redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input') and return unless valid_contact?(@contact)
 
-    if send_contact_email(@contact)
+    begin
+      ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_now
       redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
-    else
+    rescue StandardError => e
+      Rails.logger.error "メール送信エラー: #{e.message}"
       redirect_to root_path, alert: I18n.t('contacts.alerts.send_error')
     end
   end
