@@ -10,7 +10,7 @@ class ContactMailer < ApplicationMailer
     @message = message
 
     mail(
-      body: "名前: #{@name}\nメール: #{@sender_email}\nお問い合わせ内容:\n#{@message}"
+      subject: "【お問い合わせ】#{@name}様より"
     )
   end
 end
