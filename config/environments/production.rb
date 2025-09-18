@@ -68,27 +68,28 @@ Rails.application.configure do
 
   config.action_dispatch.default_headers.delete('X-Frame-Options')
 
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.sendgrid.net',
+  #   port: 587,
+  #   domain: 'offset-code-craft.onrender.com', # ←本番ドメインに書き換え
+  #   user_name: 'apikey',
+  #   password: ENV.fetch('SENDGRID_API_KEY', nil), # ←credentialsや.envで管理
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: 'smtp.gmail.com',
     port: 587,
-    domain: 'offset-code-craft.onrender.com', # ←本番ドメインに書き換え
-    user_name: 'apikey',
-    password: ENV.fetch('SENDGRID_API_KEY', nil), # ←credentialsや.envで管理
-    authentication: :plain,
-    enable_starttls_auto: true
+    domain: 'gmail.com',
+    user_name: ENV.fetch('SMTP_USERNAME'),
+    password: ENV.fetch('SMTP_PASSWORD'),
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    open_timeout: 10,
+    read_timeout: 10
   }
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp.gmail.com',
-  #   port: 587,
-  #   domain: 'gmail.com',
-  #   user_name: ENV.fetch('SMTP_USERNAME', nil),
-  #   password: ENV.fetch('SMTP_PASSWORD', nil),
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true,
-  #   open_timeout: 10,
-  #   read_timeout: 10
-  # }
   # URLヘルパーで使うホスト情報
   config.action_mailer.default_url_options = { host: 'offset-code-craft.onrender.com', protocol: 'https' }
 
