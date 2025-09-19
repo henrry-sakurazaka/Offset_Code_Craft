@@ -78,17 +78,27 @@ Rails.application.configure do
   #   authentication: :plain,
   #   enable_starttls_auto: true
   # }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   domain: 'gmail.com',
+  #   user_name: ENV.fetch('SMTP_USERNAME'),
+  #   password: ENV.fetch('SMTP_PASSWORD'),
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true,
+  #   open_timeout: 10,
+  #   read_timeout: 10
+  # }
+  # config/environments/production.rb
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    address: 'in-v3.mailjet.com',
     port: 587,
-    domain: 'gmail.com',
-    user_name: ENV.fetch('SMTP_USERNAME'),
-    password: ENV.fetch('SMTP_PASSWORD'),
+    user_name: ENV.fetch('MAILJET_API_KEY', nil),
+    password: ENV.fetch('MAILJET_SECRET_KEY', nil),
     authentication: 'plain',
-    enable_starttls_auto: true,
-    open_timeout: 10,
-    read_timeout: 10
+    enable_starttls_auto: true
   }
   # URLヘルパーで使うホスト情報
   config.action_mailer.default_url_options = { host: 'offset-code-craft.onrender.com', protocol: 'https' }
