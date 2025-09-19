@@ -32,17 +32,19 @@ class ContactsController < ApplicationController
     redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input')
   end
 
-  def deliver_contact_email(contact)
-    # ContactMailer はメールの内容ハッシュだけ返す
-    mail_data = ContactMailer.new.contact_email(contact.name, contact.email, contact.message)
-
-    # Mailjet に送信
-    Mailjet::Send.create(messages: [mail_data])
-
-    redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
-  rescue StandardError => e
-    Rails.logger.error "メール送信エラー: #{e.message}"
-    redirect_to root_path, alert: I18n.t('contacts.alerts.send_error')
+  def contact_email(name, email, message)
+    {
+      From: {
+        Email: ENV.fetch('FROM_MAIL_ADDRESS', nil),
+        Name: 'Offset_code_craft'
+      },
+      To: [{
+        Email: ENV.fetch('TO_MAIL_ADDRESS', nil)
+      }],
+      Subject: "【お問い合わせ】#{name}様より",
+      TextPart: "From: #{email}\n\n#{message}",
+      HTMLPart: "<p>From: #{email}</p><p>#{message}</p>"
+    }
   end
 
   def complete_contact
