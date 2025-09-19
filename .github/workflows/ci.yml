@@ -69,6 +69,9 @@ jobs:
       MY_MAIL_ADDRESS: ${{ secrets.MY_MAIL_ADDRESS }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_MAIL_ADDRESS: ${{ secrets.FROM_MAIL_ADDRESS }}
+      MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
+      MAILJET_SECRET_KEY: ${{ secrets.MAILJET_SECRET_KEY }} 
+
       
     needs: Linter_Rubocop_test
     steps:
@@ -103,6 +106,8 @@ jobs:
           echo "MY_MAIL_ADDRESS=${{ secrets.MY_MAIL_ADDRESS }}" >> .env
           echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" >> .env
           echo "FROM_MAIL_ADDRESS=${{ secrets.FROM_MAIL_ADDRESS }}" >> .env
+          echo "MAILJET_API_KEY=${{ secrets.MAILJET_API_KEY }}" >> .env
+          echo "MAILJET_SECRET_KEY=${{ secrets.MAILJET_SECRET_KEY }}" >> .env
 
       - name: Run ContactMailer spec
         run: bundle exec rspec spec/mailers/contact_mailer_spec.rb
