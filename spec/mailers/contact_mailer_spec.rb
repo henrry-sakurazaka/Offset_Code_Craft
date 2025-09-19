@@ -6,18 +6,21 @@ RSpec.describe ContactMailer, type: :mailer do
   let(:name) { '山田太郎' }
   let(:email) { 'taro@example.com' }
   let(:message) { 'こんにちは' }
+  let(:to_mail_address) { 'admin@example.com' } # 環境依存させない
 
+  # Mailjetクラスのcreateメソッドをモック
   let(:mailjet_spy) { class_double(Mailjet::Send).as_stubbed_const }
 
   before do
     allow(mailjet_spy).to receive(:create)
-    described_class.contact_email(name, email, message)
+    # ここで contact_email を呼んでモックを実際に通す
+    described_class.contact_email(name, email, message, to_mail_address)
   end
 
   it '正しい宛先に送信されること' do
     expect(mailjet_spy).to have_received(:create).with(
       messages: array_including(
-        hash_including(To: [{ Email: ENV.fetch('TO_MAIL_ADDRESS', nil) }])
+        hash_including(To: [{ Email: to_mail_address }])
       )
     )
   end
