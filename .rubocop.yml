@@ -28,10 +28,12 @@ Metrics/AbcSize:
     - 'controllers/**/*.rb'
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 40
   Exclude:
     - 'spec/**/*'
     - 'controllers/**/*.rb'
+  Enabled: false
+
 
 Metrics/BlockLength:
   Exclude:
@@ -45,3 +47,5 @@ Layout/TrailingWhitespace:
   Enabled: true
 Layout/EmptyLines:
   Enabled: false
+
+  

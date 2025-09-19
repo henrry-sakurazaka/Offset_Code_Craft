@@ -9,28 +9,40 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
 
-    Rails.logger.info "Contact params: #{@contact.attributes.inspect}"
-    Rails.logger.info "valid_contact? = #{valid_contact?(@contact)}"
+    log_contact(@contact)
 
-    unless valid_contact?(@contact)
-      Rails.logger.warn '入力不正のため root_path にリダイレクト'
-      redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input') and return
-    end
+    return handle_invalid_contact if invalid_contact?(@contact)
 
-    begin
-      ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_now
-      redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
-    rescue StandardError => e
-      Rails.logger.error "メール送信エラー: #{e.message}"
-      redirect_to root_path, alert: I18n.t('contacts.alerts.send_error')
-    end
+    deliver_contact_email(@contact)
+    redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
+  rescue StandardError => e
+    Rails.logger.error "メール送信エラー: #{e.message}"
+    redirect_to root_path, alert: I18n.t('contacts.alerts.send_error')
+  end
+
+  private
+
+  def log_contact(contact)
+    Rails.logger.info "Contact params: #{contact.attributes.inspect}"
+    Rails.logger.info "valid_contact? = #{valid_contact?(contact)}"
+  end
+
+  def invalid_contact?(contact)
+    !valid_contact?(contact)
+  end
+
+  def handle_invalid_contact
+    Rails.logger.warn '入力不正のため root_path にリダイレクト'
+    redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input')
+  end
+
+  def deliver_contact_email(contact)
+    Mailjet::Send.create(messages: [ContactMailer.new.contact_email(contact.name, contact.email, contact.message)])
   end
 
   def complete_contact
     render layout: 'application'
   end
-
-  private
 
   def contact_params
     params.permit(:name, :email, :message)
