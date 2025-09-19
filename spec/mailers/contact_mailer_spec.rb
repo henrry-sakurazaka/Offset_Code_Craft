@@ -6,16 +6,13 @@ RSpec.describe ContactMailer, type: :mailer do
   let(:name) { '山田太郎' }
   let(:email) { 'taro@example.com' }
   let(:message) { 'こんにちは' }
-  let(:to_mail_address) { ENV.fetch('TO_MAIL_ADDRESS', 'admin@example.com') }
+  let(:to_mail_address) { 'admin@example.com' }
 
-  let(:mailjet_spy) { class_double(Mailjet::Send) }
+  # ここで Mailjet::Send を差し替える
+  let(:mailjet_spy) { class_double(Mailjet::Send, create: true) }
 
   before do
-    # ここで Mailjet::Send をテスト用 spy に差し替え
     stub_const('Mailjet::Send', mailjet_spy)
-    allow(mailjet_spy).to receive(:create)
-
-    # 実行
     described_class.contact_email(name, email, message)
   end
 
