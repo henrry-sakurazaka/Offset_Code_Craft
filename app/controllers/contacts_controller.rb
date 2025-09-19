@@ -11,9 +11,13 @@ class ContactsController < ApplicationController
 
     log_contact(@contact)
 
-    handle_invalid_contact and return if invalid_contact?(@contact)
+    return handle_invalid_contact if invalid_contact?(@contact)
 
     deliver_contact_email(@contact)
+    redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
+  rescue StandardError => e
+    Rails.logger.error "メール送信エラー: #{e.message}"
+    redirect_to root_path, alert: I18n.t('contacts.alerts.send_error')
   end
 
   private
@@ -32,19 +36,8 @@ class ContactsController < ApplicationController
     redirect_to root_path, alert: I18n.t('contacts.alerts.invalid_input')
   end
 
-  def contact_email(name, email, message)
-    {
-      From: {
-        Email: ENV.fetch('FROM_MAIL_ADDRESS', nil),
-        Name: 'Offset_code_craft'
-      },
-      To: [{
-        Email: ENV.fetch('TO_MAIL_ADDRESS', nil)
-      }],
-      Subject: "【お問い合わせ】#{name}様より",
-      TextPart: "From: #{email}\n\n#{message}",
-      HTMLPart: "<p>From: #{email}</p><p>#{message}</p>"
-    }
+  def deliver_contact_email(contact)
+    Mailjet::Send.create(messages: [ContactMailer.new.contact_email(contact.name, contact.email, contact.message)])
   end
 
   def complete_contact
