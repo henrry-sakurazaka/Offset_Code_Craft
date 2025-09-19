@@ -6,6 +6,7 @@ RSpec.describe ContactMailer, type: :mailer do
   let(:name) { '山田太郎' }
   let(:email) { 'taro@example.com' }
   let(:message) { 'こんにちは' }
+  let(:mailjet_spy) { instance_spy(Mailjet::Send) }
 
   before do
     # 環境変数を設定
@@ -13,8 +14,7 @@ RSpec.describe ContactMailer, type: :mailer do
     ENV['TO_MAIL_ADDRESS'] = 'admin@example.com'
 
     # Mailjet::Send を spy にする
-    @mailjet_spy = spy('Mailjet::Send')
-    stub_const('Mailjet::Send', @mailjet_spy)
+    stub_const('Mailjet::Send', mailjet_spy)
   end
 
   it '正しい宛先に送信されること' do
