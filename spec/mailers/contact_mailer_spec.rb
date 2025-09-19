@@ -12,8 +12,9 @@ RSpec.describe ContactMailer, type: :mailer do
     ENV['FROM_MAIL_ADDRESS'] = 'noreply@offsetcodecraft.site'
     ENV['TO_MAIL_ADDRESS'] = 'admin@example.com'
 
-    # Mailjet::Send.create をモック
-    allow(Mailjet::Send).to receive(:create)
+    # Mailjet::Send を spy にする
+    @mailjet_spy = spy('Mailjet::Send')
+    stub_const('Mailjet::Send', @mailjet_spy)
   end
 
   it '正しい宛先に送信されること' do
