@@ -33,9 +33,11 @@ class ContactsController < ApplicationController
   end
 
   def deliver_contact_email(contact)
-    Mailjet::Send.create(messages: [
-                           ContactMailer.new.contact_email(contact.name, contact.email, contact.message)
-                         ])
+    # ContactMailer はメールの内容ハッシュだけ返す
+    mail_data = ContactMailer.new.contact_email(contact.name, contact.email, contact.message)
+
+    # Mailjet に送信
+    Mailjet::Send.create(messages: [mail_data])
 
     redirect_to complete_contact_path, notice: I18n.t('contacts.notices.sent')
   rescue StandardError => e
