@@ -562,7 +562,6 @@ progress::-webkit-progress-value {
 
 
 .works-title {
-    width: 320px;
     height: 72px;
     display: inline-block;
     justify-content: center;
@@ -591,11 +590,11 @@ progress::-webkit-progress-value {
 .works-title.inview .worksH1 .char {
   animation-name: animate-chars;
   animation-duration: 0.8s;
-  /* animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1); */
-  animation-timing-function: ease;
+  animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1);
   animation-fill-mode: both;
   opacity: 0;
   position: relative;
+  display: inline-block;
 }
 
 .works-title.inview .worksH1 .char:nth-child(1) {
