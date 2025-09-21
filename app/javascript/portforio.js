@@ -10,8 +10,8 @@ class TextAnimation {
     this.chars = this.el.innerHTML.trim().split("");
     this.el.innerHTML = this._splitText();
     setTimeout(() => {
-
-    })
+      this.el.innerHTML;
+    }, 1000)
   }
 
   // for(let c of str) {
