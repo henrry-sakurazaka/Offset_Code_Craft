@@ -1,59 +1,5 @@
 "use strict";
   
-// nav /////////////////////////////////////////////////////////
-
-    // document.addEventListener("DOMContentLoaded", function () {
-    //   const contact = document.querySelector(".contact");
-    //   const nav = document.querySelector(".navi");
-    //   const center = document.querySelector(".center");
-    //   const dot = document.querySelector(".dot");
-
-    //   if (nav && center) {
-    //     nav.addEventListener("mouseover", function () {
-    //       center.classList.add("inview");
-    //     });
-    //     nav.addEventListener("mouseleave", function () {
-    //       center.classList.remove("inview");
-    //     });
-    //   }
-
-    //   if (contact && dot) {
-    //     contact.addEventListener("mouseover", function () {
-    //       dot.classList.add("animate__animated");
-    //     });
-    //     contact.addEventListener("mouseleave", function () {
-    //       dot.classList.remove("animate__animated");
-    //     });
-    //   }
-    // });
-
-
-    // document.addEventListener("mousemove", function() {
-    //     const center = document.querySelector(".center");
-    //     const nav = document.querySelector(".navi");
-    //     const dot = document.querySelector(".dot");
-    //     const about = document.querySelector(".about");
-    
-      
-    //     nav.addEventListener("mouseover", function() {
-    
-    //     center.classList.add("inview");
-    //     });
-    
-    //     nav.addEventListener("mouseleave", function() {
-    
-    //     center.classList.remove("inview");
-    //     });
-
-    //     about.addEventListener("mouseover", function() {
-    //       dot.classList.add("animate__animated");
-    //     });
-      
-    //     about.addEventListener("mouseleave", function() {
-    //       dot.classList.remove("animate__animated")
-    //     });
-    // });
-
     // スクロール時にフワッと////////////////////////////////////////////
 
     const options = {
@@ -73,6 +19,23 @@
     }
      
     els.forEach((el) => io.observe(el));
+
+
+    //テキストアニメーション/////////////////////////////////////////
+
+    // const els2 = document.querySelectorAll("text-animation");
+    // els2.forEach((el) => {
+    //   if(!el.querySelector(".char")) {
+    //     const chars = el.innerHTML.trim().split("");
+    //     return chars.reduce((acc, curr) => {
+    //       curr = curr.replace(/\s+/, "&nbsp");
+    //       return `${acc}<span class="char">${curr}</span>`;
+    //     }, "");
+    //   }
+      
+    // });
+
+
 
     // 長いリンクの文字列の切り替え  ///////////////////////////////////////////////
 

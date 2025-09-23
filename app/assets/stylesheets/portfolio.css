@@ -1720,7 +1720,6 @@ figcaption2 {
     /* background-image: url(./images-mountan/2.jpg); */
     background-position: bottom right;
     -webkit-background-clip: text;
-    
 }
 
 .big-text:hover {
