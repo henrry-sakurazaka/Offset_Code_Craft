@@ -13,20 +13,24 @@
  // app/assets/stylesheets/application.scss
 // app/assets/stylesheets/application.scss
 
-@import "destyle";        // ← 最初にリセット系を読み込む
-@import "complete";
-@import "audio";
-@import "change-page";
-@import "MS";
-@import "moving";
-@import "move-text";
+@use "destyle";        // ← 最初にリセット系を読み込む
+@use "complete";
+@use "audio";
+@use "change-page";
+@use "MS";
+@use "moving";
+@use "move-text";
+@use "text-animation";
+@use "about";
+@use "portfolio";
+
 // 必要に応じて追加
 
 
 // 必要なCSSファイルを全部ここにまとめてimport
 
 .background , .catch {
-  background-image: image-url('images_mountain/2.jpg');
+  background-image: image-url("images_mountain/2.jpg");
 }
 
 img {
@@ -34,8 +38,6 @@ img {
   height: auto;
   display: block;
 }
- p {
-  color: black !important;
- }
+ 
 
  

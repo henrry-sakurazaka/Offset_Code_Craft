@@ -1,0 +1,30 @@
+// app/assets/stylesheets/_text-animation.scss
+
+// 共通アニメーション
+@keyframes animate-chars {
+ from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 各文字のアニメーションディレイをループで生成（20文字まで）
+@for $i from 1 through 20 {
+  .inner-title .observed.inview .char:nth-child(#{$i}) {
+    animation-delay: $i * 0.08s;
+  }
+}
+
+// アニメーションを適用する共通クラス
+.inner-title .observed.inview {
+  .char {
+    animation: animate-chars 0.8s cubic-bezier(0.39, 1.57, 0.58, 1) both;
+    opacity: 0;
+    position: relative;
+    display: inline-block;
+  }
+}
