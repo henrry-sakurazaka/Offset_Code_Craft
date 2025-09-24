@@ -23,7 +23,7 @@ class TextAnimation {
   }  
  
   _animate() {
-    this.els.forEach(el => {
+    this.els.forEach((el) => {
         setTimeout(() => {
             el.classList.add("inview");
         }, i * 200);

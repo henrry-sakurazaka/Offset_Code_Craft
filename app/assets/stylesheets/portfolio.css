@@ -648,7 +648,7 @@ section {
     max-width: 1900px;
     width: 100%;
     display: flex;
-    padding-left: 160px;
+    /* padding-left: 160px; */
     margin-top: 240px;
     position: relative;
 }
