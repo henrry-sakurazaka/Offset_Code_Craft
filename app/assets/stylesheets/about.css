@@ -622,11 +622,12 @@ progress::-webkit-progress-value {
         height: 2400px;
         margin-bottom: 96px;
         padding-right: 40px;
+        padding-left: 0;
     }
 }
 @media screen and (max-width: 430px) {
     .container3 {
-        height: 3360px;
+        height: 4000px;
         margin-bottom: 8px;
         margin-top: 0;
     }   
@@ -635,7 +636,7 @@ progress::-webkit-progress-value {
 @media screen and (max-width: 414px) {
     .container3 {
         padding-left: 40px;
-        height: 2960px;
+        height: 3000px;
         margin-top: 88px;
     }  
 }
@@ -648,7 +649,7 @@ progress::-webkit-progress-value {
 
 @media screen and (max-width: 375px) {
     .container3 {
-        height: 3120px;
+        height: 5600px;
         padding-left: 40px;
     }
 }
