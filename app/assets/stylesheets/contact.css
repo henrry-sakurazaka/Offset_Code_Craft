@@ -19,7 +19,7 @@
     top: 5%;
 }
 
-.container {
+.contact-container {
     max-width: 1970px;
     width: 100%;
     height: 90vh;
@@ -33,7 +33,7 @@
     
 }
 
-.backgroundAvocad {
+.contact-backgroundAvocad {
 
     position: absolute;
     z-index: -1;
@@ -47,13 +47,13 @@
     
 }
 @media screen and (max-width: 1600px) {
-    .backgroundAvocad {
+    .contact-backgroundAvocad {
         left: 20%;
     }
     
 }
 @media screen and (max-width: 1367px) {
-    .backgroundAvocad {
+    .contact-backgroundAvocad {
         left: 20%;
     }
     
@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 1970px) {
 
-    .container {
+    .contact-container {
         display: flex;
         justify-content: center;
     }
@@ -70,80 +70,82 @@
 }
 @media screen and (max-width: 768px) {
     
-    .container {
-        padding-left: 112px;     
+    .contact-container {
+        padding-left: 112px;
+        height: 120vh;     
     }  
 }
 @media screen and (max-width: 430px) {
     
-    .container {
-        padding-left: 40px;     
+    .contact-container {
+        padding-left: 0;     
     }  
 }
 @media screen and (max-width: 414px) {
     
-    .container {
+    .contact-container {
         padding-left: 40px;     
     }  
 }
 @media screen and (max-width: 375px) {
     
-    .container {
-        padding-left: 32px;     
+    .contact-container {
+        padding-left: 24px; 
+        height: 150vh;    
     }  
 }
 
 
 @media screen and (max-width: 1366px) {
-    .backgroundAvocad {
+    .contact-backgroundAvocad {
         position: absolute;
         top: 10%;
         left: 17%;
     }  
 }
 @media screen and (max-width: 1180px) {
-    .backgroundAvocad {
+    .contact-backgroundAvocad {
         position: absolute;
         top: 20%;
         left: 17%;
     }  
-    .backgroundAvocad img {
+    .contact-backgroundAvocad img {
        width: 320px;
     }  
 }
 @media screen and (max-width: 768px) {
-    .backgroundAvocad {
+    .contact-backgroundAvocad {
         position: absolute;
         top: 17%;
         left: 40%;
     }  
-    .backgroundAvocad img {
+    .contact-backgroundAvocad img {
        width: 320px;
     }  
 }
 @media screen and (max-width: 430px) {
-    .backgroundAvocad  {
+    .contact-backgroundAvocad  {
         position: absolute;
         top: 10%;
         left: 35%;
     }  
-    .backgroundAvocad img {
+    .contact-backgroundAvocad img {
         width: 240px;
     }
 }
 
 @media screen and (max-width: 414px) {
-    .backgroundAvocad  {
+    .contact-backgroundAvocad  {
         position: absolute;
         top: 10%;
         left: 5%;
     }  
-    .backgroundAvocad img {
+    .contact-backgroundAvocad img {
         width: 240px;
     }
 }
 @media screen and (max-width: 390px) {
-    .backgroundAvocad  {
+    .contact-backgroundAvocad  {
         left: 24%;
     }    
 }
@@ -370,7 +372,7 @@ progress::-webkit-progress-value {
 
 
 
-section {
+.contact-section {
     max-width: 1240px;
     width: 100%;
     display: flex;
@@ -381,7 +383,7 @@ section {
 
 @media screen and (max-width: 768px) {
 
-    section {
+    .contact-section {
         flex-direction: column; 
         row-gap: 96px;  
     }
@@ -544,13 +546,13 @@ section {
 
 /* nav  //////////////////////////////////////////////////////////////*/
 
-.nav-container {
+.nav-contact-container {
     position: relative;
 }
 
 @media screen and (max-width: 768px) {
 
-    .nav-container {
+    .nav-contact-container {
         display: none;
     }   
 }
