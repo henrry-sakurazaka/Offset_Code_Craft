@@ -1757,6 +1757,10 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.copy {
+    font-size: 0.85rem;
+    color: #666;
 }
 
