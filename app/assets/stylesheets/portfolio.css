@@ -679,13 +679,17 @@ section {
     }
     
 }
-
+@media screen and (max-width: 1560px) {
+    section {
+        padding-left: 192px;
+    }   
+}
 
 @media screen and (max-width: 1366px) {
     section {
         width: 100%;
         display: flex;
-        padding-left: 88px;
+        padding-left: 192px;
         margin-top: 160px; 
     }  
   }
