@@ -683,7 +683,11 @@ section {
     }
     
 }
-
+@media screen and (max-width: 1560px) {
+    section {
+        padding-left: 192px;
+    }   
+}
 
 @media screen and (max-width: 1366px) {
     section {
