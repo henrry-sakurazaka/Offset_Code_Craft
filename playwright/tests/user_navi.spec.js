@@ -41,7 +41,7 @@ test('Topページのworks画像からリンク先へ移動できるか', async(
         { className: '.works-li a.reminder-img .master .works-img.lion', href: 'https://reminder5-27ef0.web.app' },
         { className: '.works-li a.typescript-img .master .works-img.tiger', href: 'https://hello-typescript-8a1d9.web.app' },
         { className: '.works-li a.mountain-img .master .works-img.snake', href: 'http://sakurazaka.s324.xrea.com/mountain-view/mountain.html' },
-        { className: '.works-li a.megumi-completa-img .master .works-img.leopard', href: 'http://sakurazaka.s324.xrea.com/megumi-completa/megumi-completa3/HELLO5.html' },
+        { className: '.works-li a.megumi-completa-img .master .works-img.leopard', href: 'https://ss955438.stars.ne.jp/Megumi-Completa-Official/index.html' },
         { className: '.works-li a.engineer-post-img .master .works-img.elephant', href: 'http://sakurazaka.s324.xrea.com/products-app/bbs.php' }
     ]                                                                 
     await page.goto(`${baseURL}/home`, { waitUntil: 'domcontentloaded' });
