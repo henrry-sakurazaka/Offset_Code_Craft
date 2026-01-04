@@ -1,0 +1,112 @@
+
+
+
+.fade_group div ,
+.active .fade_group2 div {
+    content: '';
+    position: fixed;
+    top: 0;
+    top: -200vh;
+    max-width: 1970px;
+    width: 100vw;
+    height: 100%;
+    pointer-events: none;
+}
+ 
+.fadeout .fade_group div {
+    content: '';
+    position: fixed;
+    top: 0;
+    max-width: 1970px;
+    width: 100vw;
+    height: 100%;
+    pointer-events: none;
+    animation-name: changePages;
+    animation-duration: .4s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    transition: all .4s;
+}
+ 
+
+ 
+.fade_group div {
+    z-index: 9999;
+    transition: .6s;
+}
+.fadeout .fade_group2 div {
+    z-index: 9998;
+    transition: .8s;
+}
+.fade_group div:nth-of-type(1) {
+    background: black;
+}
+.fade_group div:nth-of-type(2) {
+    background: black;
+    transition-delay:.1s;
+}
+.fade_group div:nth-of-type(3) {
+    background: black;
+    transition-delay:.2s;
+}
+.fade_group div:nth-of-type(4) {
+    background: black;
+    transition-delay:.3s;
+}
+.fade_group2 div:nth-of-type(1) {
+    background: black;
+    transition-delay: .2s;
+}
+.fade_group2 div:nth-of-type(2) {
+    background: black;
+    transition-delay: .3s;
+}
+body.fo .fade_group div{
+    top: 0;
+}
+body.fo .fade_group2 div{
+    top: 0;
+}
+
+ /* @keyframes changePages {
+
+    0% {
+        transform-origin: bottom;
+        transform: scaleY(0);
+    }
+
+    25% {
+        transform-origin: bottom;
+        transform: scaleY(100%);
+        
+    }  
+    50% {
+        transform-origin: top;
+        transform: scaleY(100%);
+    }
+
+   
+    100% {
+        transform-origin: top;
+        transform: scaleY(0%);
+    }     
+
+   
+   
+} */
+
+ @keyframes changePages2 {
+
+    0% {
+        transform-origin: top;
+        transform: scaleY(100%);
+    }
+
+   
+    50% {
+        transform-origin: top;
+        transform: scaleY(0%);
+    }  
+}  

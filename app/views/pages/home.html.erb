@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<% yield %>
+
+<body class="fo">
+
+        <div class="mask"></div>
+        <div class="mask2"></div>
+        <div class="line"></div>
+        <div class="count-down"></div>
+
+
+        <div id="cursor"></div>
+            <div id="g-ms">
+                <div class="g-ms_i"></div>
+        </div>
+            <div class="animation">
+                <!-- <div class="fade_group">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="fade_group2">
+                    <div></div>
+                    <div></div>
+                </div>  -->
+            </div>
+       
+        <% yield %>
+        
+
+        <div class="container">
+          <div class="backgroundAvocad">
+            <%= image_tag "pexels-laker-6157040.png", width: "400px", alt: "アボカドの画像" %>
+
+          </div>
+            <main>
+                <div class="big-title2">
+                    <h1 class="catch">
+                         Where Imagination <br> Meets Possibility<br>
+                         Unleashing the Power<br> of Innovation </h1>
+                </div>
+                <% yield %>
+            </main>
+               
+            <section>
+                <ul class="works">
+                    <li class="works-li">
+                        <%= link_to "", "https://reminder5-27ef0.web.app" %>
+                        <div class="works-container">
+                            <div class="caption">
+                                <p class="used-language">Deliveravle - Official Appreciation</p>
+                                <p class="used-language">Date - Feb 2024</p>
+                                <p class="used-language">Library / Framework / React</p>
+                                <p class="used-language">Infrastructure / GCP( Google Cloud Platform )</p>
+                                <p class="used-language">Database / Cloud Firestore </p>
+                                <p class="used-language">Server / Cloud Functions </p>
+                                <p class="used-language">DevOps Tools / Containerization Platform  / Docker </p>
+                                <p class="used-language">Build Tools / Vite </p>
+                                <p class="used-language">Linter / ESlint </p>
+                                <p class="used-language">Formatter / Prettier </p>
+                                <p class="used-language">CI/CD Pipeline / GitHub Actions </p>
+                                <p class="used-language">Tests / E2ETest Tools / Playwright </p>
+                                <p class="used-language">Edge Server /Cloudflare/ Cloudflare Tunnel </p>
+
+                            </div>
+                            <figure class="master">
+                                <%= image_tag "works6.png", class: "works-img" %>
+                            </figure>
+                           
+                            <figure class="clone">
+                                <%= image_tag "works6.png", class: "clone-img", alt: "clone" %>
+                            </figure>
+                        </a>
+                        <div class="works-text">
+                            <figcaption>
+                                <h2 class="works-text-name">REMINDER App</h2>
+                                <span class="caption-text">Front-end & Back-end</span>
+                                <span class="architecture ">
+                                    <a class="architex" href="./images/Blank diagram-12.png">Architecture Chart</a>
+                                </span>
+                                <div class="code-detail">
+                                    <%= link_to "Code Detail", "https://github.com/henrry-sakurazaka/Reminder", class: "git" %>
+                                </div>
+                            </figcaption>
+                        </div>
+                    </div>
+                </li>
+                    <li class="works-li">
+                        <%= link_to "", "https://hello-typescript-8a1d9.web.app" %>
+                        <div class="works-container">
+                            <div class="caption ">
+                                <p class="used-language">Deliveravle - Portfolio Appreciation</p>
+                                <p class="used-language">Date - August 2024</p>
+                                <p class="used-language"> React / TypeScript / Firebase / HTML / CSS </p>
+                                <p class="used-language"></p>
+                            </div>
+                            <figure class="master">
+                                <%= image_tag "works7.png", class: "works-img" %>
+                            </figure>
+                           
+                            <figure class="clone">
+                                <%= image_tag "works7.png", class: "clone-img", alt: "clone" %>
+                            </figure>
+                        </a>
+                        <div class="works-text">
+                            <figcaption>
+                                <h2 class="works-text-name">Hello TypeScript </h2>
+                                <span class="caption-text">Front-end </span>
+                                <div class="code-detail">
+                                    <%= link_to "Code Details",  "https://github.com/henrry-sakurazaka/Hello-TypeScript", class: "git" %>
+                                </div>
+                            </figcaption>
+                        </div>
+                    </div>
+                </li>
+                    <li class="works-li">
+                        <%= link_to "", "http://sakurazaka.s324.xrea.com/mountain-view/mountain.html" %>
+                        <div class="works-container">
+                            <div class="caption ">
+                                <p class="used-language">Deliveravle - IntersectionObserver API Demo site</p>
+                                <p class="used-language">Date - Jan 2023</p>
+                                <p class="used-language">HTML / CSS / JavaScript </p>
+                                <p class="used-language"></p>
+                            </div>
+                            <figure class="master">
+                                <%= image_tag "works3.png", class: "works-img" %>    
+                            </figure>
+                           
+                            <figure class="clone">
+                                <%= image_tag "works3.png", class: "clone-img", alt: "clone" %>
+                            </figure>
+                        </a>
+                        <div class="works-text">
+                            <figcaption>
+                                <h2 class="works-text-name">MOUNT UP YOUR LIFE</h2>
+                                <span class="caption-text">Front-end</span>
+                                <!-- <div class="code-deteal">
+                                    <a class="git" href="">Code Details</a>
+                                </div> -->
+                            </figcaption>
+                        </div>
+                    </div>
+                </li>
+                    <li class="works-li">
+                        <%= link_to "", "http://sakurazaka.s324.xrea.com/megumi-completa/megumi-completa3/HELLO5.html" %>
+                        <div class="works-container">
+                            <div class="caption ">
+                                <p class="used-language">Deliveravle - Artist site</p>
+                                <p class="used-language">Date - May 2022</p>
+                                <p class="used-language">HTML / CSS / Sass / JavaScript / JQuery / PHP</p>
+                                <p class="used-language"></p>
+                            </div>
+                            <figure class="master">
+                                  <%= image_tag "works1.png", class: "works-img" %>
+                            </figure>
+                           
+                            <figure class="clone">
+                                <%= image_tag "works1.png", class: "clone-img", alt: "clone" %>
+                            </figure>
+                        </a>
+                        <div class="works-text">
+                            <figcaption>
+                                <h2 class="works-text-name">MEGUMI COMPLETA</h2>
+                                <span class="caption-text">Design & Front-end & Back-end</span>
+                                <div class="code-detail">
+                                    <%= link_to "Code Details", "https://github.com/henrry-sakurazaka/Megumi-Completa-Official", class: "git" %>
+                                </div>
+                            </figcaption>
+                        </div>
+                    </div>
+                </li>
+                             
+                    <li class="works-li">
+                        <%= link_to "","http://sakurazaka.s324.xrea.com/products-app/bbs.php" %>
+                        <div class="works-container">
+                            <div class="caption ">
+                                <p class="used-language">Deliveravle - Demo Appreciation</p>
+                                <p class="used-language">Date - Aug 2023</p>
+                                <p class="used-language">HTML / CSS / PHP / MySQL / JavaScript / Ajax /</p>
+                                <p class="used-language"></p>
+                            </div>
+                            <figure class="master">
+                                  <%= image_tag "works5.png", class: "works-img" %>
+                            </figure>
+                           
+                            <figure class="clone">
+                                <%= image_tag "works5.png", class: "clone-img", alt: "clone" %>
+                            </figure>
+                        </a>
+                        <div class="works-text">
+                            <figcaption>
+                                <h2 class="works-text-name">ENGENEER POST</h2>
+                                <span class="caption-text">Back-end & Front-end</span>
+                                <div class="code-detail">
+                                    <%= link_to "Code Details", "https://github.com/henrry-sakurazaka/Engineer-Post", class: "git" %>
+                                </div>
+                            </figcaption>
+                        </div>
+                    </div>
+                </li>
+                    
+                    
+                
+                </ul>
+                <div class="nav-container">
+                    <nav class="navi">
+                        <div class="dot  animate__bounce animate__infinite"></div>
+                        <%= link_to "ABOUT", about_path, class: "big-text" %>
+                        <div class="center">
+                            <div class="center-inner">
+                                <div class="inner">
+                                    <a href="portfolio-contact.html" class="contact">Contact</a>
+                                    <span class="line1"></span>
+                                </div>     
+                            </div>
+                        </div>  
+                    </nav>
+                </div>   
+            </section>
+        </div>
+
+         <div class="slide-inner">
+
+            <div class="move-teximg">
+                <p class="centered big-title back moving">
+                    <span class="move-text">portfolio 2023-2024 </span>
+                    <span class="move-text">portfolio 2023-2024 </span>
+                    
+                </p>
+
+                <!-- <div class="centered clipping-container">
+                    <p class="centered big-title front moving">
+                        <span class="move-text">portfolio 2023 - 2024 </span>
+                        <span class="move-text">portfolio 2023 - 2024 </span>
+                        
+                    </p>
+        
+                </div> -->
+    
+            </div>
+           </div>  
+            
+        <span class="mark"> + </span>
+
+        <!-- <span class="spice"> " " </span> -->
+ 
+        <div class="big-about" ontouchstart="">       
+            <%= link_to "ABOUT", about_path, class: "big-text"%>
+        </div>
+        
+        <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" %>
+        <%= javascript_include_tag "loading-animation.js", defer: true %>   
+        <%= javascript_include_tag "portforio.js", defer: true %>
+
+         <% yield %>
+
+            
+</body>
+</html>

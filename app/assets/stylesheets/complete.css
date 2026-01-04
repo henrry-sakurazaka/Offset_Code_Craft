@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h3, p {
+    color: rgb(131, 207, 18);
+}

@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+.audio_wrap {
+    width: 160px;
+    height: 160px;
+    /* background-color: rgb(6, 6, 29); */
+    position: fixed;
+    top: 24px;
+    right: 96px;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+.audio_button {
+    position: relative;
+}
+.sound-logo {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* @media screen and (max-width: 768px) {
+    
+    .audio_wrap {
+        right: 24px;
+    } 
+}
+
+
+@media screen and (max-width: 768px) {
+    
+    .audio_wrap {
+        right: 112px;
+    } 
+} */
+@media screen and (max-width: 430px) {
+    
+   
+    .listen {
+        width: 120px;
+        height: 120px;
+    }
+    .sound-logo {
+        width: 64px;
+    }
+}
+@media screen and (max-width: 1366px) {
+
+    .audio_wrap {
+        right: 96px;
+    }
+    
+}
+
+@media screen and (max-width: 1180px) {
+    
+    .audio_wrap {
+        right: 24px;
+    } 
+}
+
+
+@media screen and (max-width: 768px) {
+    
+    .audio_wrap {
+        right: 112px;
+    } 
+}
+@media screen and (max-width: 430px) {
+    
+    .audio_wrap {
+        left: 252px;
+        top: 0;
+    } 
+}
+
+@media screen and (max-width: 415px) {
+
+    .audio_wrap {
+        left: 240px
+    } 
+}
+@media screen and (max-width: 390px) {
+
+    .audio_wrap {
+        left: 232px;
+    } 
+}
+@media screen and (max-width: 375px) {
+
+    .audio_wrap {
+        left: 260px;
+        width: 64px;
+        position: fixed;
+        
+    } 
+}
+
+/* @media screen and (max-width: 430px) {
+    
+   
+    header {
+        width: 430px;
+        
+    }
+    
+    .audio_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+} */
+
+
+
+.listen {
+    animation: 15s linear infinite;
+    animation-name: r360;
+}
+
+@keyframes r360 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.music {
+    width: 96px;
+    height: 96px;
+}

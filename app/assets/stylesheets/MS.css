@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+#g-ms {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    transform: translate3d(50vw, 50vh, 0);
+    z-index: 60;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+}
+
+.g-ms_i {
+    width: 64px;
+    height: 64px;
+    margin: -30px 0 0 -30px;
+    border: black solid 1px;
+    mix-blend-mode: exclusion;
+    border-radius: 50%;  
+}
+
+.g-ms-hover .g-ms_i {
+    transform: scale(1.8);
+}
+
+#cursor {
+    transform: translate(0, 0);
+    pointer-events: none;
+    position: fixed;
+    top: -4px;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    background: black !important;
+    border-radius: 50%;
+    z-index: 60;
+}
+
+.g-ms-hover {
+    top: -8px;
+    left: -8px;
+    width: 16px;
+    height: 16px;  
+}
+
+html, body {
+    cursor: none;
+}
+
+@media screen and (max-width: 800px ) {
+
+    #g-ms {
+        pointer-events: painted;
+    }
+    
+    
+}

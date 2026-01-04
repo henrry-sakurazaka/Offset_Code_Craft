@@ -1,0 +1,79 @@
+
+/*   move-text  ////////////////////////////////////////////////*/
+
+.move-teximg {
+    -webkit-font-smoothing: antialiased;
+    padding-top: 10vw;
+    padding-bottom: 10vw;
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px;
+} 
+
+.centered {
+    position: absolute; 
+    left: 0; 
+}
+ .big-title {
+    width: 100%;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+ .move-text {
+    font-size: 240px;
+    display: inline-block;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: geometricPrecision;
+
+} 
+
+.move-teximg {
+
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+ .centered .clipping-container  {
+     
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+.moving {
+    -webkit-animation:animLeft 30s linear infinite;
+    animation: animLeft 30s linear infinite;
+    animation: animLeft2 30s linear infinite;
+}
+
+@keyframes animLeft {
+    0% {
+        -webkit-transform: translate(-19%, -50%);
+        transform: translate(-19%, -50%)
+    }
+
+    to {
+        -webkit-transform: translate(-100%, -50%);
+        transform: translate(-100%, -50%)
+    }
+}
+@keyframes animLeft2 {
+    0% {
+        -webkit-transform: translate(-19%, -50%);
+        transform: translate(-18.7%, -50%)
+    }
+
+    to {
+        -webkit-transform: translate(-200%, -50%);
+        transform: translate(-200%, -50%)
+    }
+}
+
+
+  
+   

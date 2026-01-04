@@ -1,0 +1,95 @@
+<h1>Pages#contact</h1>
+<p>Find me in app/views/pages/contact.html.erb</p>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<% yield %>
+
+
+<body class="fo">
+
+    <div id="cursor"></div>
+    <div id="g-ms">
+        <div class="g-ms_i"></div>
+    </div>
+
+    <div class="animation">
+
+        <div class="fade_group">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="fade_group2">
+            <div></div>
+            <div></div>
+         </div> 
+
+    </div>
+   
+
+    <% yield %>
+
+    <div class="container">
+        <!-- <div class="circle"></div> -->
+        <div class="backgroundAvocad">
+            <%= image_tag "../my-portfolio/images/pexels-ready-made-3850652.png", width: "400px", alt: "キウイの画像" %>
+        </div>
+
+    
+        <% yield %>
+                
+
+        <section>
+            <div class="message">
+                 <p class="text">
+                     Feel free <br>
+                     to drop <br>
+                     me a   <br>                   
+                     message <br>
+                 </p>
+            </div>
+            <div class="form-container">
+                <form action="./contact.php" method="post">
+                    <dl>
+                        <dt><label for="name">NAME</label></dt>
+                        <dd><input type="text" id="name" name="your-name" required ></dd>
+                        <dt><label for="email">E-MAIL</label></dt>
+                        <dd><input type="email" id="email" name="your-email"pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="正しい形式のメールアドレスを入力してください"></dd>
+                        <dt><label for="message">MESSAGE</label></dt>
+                        <dd><textarea id="message" name="your-message" required ></textarea></dd>
+                        <dd><div class="button"><button type="submit" id="btn">SUBMIT</button></div></dd>
+                    </dl>
+                    
+                
+                </form>
+           </div> 
+        </section>
+
+            <div class="nav-container">
+                <nav class="navi">
+                    <div class="dot  animate__bounce animate__infinite"></div>
+                    <%= link_to "Top", class: "top" %>
+                    <div class="center">
+                        <div class="center-inner">
+                            <div class="inner">
+                                <%= link_to "About", class: "about" %>
+                                <span class="line"></span>
+                            </div>    
+                        </div>
+                    </div>                
+                </nav>
+            </div>   
+    </div>
+   
+     
+    <%= javascript_include_tag "nav.js", defer: true %>
+    <% javasctipt_include_tag "contact.js", defer: true %>
+
+     <% yield %>
+    
+    
+</body>
+</html>
