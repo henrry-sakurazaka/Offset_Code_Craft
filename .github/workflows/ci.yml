@@ -48,7 +48,7 @@ jobs:
       - run: bundle exec rails assets:precompile
 
       - name: Cache assets
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: public/assets
           key: assets-${{ github.sha }}
@@ -95,7 +95,7 @@ jobs:
       - run: bundle exec rails assets:precompile
 
       - name: Cache assets
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: public/assets
           key: assets-${{ github.sha }}
