@@ -603,7 +603,7 @@ progress::-webkit-progress-value {
 .container3 {
     width: 100%;
     display: flex;
-    height: 1962px;
+    height: 2400px;
     margin-bottom: 160px;
     margin-top: 88px;
     display: flex;
@@ -622,11 +622,12 @@ progress::-webkit-progress-value {
         height: 2400px;
         margin-bottom: 96px;
         padding-right: 40px;
+        padding-left: 0;
     }
 }
 @media screen and (max-width: 430px) {
     .container3 {
-        height: 3360px;
+        height: 4000px;
         margin-bottom: 8px;
         margin-top: 0;
     }   
@@ -635,7 +636,7 @@ progress::-webkit-progress-value {
 @media screen and (max-width: 414px) {
     .container3 {
         padding-left: 40px;
-        height: 2960px;
+        height: 3000px;
         margin-top: 88px;
     }  
 }
@@ -648,7 +649,7 @@ progress::-webkit-progress-value {
 
 @media screen and (max-width: 375px) {
     .container3 {
-        height: 3120px;
+        height: 5600px;
         padding-left: 40px;
     }
 }
@@ -659,7 +660,7 @@ progress::-webkit-progress-value {
     }
 }
 
-.discription {
+.description {
     max-width: 1117px;
     width: 100%;
     height: 640px;
@@ -668,7 +669,7 @@ progress::-webkit-progress-value {
     margin-bottom: 160px;    
 }
 @media screen and (max-width: 430px) {
-    .discription {
+    .description {
         margin-bottom: 0;
     }  
 }
@@ -678,7 +679,6 @@ dl {
     display: flex;
     column-gap: 96px;
     transform: translateY(96px);
-    opacity: 0;
     color: #2f2c2a;
     line-height: 32px;
 }
@@ -702,7 +702,55 @@ dl {
     
 }
 
-.inview dl {
+.inner-title .observed.text-animation.inview .char {
+  animation-name: animate-chars;
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1) both;
+  animation-fill-mode: both;
+  opacity: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(4) {
+  animation-delay: 0.48s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(5) {
+  animation-delay: 0.56s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(6) {
+  animation-delay: 0.72s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(7) {
+  animation-delay: 0.80s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(8) {
+  animation-delay: 0.96s;
+}
+
+.inner-title .observed.text-animation.inview .char:nth-child(9) {
+  animation-delay: 1.04s;
+}
+
+
+
+.observed.inview .items {
     animation-name: fadeIn-up;
     animation-duration: 0.8s;
     animation-timing-function: ease-in-out;
@@ -766,12 +814,16 @@ dt {
     width: 96px;
 }
 
-.specialty {
+.skills {
     width: 96px;
 }
 
+.specialty {
+    width: 130px;
+}
+
 .hobbies {
-    width: 96px;
+    width: 124px;
 }
 
 .special-jp {
@@ -1064,3 +1116,7 @@ footer {
     }   
 }
 
+.copy {
+    font-size: 0.85rem;
+    color: #666;
+}

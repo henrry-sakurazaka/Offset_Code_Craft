@@ -27,13 +27,6 @@ RSpec.describe 'Navigation', type: :system do
       expect(current_path).to eq(contact_path)
     end
 
-    # it 'Architecture Chartがページリンクで移動できること' do
-    #   expect(page).to have_link('Architecture Chart', href: image_path('Blank diagram-12.png'))
-    #   click_link 'Architecture Chart'
-    #   sleep 3
-    #   expect(current_path).to eq(image_path('Blank diagram-12.png'))
-    # end
-
     it 'Architecture Chartがページリンクで移動できること' do
       link_href = image_path('Blank diagram-12.png')
       expect(page).to have_link('Architecture Chart', href: link_href)

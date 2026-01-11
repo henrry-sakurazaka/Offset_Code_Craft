@@ -1,12 +1,43 @@
-// / works img スクロールアニメーション///////////////////////////// 
+// テキストアニメーション
+document.addEventListener("DOMContentLoaded", () => {
+  const TA = new TextAnimation(".worksH1");
+  TA._animate();
+})
 
+class TextAnimation {
+  constructor(el) {
+    this.el = document.querySelector(el);
+    this.chars = this.el.innerHTML.trim().split("");
+    this.el.innerHTML = this._splitText();
+    setTimeout(() => {
+      this.el.innerHTML;
+    }, 1000)
+  }
+
+  // for(let c of str) {
+  //   c = c.replace(/\s+/, "&nbsp");
+  //   concatStr += `<span class= "char">${c}</span>`;
+  // }
+  _splitText() {
+    return this.chars.reduce((acc, curr) => {
+      curr = curr.replace(/\s+/, "&nbsp");
+      return `${acc}<span class="char">${curr}</span>`;
+    }, ""); 
+  }  
+  _animate() {
+    this.el.classList.toggle("inview")
+  }
+}
+
+
+// / works img スクロールアニメーション///////////////////////////// 
 
   const options = {
     rootMargin: "96px",
     threshold: 1
   
   } 
-  const els = document.querySelectorAll(".works-li");
+  const els = document.querySelectorAll(".works-li, .works-title");
   function cb(entries) {
    entries.forEach((entry)=>{
         if(entry.isIntersecting) {
@@ -19,7 +50,7 @@
   
   const io = new IntersectionObserver(cb, options);
   
-  els.forEach((el) => io.observe(el));
+  els.forEach((el) => {io.observe(el)});
   
   // click caption ///////////////////////////////////////////////////
   

@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
 # メールフォームの基本設定
+# app/mailers/contact_mailer.rb
 class ContactMailer < ApplicationMailer
-  default to: ENV.fetch('MY_MAIL_ADDRESS', nil), from: ENV.fetch('FROM_MAIL_ADDRESS', nil)
-
   def contact_email(name, email, message)
-    @name = name
-    @sender_email = email
-    @message = message
-
-    mail(
-      body: "名前: #{@name}\nメール: #{@sender_email}\nお問い合わせ内容:\n#{@message}"
-    )
+    {
+      From: {
+        Email: ENV.fetch('FROM_MAIL_ADDRESS', nil),
+        Name: 'Offset_code_craft'
+      },
+      To: [{
+        Email: ENV.fetch('TO_MAIL_ADDRESS', nil)
+      }],
+      Subject: "【お問い合わせ】#{name}様より",
+      TextPart: "From: #{email}\n\n#{message}",
+      HTMLPart: "<p>From: #{email}</p><p>#{message}</p>"
+    }
   end
 end

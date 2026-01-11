@@ -1,6 +1,6 @@
 
 
-    const targetLink = "http://sakurazaka.s324.xrea.com/megumi-completa/megumi-completa3/HELLO5.html";
+    const targetLink = "https://ss955438.stars.ne.jp/Megumi-Completa-Official/index.html";
     const outLink = "https://soundcloud.com/a_s_up_2?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing";
     const github = "https://github.com/henrry-sakurazaka";
     const reminder = "https://reminder5-27ef0.web.app";

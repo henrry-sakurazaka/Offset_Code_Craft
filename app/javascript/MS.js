@@ -1,103 +1,113 @@
 
 "use strict";
-
-// document.addEventListener('DOMContentLoaded', function() {});
-
-document.addEventListener("turbo:load", () => {
   
-  const mouseStalker = document.getElementById("g-ms");
-  const circle = document.querySelector('.g-ms_i');
-  const stalkerLinkObj = document.querySelectorAll("a");
-  const stalkerPushBtn = document.querySelectorAll(".btn");
-  const captionHover = document.querySelectorAll(".works-text");
-  const stalkerAudioBtn = document.querySelectorAll(".audio_button");
-  // const linkElms = document.querySelectorAll("a:not(.no_stick_)");
-  const cursor = document.getElementById("cursor");
-  const stalker_list = [ stalkerLinkObj, stalkerPushBtn, captionHover, stalkerAudioBtn ];
+class MouseStalkerLogic {
+  constructor () {
+      this.mouseStalker = document.getElementById("g-ms");
+      this.circle = document.querySelector('.g-ms_i');
+      this.stalkerLinkObj = document.querySelectorAll("a");
+      this.stalkerPushBtn = document.querySelectorAll(".btn");
+      this.captionHover = document.querySelectorAll(".works-text");
+      this.stalkerAudioBtn = document.querySelectorAll(".audio_button");
+      // this. linkElms = document.querySelectorAll("a:not(.no_stick_)");
+      this.cursor = document.getElementById("cursor");
+      this.stalker_list = [ this.stalkerLinkObj, this.stalkerPushBtn, this.captionHover, this.stalkerAudioBtn ];
+      this.hovFlag = false;
+      this._basicLogic();
+      this._hoverFunction();
+      this._exceptFunction();
+      this._commonFunction();
+      this._responsiveFunction();
+  }
 
-  let hovFlag = false;
+  _basicLogic () {
+    let msPos = {
+      s: {
+        x: document.documentElement.clientWidth / 2,
+        y: document.documentElement.clientHeight / 2,
+      },
+      m: {
+        x: document.documentElement.clientWidth / 2,
+        y: document.documentElement.clientHeight / 2,
+      },
+    };
 
-  let msPos = {
-    s: {
-      x: document.documentElement.clientWidth / 2,
-      y: document.documentElement.clientHeight / 2,
-    },
-    m: {
-      x: document.documentElement.clientWidth / 2,
-      y: document.documentElement.clientHeight / 2,
-    },
-  };
+    document.addEventListener("mousemove", (e) => {
+      msPos.m.x = e.clientX;
+      msPos.m.y = e.clientY;
 
-  document.addEventListener("mousemove", function (e) {
-    msPos.m.x = e.clientX;
-    msPos.m.y = e.clientY;
+      if (!this.cursor) return;  
+        this.cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
 
-     if (!cursor) return;  
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-  });
+      const msPosUpdate = () => {
+        msPos.s.x += (msPos.m.x - msPos.s.x) * 0.1;
+        msPos.s.y += (msPos.m.y - msPos.s.y) * 0.1;
+        const x = Math.round(msPos.s.x * 10) / 10;
+        const y = Math.round(msPos.s.y * 10) / 10;
 
-  requestAnimationFrame(msPosUpdate);
+        this.mouseStalker.style.transform = `translate(${x}px, ${y}px, 0)`;
+        requestAnimationFrame(msPosUpdate);
+      }
+  }
 
-    function msPosUpdate() {
-      msPos.s.x += (msPos.m.x - msPos.s.x) * 0.1;
-      msPos.s.y += (msPos.m.y - msPos.s.y) * 0.1;
-      const x = Math.round(msPos.s.x * 10) / 10;
-      const y = Math.round(msPos.s.y * 10) / 10;
-
-      mouseStalker.style.transform = `translate(${x}px, ${y}px, 0)`;
-      requestAnimationFrame(msPosUpdate);
-    }
-
-    stalker_list.forEach((el) => {
+  _hoverFunction () {
+    this.stalker_list.forEach((el) => {
       for (let i = 0; i < el.length; i++) {
-        el[i].addEventListener("mouseover", function (e) {
-          if (!mouseStalker || !stalkerLinkObj || !stalkerPushBtn || !captionHover || !stalkerAudioBtn ) return;
+        el[i].addEventListener("mouseover", (e) => {
+          if (!this.mouseStalker || !this.stalkerLinkObj || !this.stalkerPushBtn || !this.captionHover || !this.stalkerAudioBtn ) return;
           
-          hovFlag = true;
-          mouseStalker.classList.add("hov");
-          mouseStalker.classList.add("g-ms-hover")
+          this.hovFlag = true;
+          this.mouseStalker.classList.add("hov");
+          this.mouseStalker.classList.add("g-ms-hover")
 
           let rect = e.target.getBoundingClientRect();
           let posX = rect.left + rect.width / 2;
           let posY = rect.top + rect.height / 2;
 
-          mouseStalker.style.transform = `translate(${posX}px, ${posY}px)`;
+          this.mouseStalker.style.transform = `translate(${posX}px, ${posY}px)`;
         });
 
-        el[i].addEventListener("mouseout", function (e) {
-          hovFlag = false; 
-          mouseStalker.classList.remove("hov");
-          mouseStalker.classList.remove("g-ms-hover");
+        el[i].addEventListener("mouseout", (e) => {
+          this.hovFlag = false; 
+          this.mouseStalker.classList.remove("hov");
+          this.mouseStalker.classList.remove("g-ms-hover");
         });
       }
-    })
-
-  let cursorR = 4;
-
-    for (let i = 0; i < stalkerLinkObj.length; i++) {
-      stalkerLinkObj[i].addEventListener("mouseover", function (e) {
-        cursor.classList.add("hov_");
-      });
-      stalkerLinkObj[i].addEventListener("mouseout", function (e) {
-        cursor.classList.remove("hov_");
-      });
-    }
-
-  hovFlag = false;
-  
-  document.addEventListener("mousemove", function (e) {
-    if (!hovFlag) {
-      mouseStalker.style.transform =
-        "translate(" + e.clientX + "px, " + e.clientY + "px)";
-    }
-  });
-
-  if(window.innerWidth < 800 ) {    
-    mouseStalker.parentNode.removeChild(mouseStalker);
-    cursor.parentNode.removeChild(cursor);
-    circle.classList.remove('g-ms_i');
+    });
   }
+
+  _exceptFunction () {
+    for (let i = 0; i < this.stalkerLinkObj.length; i++) {
+      this.stalkerLinkObj[i].addEventListener("mouseover", (e) => {
+        this.cursor.classList.add("hov_");
+      });
+      this.stalkerLinkObj[i].addEventListener("mouseout", (e) => {
+        this.cursor.classList.remove("hov_");
+      });
+    }
+  }
+  
+  _commonFunction () {
+    document.addEventListener("mousemove", (e) => {
+      if (!this.hovFlag) {
+        this.mouseStalker.style.transform =
+          "translate(" + e.clientX + "px, " + e.clientY + "px)";
+      }
+    });
+  }
+
+  _responsiveFunction () {
+    if(window.innerWidth < 800 ) {    
+    this.mouseStalker.parentNode.removeChild(this.mouseStalker);
+    this.cursor.parentNode.removeChild(this.cursor);
+    circle.classList.remove('g-ms_i');
+    }
+  }
+}
+
+window.MouseStalkerLogic = MouseStalkerLogic;
+
+document.addEventListener("turbo:load", () => {
+  new MouseStalkerLogic();
 });
-
-
-

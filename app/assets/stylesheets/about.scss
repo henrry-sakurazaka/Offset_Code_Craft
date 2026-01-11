@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+@use "text-animation";
+
 body {
     margin: 0;
     padding: 0; 
@@ -9,6 +11,7 @@ body {
 p {
     color: black;
 }
+
 
 header {
     max-width: 1970px;
@@ -170,22 +173,23 @@ header {
 
 /* header //////////////////////////////////////////////////*/
 
-// header {
-//     max-width: 1976px;
-//     width: 100%;
-//     height: 96px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     position: relative;
+/* header {
+    max-width: 1976px;
+    width: 100%;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 27%;
+}
 
-// }
-
-// .site-title {
-//     margin-left: 32px;
-//     position: fixed;
-//     z-index: 70;
-// }
+.site-title {
+    margin-left: 32px;
+    position: fixed;
+    z-index: 70;
+    top: 7%;
+} */
 
 /* @media screen and (max-width: 415px) {
 
@@ -413,7 +417,7 @@ header {
     font-family: "Prata", serif;
     font-weight: 400;
     font-style: normal; 
-    background-image: asset-url('images_mountain/2.jpg');
+    background-image: url(./images_mountain/2.jpg);
     background-position: center;
     -webkit-background-clip: text;
     text-align: justify;
@@ -422,9 +426,8 @@ header {
 }
 
 
-
 .catch:hover { 
-    background-image: asset-url('images_mountain/2.jpg');
+    background-image: url(./images_mountain/2.jpg);
     background-position: bottom;
 }
 
@@ -521,7 +524,7 @@ progress::-webkit-progress-value {
     width: 100%;
     height: 640px;
     background-color: #ccc;
-    background-image: asset-url("brick-wall-room-architecture-indoor-concept.jpg");
+    background-image: url(./brick-wall-room-architecture-indoor-concept.jpg);
     background-size: cover;
     background-position: bottom right;
     position: relative;
@@ -613,7 +616,7 @@ progress::-webkit-progress-value {
     margin-top: 88px;
     display: flex;
     justify-content: center;
-    z-index: 20;
+    z-index: 20;   
 }
 
 
@@ -664,7 +667,7 @@ progress::-webkit-progress-value {
     }
 }
 
-.discription {
+.description {
     max-width: 1117px;
     width: 100%;
     height: 640px;
@@ -673,7 +676,7 @@ progress::-webkit-progress-value {
     margin-bottom: 160px;    
 }
 @media screen and (max-width: 430px) {
-    .discription {
+    .description {
         margin-bottom: 0;
     }  
 }
@@ -683,7 +686,6 @@ dl {
     display: flex;
     column-gap: 96px;
     transform: translateY(96px);
-    opacity: 0;
     color: #2f2c2a;
     line-height: 32px;
 }
@@ -707,7 +709,35 @@ dl {
     
 }
 
-.inview dl {
+//共通アニメーション
+@keyframes animate-chars {
+ from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 各文字のアニメーションディレイをループで生成（20文字まで）
+@for $i from 1 through 20 {
+  .char:nth-child(#{$i}) {
+    animation-delay: $i * 0.08s;
+  }
+}
+
+
+.observed.inview .char {
+   animation: animate-chars 0.8s cubic-bezier(0.39, 1.57, 0.58, 1) both;
+   opacity: 0;
+   position: relative;
+   display: inline-block;
+}
+ 
+
+.observed.inview .items {
     animation-name: fadeIn-up;
     animation-duration: 0.8s;
     animation-timing-function: ease-in-out;
@@ -771,12 +801,16 @@ dt {
     width: 96px;
 }
 
-.specialty {
+.skills {
     width: 96px;
 }
 
+.specialty {
+    width: 120px;
+}
+
 .hobbies {
-    width: 96px;
+    width: 112px;
 }
 
 .special-jp {
@@ -899,7 +933,7 @@ dt {
     top: 0;
 }
 
-.slide-in-nav {
+.slide-in-nav2 {
     display: block;
     margin-bottom: 160px;
     visibility: visible;
@@ -929,7 +963,7 @@ dt {
     height: 1px;
     background-color: black;
     position: absolute;
-    top: -18%;
+    top: 18%;
     left: -3%;
     transform: translate(100%, -54%);
 }
@@ -1009,7 +1043,7 @@ dt {
     background-clip: text;
     color: rgba(0, 0, 0, 0.24);
     /* mix-blend-mode: overlay;  */
-    background-image: asset-url("images_mountain/2.jpg");
+    background-image: url(./images_mountain/2.jpg);
     background-position: bottom right;
     -webkit-background-clip: text;
     position: absolute;
@@ -1025,7 +1059,7 @@ dt {
     background-clip: text;
     color: rgba(0, 0, 0, 0.24);
     /* mix-blend-mode: overlay;  */
-    background-image: asset-url("images-mountain/2.jpg");
+    background-image: image-url("2.jpg");
     background-position: bottom right;
     -webkit-background-clip: text;
     margin-top: 96px;
@@ -1068,4 +1102,13 @@ footer {
         justify-content: center;
     }   
 }
+
+.copy {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+
+
+
 
