@@ -1,6 +1,6 @@
 // loading animation ///////////////////////////////////////////////
 
-// window.addEventListener('DOMContentLoaded', () => {});
+window.addEventListener('DOMContentLoaded', () => {});
 
   $('.lightning-line').animate({'width': '100%'}, 1500, function(){
     $(this).css({'right': '0'});
@@ -11,9 +11,10 @@
           $('.big-title2').animate({'opacity':'1'}, 500);
           $('.backgroundAvocad').animate({'opacity':'1'}, 500);
       });
-  });
+    });
   });
 
+ 
   function time() {
     const start = Date.now();
     const countdown = document.querySelector(".count-down");
