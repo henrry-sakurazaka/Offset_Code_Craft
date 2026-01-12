@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, development ]
+    branches: [ new-logic3, rescue-pr91 ]
   pull_request:
-    branches: [ main, development ]
+    branches: [ new-logic3, rescue-pr91 ]
 
 defaults:
   run:
