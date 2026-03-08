@@ -58,6 +58,7 @@ RSpec.describe 'Navigation', type: :system do
         { class: '.git.one', href: 'https://github.com/henrry-sakurazaka/Hello-TypeScript' },
         { class: '.git.two', href: 'https://github.com/henrry-sakurazaka/Megumi-Completa-Official' },
         { class: '.git.three', href: 'https://github.com/henrry-sakurazaka/Engineer-Post' }
+        { class: '.git.seven', href: 'https://github.com/henrry-sakurazaka/map-app-backend' }
       ]
 
       links.each do |link|

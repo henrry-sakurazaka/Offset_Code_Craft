@@ -42,7 +42,8 @@ test('Topページのworks画像からリンク先へ移動できるか', async(
         { className: '.works-li a.typescript-img .master .works-img.tiger', href: 'https://hello-typescript-8a1d9.web.app' },
         { className: '.works-li a.mountain-img .master .works-img.snake', href: 'http://sakurazaka.s324.xrea.com/mountain-view/mountain.html' },
         { className: '.works-li a.megumi-completa-img .master .works-img.leopard', href: 'https://megumi-completa.netlify.app' },
-        { className: '.works-li a.engineer-post-img .master .works-img.elephant', href: 'http://sakurazaka.s324.xrea.com/products-app/bbs.php' }
+        { className: '.works-li a.engineer-post-img .master .works-img.elephant', href: 'http://sakurazaka.s324.xrea.com/products-app/bbs.php' },
+        { className: '.works-li a.map-app-img .master .works-img.python', href: 'https://map-app-frontend.netlify.app' }
     ]                                                                 
     await page.goto(`${baseURL}/home`, { waitUntil: 'domcontentloaded' });
   
@@ -67,7 +68,8 @@ test('Topページのworks-textからリンク先へ移動できるか', async({
         { className: '.code-detail .git.zero', href: 'https://github.com/henrry-sakurazaka/Reminder' },
         { className: '.code-detail .git.one', href: 'https://github.com/henrry-sakurazaka/Hello-TypeScript' },
         { className: '.code-detail .git.two', href: 'https://github.com/henrry-sakurazaka/Megumi-Completa-Official' },
-        { className: '.code-detail .git.three', href: 'https://github.com/henrry-sakurazaka/Engineer-Post' }
+        { className: '.code-detail .git.three', href: 'https://github.com/henrry-sakurazaka/Engineer-Post' },
+        { className: '.code-detail .git.seven', href: 'https://github.com/henrry-sakurazaka/map-app-backend' }
     ];
 
     await page.goto(`${baseURL}/home`, { waitUntil: 'domcontentloaded'});

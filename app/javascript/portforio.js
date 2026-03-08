@@ -62,7 +62,7 @@ class TextAnimation {
     captionTexts.forEach((Text, index) => {
       Text.addEventListener('mouseover', () => {
           caption.forEach((cap, i) => { 
-            if(index == 0 && index == i) {
+            if(index == 0 || index== 1 && index == i) {
               setTimeout(() => {
                 cap.classList.add('active2');
               }, duration); 
