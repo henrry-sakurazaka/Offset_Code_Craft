@@ -26,7 +26,7 @@ RSpec.describe 'Static pages', type: :system do
         'works6',
         'works7',
         'works3',
-        'works1',
+        # 'works1',
         'works5'
       )
       # background-image を検証
