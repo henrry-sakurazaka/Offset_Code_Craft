@@ -69,7 +69,8 @@ test('Topページのworks-textからリンク先へ移動できるか', async({
         { className: '.code-detail .git.one', href: 'https://github.com/henrry-sakurazaka/Hello-TypeScript' },
         // { className: '.code-detail .git.two', href: 'https://github.com/henrry-sakurazaka/Megumi-Completa-Official' },
         { className: '.code-detail .git.three', href: 'https://github.com/henrry-sakurazaka/Engineer-Post' },
-        { className: '.code-detail .git.seven', href: 'https://github.com/henrry-sakurazaka/map-app-backend' }
+        { className: '.code-detail .git.seven', href: 'https://github.com/henrry-sakurazaka/map-app-backend' },
+        { className: '.code-detail .git.eight', href: 'https://github.com/henrry-sakurazaka/map-app-frontend' }
     ];
 
     await page.goto(`${baseURL}/home`, { waitUntil: 'domcontentloaded'});
