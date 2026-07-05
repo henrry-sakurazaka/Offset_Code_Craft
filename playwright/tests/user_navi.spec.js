@@ -4,6 +4,7 @@ const baseURL = 'http://localhost:3000';
 
 test('Topページでリンククリックしてリンク先へ移動できるか', async ({ page }) => {
   const architex_path = "http://localhost:3000/assets/Blank%20diagram-12-77fc3dc8.png";
+  const architex2_path = "http://localhost:3000/assets/Blank%20diagram-11-69552281.png";
   const links = [{ className: 'a.about'}, { className: 'div.big-about' }];
   const nav = page.locator('.navi');
   const targetZ = page.locator('.center.inview .center-inner .inner .slide-in-nav');
@@ -33,6 +34,10 @@ test('Topページでリンククリックしてリンク先へ移動できる�
 
   await page.click('.architecture .architex');
   await expect(page).toHaveURL(`${architex_path}`);
+  await page.goBack();
+
+  await page.click('.architecture .architex2');
+  await expect(page).toHaveURL(`${architex2_path}`);
   await page.goBack();
 });
 

@@ -17,6 +17,7 @@
 
   
     window.architectureChart = window.architectureChart || "./images/Blank diagram-12.png";
+    window.architectureChart2 = window.architectureChart2 || "./images/Blank diagram-11.png";
     window.myOptions = window.myOptions || {};
 
 
@@ -43,7 +44,7 @@
        setTimeout(delay, 2000);
     
 $(function() {
-    $('a:not([href^="#"]):not([target]):not([href="'+ engineerPostGitHub + '"]):not([href="'+ megumiGitHub + '"]):not([href="'+ targetLink + '"]):not([href="' + reminderGitHub +'"]):not([href="'+ mapAppGitHub +'"]):not([href="' + mapAppFrontGitHub +'"]):not([href="' + typescriptGitHub +'"]):not([href="'+ outLink + '"]):not([href="'+ helloTypeScript + '"]):not([href="' + reminder + '"]):not([href="'+ github + '"]):not([href="' + mountain +'"]):not([href="' + architectureChart +'"]):not([href="'+ completeContactPath +'"]):not([href="' + mapAppFrontGitHub + '"]):not([href="' + engineerPost +'"]')
+    $('a:not([href^="#"]):not([target]):not([href="'+ engineerPostGitHub + '"]):not([href="'+ megumiGitHub + '"]):not([href="'+ targetLink + '"]):not([href="' + reminderGitHub +'"]):not([href="'+ mapAppGitHub +'"]):not([href="' + mapAppFrontGitHub +'"]):not([href="' + typescriptGitHub +'"]):not([href="'+ outLink + '"]):not([href="'+ helloTypeScript + '"]):not([href="' + reminder + '"]):not([href="'+ github + '"]):not([href="' + mountain +'"]):not([href="' + architectureChart +'"]):not([href="' + architectureChart2 +'"]):not([href="'+ completeContactPath +'"]):not([href="' + mapAppFrontGitHub + '"]):not([href="' + engineerPost +'"]')
     .on('click', function(e){
         e.preventDefault();
         let url = $(this).attr('href');
