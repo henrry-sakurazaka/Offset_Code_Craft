@@ -2449,7 +2449,6 @@ main .big-title2 {
   font-style: normal;
   background-clip: text;
   /* background-image: url(../images/images_mountain/2.jpg); */
-  /* background-image: url(./images-mountan/2.jpg); */
   background-position: center;
   /* mix-blend-mode: overlay;   */
   color: rgba(0, 0, 0, 0);
@@ -3521,7 +3520,7 @@ figcaption2 {
   background-clip: text;
   color: rgba(0, 0, 0, 0.24);
   /* mix-blend-mode: overlay;  */
-  /* background-image: url(./images-mountan/2.jpg); */
+  /* background-image: url(./images-mountain/2.jpg); */
   background-position: bottom right;
   -webkit-background-clip: text;
   position: absolute;
@@ -3545,7 +3544,7 @@ figcaption2 {
   font-size: 10vw;
   background-clip: text;
   color: rgba(0, 0, 0, 0.24);
-  /* background-image: url(./images-mountan/2.jpg); */
+  background-image: url(2.jpg);
   background-position: bottom right;
   -webkit-background-clip: text;
 }

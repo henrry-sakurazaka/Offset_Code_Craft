@@ -1090,7 +1090,7 @@ dt {
   background-clip: text;
   color: rgba(0, 0, 0, 0.24);
   /* mix-blend-mode: overlay;  */
-  background-image: image-url("2.jpg");
+  /* background-image: image-url("2.jpg"); */
   background-position: bottom right;
   -webkit-background-clip: text;
   margin-top: 96px;
