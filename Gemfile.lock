@@ -179,7 +179,8 @@ GEM
     marcel (1.1.0)
     matrix (0.4.3)
     mini_mime (1.1.5)
-    minitest (5.27.0)
+    minitest (6.0.1)
+      prism (~> 1.5)
     msgpack (1.8.0)
     net-http (0.6.0)
       uri
@@ -210,7 +211,7 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.4.0)
+    prism (1.7.0)
     propshaft (1.2.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -391,7 +392,7 @@ GEM
     thruster (0.1.14-x86_64-linux)
     timeout (0.6.0)
     tsort (0.2.0)
-    turbo-rails (2.0.16)
+    turbo-rails (2.0.20)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
