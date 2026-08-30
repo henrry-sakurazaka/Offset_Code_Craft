@@ -1121,6 +1121,13 @@ figcaption2 {
   letter-spacing: 4px;
 }
 
+.inview .works-container .works-text figcaption .architecture .architex2:hover {
+  color: rgb(209, 209, 11);
+  text-decoration: underline;
+  font-size: 24px;
+  letter-spacing: 4px;
+}
+
 .caption {
   display: none;
   z-index: 999;
