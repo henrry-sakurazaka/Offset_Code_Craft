@@ -26,7 +26,6 @@ RSpec.describe 'Static pages', type: :system do
         'works6',
         'works7',
         'works3',
-        # 'works1',
       )
       # background-image を検証
       bg = page.evaluate_script(
