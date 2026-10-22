@@ -25,9 +25,7 @@ RSpec.describe 'Static pages', type: :system do
         'pexels-laker-6157040',
         'works6',
         'works7',
-        'works3',
-        # 'works1',
-        'works5'
+        'works3'
       )
       # background-image を検証
       bg = page.evaluate_script(
