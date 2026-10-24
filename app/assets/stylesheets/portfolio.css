@@ -857,13 +857,18 @@ section {
   -webkit-text-stroke: 1px black;
 }
 
-figcaption {
+.figcaption {
   visibility: visible;
 }
 
-figcaption2 {
+.figcaption2 {
   visibility: visible;
 }
+
+.emergency-message {
+  text-align: center;
+}
+
 
 .inview .works-text {
   will-change: mix-blend-mode;

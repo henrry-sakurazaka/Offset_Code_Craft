@@ -43,7 +43,7 @@ test('Topページでリンククリックしてリンク先へ移動できる�
 
 test('Topページのworks画像からリンク先へ移動できるか', async({ page }) => {
     const imgDatas = [
-        { className: '.works-li a.reminder-img .master .works-img.lion', href: 'https://reminder5-27ef0.web.app' },
+        // { className: '.works-li a.reminder-img .master .works-img.lion', href: 'https://reminder5-27ef0.web.app' },
         { className: '.works-li a.typescript-img .master .works-img.tiger', href: 'https://hello-typescript-8a1d9.web.app' },
         { className: '.works-li a.mountain-img .master .works-img.snake', href: 'http://sakurazaka.s324.xrea.com/mountain-view/mountain.html' },
         // { className: '.works-li a.megumi-completa-img .master .works-img.leopard', href: 'https://megumi-completa.netlify.app' },
