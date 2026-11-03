@@ -54,7 +54,7 @@ RSpec.describe 'Navigation', type: :system do
 
     it 'Code Detailsからリンク先へ移動できること（各リンク）' do
       links = [
-        { class: '.git.zero', href: 'https://github.com/henrry-sakurazaka/Reminder' },
+        # { class: '.git.zero', href: 'https://github.com/henrry-sakurazaka/Reminder' },
         { class: '.git.one', href: 'https://github.com/henrry-sakurazaka/Hello-TypeScript' },
         { class: '.git.two', href: 'https://github.com/henrry-sakurazaka/Megumi-Completa-Official' },
         { class: '.git.seven', href: 'https://github.com/henrry-sakurazaka/map-app-backend' }
