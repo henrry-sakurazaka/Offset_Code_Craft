@@ -114,7 +114,7 @@ jobs:
 
 
   e2e-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       RAILS_ENV: test
       MY_MAIL_ADDRESS: test@example.com
